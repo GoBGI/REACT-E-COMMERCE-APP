@@ -4,4 +4,6 @@ fn main() {
     cc::Build::new()
         .flag("-std=c99")
         .flag("-Wall")
-        .fl
+        .flag("-Wextra")
+        .flag("-pedantic")
+        .file("src/audio
