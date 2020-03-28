@@ -6,4 +6,6 @@ fn main() {
         .flag("-Wall")
         .flag("-Wextra")
         .flag("-pedantic")
-        .file("src/audio
+        .file("src/audio_stream.c")
+        .file("src/media.c")
+        .file("src/mu
