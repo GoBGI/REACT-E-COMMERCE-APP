@@ -8,4 +8,7 @@ fn main() {
         .flag("-pedantic")
         .file("src/audio_stream.c")
         .file("src/media.c")
-        .file("src/mu
+        .file("src/musicd.c")
+        .compile("libmusicdc.a");
+
+    p
