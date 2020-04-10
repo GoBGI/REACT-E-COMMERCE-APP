@@ -13,4 +13,5 @@ fn main() {
 
     println!("cargo:rustc-link-lib=dylib=pthread");
     println!("cargo:rustc-link-lib=dylib=avcodec");
-    println!("cargo:rustc-link-lib=dylib=av
+    println!("cargo:rustc-link-lib=dylib=avfilter");
+    println!("cargo:rustc-link-lib=
