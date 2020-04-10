@@ -11,4 +11,4 @@ fn main() {
         .file("src/musicd.c")
         .compile("libmusicdc.a");
 
-    p
+    println!("cargo:rustc-link-lib=dylib=pthread");
