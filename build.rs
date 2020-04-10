@@ -12,3 +12,5 @@ fn main() {
         .compile("libmusicdc.a");
 
     println!("cargo:rustc-link-lib=dylib=pthread");
+    println!("cargo:rustc-link-lib=dylib=avcodec");
+    
