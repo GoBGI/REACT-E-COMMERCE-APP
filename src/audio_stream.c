@@ -292,3 +292,51 @@ eof:
 
     return STREAM_EOF;
 }
+
+static int decode_resample(struct AudioStream *self, AVFrame *in_frame) {
+    int result = avcodec_receive_frame(self->dec_ctx, in_frame);
+
+    if (result == AVERROR(EAGAIN)) {
+        return STREAM_AGAIN;
+    } else if (result == AVERROR_EOF) {
+        goto eof;
+    } else if (result < 0) {
+        lav_error("avcodec_receive_frame", result);
+        return STREAM_ERROR;
+    }
+
+    result = av_buffersrc_add_frame_flags(self->abuffer_ctx, in_frame, 0);
+    if (result < 0) {
+        lav_error("av_buffersrc_add_frame_flags", result);
+        return STREAM_ERROR;
+    }
+
+    return STREAM_OK;
+
+eof:
+    result = av_buffersrc_add_frame_flags(self->abuffer_ctx, NULL, 0);
+    if (result < 0) {
+        lav_error("av_buffersrc_add_frame_flags", result);
+        return STREAM_ERROR;
+    }
+    
+    return STREAM_EOF;
+}
+
+static int resample_encode(struct AudioStream *self, AVFrame *out_frame) {
+    int result = av_buffersink_get_frame(self->abuffersink_ctx, out_frame);
+
+    if (result == AVERROR(EAGAIN)) {
+        return STREAM_AGAIN;
+    } else if (result == AVERROR_EOF) {
+        goto eof;
+    } else if (result < 0) {
+        lav_error("av_buffersink_get_frame", result);
+        return STREAM_ERROR;
+    }
+
+    result = avcodec_send_frame(self->enc_ctx, out_frame);
+    if (result < 0) {
+        lav_error("avcodec_send_frame", result);
+        return STREAM_ERROR;
+    }
