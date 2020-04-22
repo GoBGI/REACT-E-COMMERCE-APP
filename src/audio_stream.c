@@ -139,3 +139,48 @@ struct AudioStream *audio_stream_open(const struct AudioStreamOptions *options) 
         self->dec_ctx->sample_rate,
         self->encoder->supported_samplerates);
     self->enc_ctx->channel_layout = self->dec_ctx->channel_layout;
+    self->enc_ctx->channels = av_get_channel_layout_nb_channels(self->enc_ctx->channel_layout);
+
+    result = avcodec_open2(self->enc_ctx, self->encoder, NULL);
+    if (result < 0) {
+        lav_error("avcodec_open2", result);
+        goto fail;
+    }
+
+    result = avcodec_parameters_from_context(self->out_stream->codecpar, self->enc_ctx);
+    if (result < 0) {
+        lav_error("avcodec_parameters_from_context", result);
+        goto fail;
+    }
+
+    self->out_stream->time_base = self->enc_ctx->time_base;
+
+    uint8_t *out_iobuf = av_mallocz(4096);
+    self->out_ioctx = avio_alloc_context(
+        out_iobuf, 4096, 1, (void *)self, NULL, audio_stream_write_callback, NULL);
+    if (!self->out_ioctx) {
+        lav_error("avio_alloc_context", 0);
+        goto fail;
+    }
+
+    self->out_ctx->pb = self->out_ioctx;
+    
+    av_dump_format(self->out_ctx, 0, "", 1);
+
+    const AVFilter *abuffer = avfilter_get_by_name("abuffer");
+    const AVFilter *aformat = avfilter_get_by_name("aformat");
+    const AVFilter *abuffersink = avfilter_get_by_name("abuffersink");
+
+    if (!abuffer) {
+        lav_error("av filter abuffer not found", 0);
+        goto fail;
+    }
+
+    if (!aformat) {
+        lav_error("av filter aformat not found", 0);
+        goto fail;
+    }
+
+    if (!abuffersink) {
+        lav_error("av filter abuffersink not found", 0);
+        goto fail;
