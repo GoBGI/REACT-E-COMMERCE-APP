@@ -184,3 +184,49 @@ struct AudioStream *audio_stream_open(const struct AudioStreamOptions *options) 
     if (!abuffersink) {
         lav_error("av filter abuffersink not found", 0);
         goto fail;
+    }
+
+    self->filter_graph = avfilter_graph_alloc();
+
+    snprintf(args, sizeof(args),
+        "time_base=%d/%d:sample_rate=%d:sample_fmt=%s:channel_layout=0x%" PRIx64,
+        self->dec_ctx->time_base.num, self->dec_ctx->time_base.den, self->dec_ctx->sample_rate,
+        av_get_sample_fmt_name(self->dec_ctx->sample_fmt),
+        self->dec_ctx->channel_layout);
+
+    result = avfilter_graph_create_filter(
+        &self->abuffer_ctx, abuffer, "in", args, NULL, self->filter_graph);
+    if (result < 0) {
+        lav_error("avfilter_graph_create_filter", result);
+        goto fail;
+    }
+
+    snprintf(args,
+        sizeof(args),
+        "sample_fmts=%s:sample_rates=%d:channel_layouts=0x%" PRIx64,
+        av_get_sample_fmt_name(self->enc_ctx->sample_fmt),
+        self->enc_ctx->sample_rate,
+        self->enc_ctx->channel_layout);
+
+    result = avfilter_graph_create_filter(
+        &self->aformat_ctx, aformat, NULL, args, NULL, self->filter_graph);
+    if (result < 0) {
+        lav_error("avfilter_graph_create_filter", result);
+        goto fail;
+    }
+
+    result = avfilter_graph_create_filter(
+        &self->abuffersink_ctx, abuffersink, "out", NULL, NULL, self->filter_graph);
+    if (result < 0) {
+        lav_error("avfilter_graph_create_filter", result);
+        goto fail;
+    }
+
+    result = avfilter_link(self->abuffer_ctx, 0, self->aformat_ctx, 0);
+    if (result < 0) {
+        lav_error("avfilter_link", result);
+        goto fail;
+    }
+
+    result = avfilter_link(self->aformat_ctx, 0, self->abuffersink_ctx, 0);
+    if (result < 0) {
