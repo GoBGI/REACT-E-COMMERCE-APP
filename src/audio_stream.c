@@ -230,3 +230,65 @@ struct AudioStream *audio_stream_open(const struct AudioStreamOptions *options) 
 
     result = avfilter_link(self->aformat_ctx, 0, self->abuffersink_ctx, 0);
     if (result < 0) {
+        lav_error("avfilter_link", result);
+        goto fail;
+    }
+
+    result = avfilter_graph_config(self->filter_graph, NULL);
+    if (result < 0) {
+        lav_error("avfilter_graph_config", result);
+        goto fail;
+    }
+
+    av_buffersink_set_frame_size(self->abuffersink_ctx, self->enc_ctx->frame_size);
+
+    return self;
+
+fail:
+    audio_stream_close(self);
+    return NULL;
+}
+
+#define STREAM_ERROR -1
+#define STREAM_EOF 0
+#define STREAM_AGAIN 1
+#define STREAM_OK 2
+
+static int demux_decode(struct AudioStream *self, AVPacket *in_packet) {
+    int result = av_read_frame(self->in_ctx, in_packet);
+
+    if (result == AVERROR_EOF) {
+        goto eof;
+    } else if (result < 0) {
+        lav_error("av_read_frame", result);
+        return STREAM_ERROR;
+    }
+
+    if (in_packet->stream_index != self->in_stream->index) {
+        return STREAM_AGAIN;
+    }
+
+    av_packet_rescale_ts(in_packet, self->in_stream->time_base, self->dec_ctx->time_base);
+
+    if (self->end_pts > 0 && in_packet->pts > self->end_pts) {
+        // Reached track end
+        goto eof;
+    }
+
+    result = avcodec_send_packet(self->dec_ctx, in_packet);
+    if (result < 0) {
+        lav_error("avcodec_send_packet", result);
+        return STREAM_ERROR;
+    }
+
+    return STREAM_OK;
+
+eof:
+    result = avcodec_send_packet(self->dec_ctx, NULL);
+    if (result < 0) {
+        lav_error("avcodec_send_packet", result);
+        return STREAM_ERROR;
+    }
+
+    return STREAM_EOF;
+}
