@@ -408,3 +408,58 @@ static int internal_next(
         if (result == STREAM_ERROR) {
             goto finish;
         } else if (result == STREAM_OK) {
+            return STREAM_OK;
+        } else if (result == STREAM_EOF) {
+            goto finish;
+        }
+
+        result = resample_encode(self, out_frame);
+        av_frame_unref(out_frame);
+        if (result == STREAM_ERROR) {
+            goto finish;
+        } else if (result == STREAM_OK || result == STREAM_EOF) {
+            continue;
+        }
+
+        result = decode_resample(self, in_frame);
+        av_frame_unref(in_frame);
+        if (result == STREAM_ERROR) {
+            goto finish;
+        } else if (result == STREAM_OK || result == STREAM_EOF) {
+            continue;
+        }
+
+        while (1) {
+            result = demux_decode(self, in_packet);
+            av_packet_unref(in_packet);
+            if (result == STREAM_ERROR) {
+                goto finish;
+            } else if (result == STREAM_OK || result == STREAM_EOF) {
+                break;
+            }
+        }
+    }
+
+finish:
+    if (result == STREAM_EOF) {
+        result = av_write_trailer(self->out_ctx);
+        if (result < 0) {
+            lav_error("av_write_trailer", result);
+            result = STREAM_ERROR;
+        }
+
+        self->finished = 1;
+
+        result = STREAM_EOF;
+    }
+
+    return result;
+}
+
+int audio_stream_next(
+    struct AudioStream *self,
+    void *write_opaque,
+    int (*write_callback)(void *opaque, uint8_t *buf, int len)
+) {
+    self->write_opaque = write_opaque;
+    self->write_callback = write_callback;
