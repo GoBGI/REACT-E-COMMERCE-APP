@@ -463,3 +463,37 @@ int audio_stream_next(
 ) {
     self->write_opaque = write_opaque;
     self->write_callback = write_callback;
+
+    AVPacket in_packet = { .data = NULL, .size = 0 };
+    av_init_packet(&in_packet);
+
+    AVPacket enc_packet = { .data = NULL, .size = 0 };
+    av_init_packet(&enc_packet);
+
+    AVFrame *in_frame = av_frame_alloc();
+    AVFrame *out_frame = av_frame_alloc();
+
+    int result = internal_next(self, &in_packet, &enc_packet, in_frame, out_frame);
+
+    av_packet_unref(&enc_packet);
+    av_frame_free(&out_frame);
+    av_frame_free(&in_frame);
+    av_packet_unref(&in_packet);
+
+    return result;
+}
+
+void audio_stream_close(struct AudioStream *self) {
+    avfilter_graph_free(&self->filter_graph);
+    if (self->out_ioctx) {
+        av_free(self->out_ioctx->buffer);
+    }
+    av_free(self->out_ioctx);
+    avcodec_close(self->enc_ctx);
+    avcodec_free_context(&self->enc_ctx);
+    avcodec_close(self->dec_ctx);
+    avcodec_free_context(&self->dec_ctx);
+    avformat_free_context(self->out_ctx);
+    avformat_close_input(&self->in_ctx);
+    free(self);
+}
