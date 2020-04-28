@@ -340,3 +340,71 @@ static int resample_encode(struct AudioStream *self, AVFrame *out_frame) {
         lav_error("avcodec_send_frame", result);
         return STREAM_ERROR;
     }
+
+    return STREAM_OK;
+
+eof:
+    result = avcodec_send_frame(self->enc_ctx, NULL);
+    if (result < 0) {
+        lav_error("avcodec_send_frame", result);
+        return STREAM_ERROR;
+    }
+
+    return STREAM_EOF;
+}
+
+static int encode_mux(struct AudioStream *self, AVPacket *enc_packet) {
+    int result = avcodec_receive_packet(self->enc_ctx, enc_packet);
+
+    if (result == AVERROR(EAGAIN)) {
+        return STREAM_AGAIN;
+    } else if (result == AVERROR_EOF) {
+        goto eof;
+    } else if (result < 0) {
+        lav_error("avcodec_receive_packet", result);
+        return STREAM_ERROR;
+    }
+
+    result = av_interleaved_write_frame(self->out_ctx, enc_packet);
+    if (result < 0) {
+        lav_error("av_interleaved_write_frame", result);
+        return STREAM_ERROR;
+    }
+
+    return STREAM_OK;
+
+eof:
+    return STREAM_EOF;
+}
+
+static int internal_next(
+    struct AudioStream *self,
+    AVPacket *in_packet,
+    AVPacket *enc_packet,
+    AVFrame *in_frame,
+    AVFrame *out_frame
+) {
+    int result;
+
+    if (self->finished) {
+        return STREAM_EOF;
+    }
+
+    if (!self->started) {
+        result = avformat_write_header(self->out_ctx, NULL);
+        if (result < 0) {
+            lav_error("avformat_write_header", result);
+            return result;
+        }
+
+        self->started = 1;
+
+        return STREAM_OK;
+    }
+
+    while (1) {
+        result = encode_mux(self, enc_packet);
+        av_packet_unref(enc_packet);
+        if (result == STREAM_ERROR) {
+            goto finish;
+        } else if (result == STREAM_OK) {
