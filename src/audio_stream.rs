@@ -7,4 +7,6 @@ use std::path::Path;
 use bytes::{BytesMut, buf::ext::BufExt};
 use tokio::sync::mpsc::Sender;
 
-use 
+use crate::musicd_c;
+
+extern "C" fn stream_c_callback(opaque: *
