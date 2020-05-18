@@ -13,4 +13,4 @@ extern "C" fn stream_c_callback(opaque: *const c_void, data: *const u8, len: c_i
     let closure: &mut &mut dyn FnMut(&[u8]) -> usize =
         unsafe { &mut *(opaque as *mut &mut dyn for<'r> std::ops::FnMut(&'r [u8]) -> usize) };
 
-    let slice =
+    let slice = unsafe { std::slice::from_raw_parts(data, len 
