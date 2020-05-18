@@ -18,4 +18,5 @@ extern "C" fn stream_c_callback(opaque: *const c_void, data: *const u8, len: c_i
     closure(slice) as i32
 }
 
-pub struct
+pub struct AudioStream {
+    stream: *const c_void,
