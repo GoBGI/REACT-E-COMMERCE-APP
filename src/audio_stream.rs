@@ -26,4 +26,5 @@ unsafe impl Send for AudioStream {}
 
 impl Drop for AudioStream {
     fn drop(&mut self) {
-        un
+        unsafe {
+            musicd_c::audio_stream_close(self.st
