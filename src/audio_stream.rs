@@ -20,3 +20,8 @@ extern "C" fn stream_c_callback(opaque: *const c_void, data: *const u8, len: c_i
 
 pub struct AudioStream {
     stream: *const c_void,
+}
+
+unsafe impl Send for AudioStream {}
+
+impl Dro
