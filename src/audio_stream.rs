@@ -33,4 +33,7 @@ impl Drop for AudioStream {
 }
 
 impl AudioStream {
-    pub fn o
+    pub fn open(
+        path: &Path,
+        stream_index: i32,
+  
