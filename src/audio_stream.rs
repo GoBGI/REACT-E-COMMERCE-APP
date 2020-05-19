@@ -24,4 +24,6 @@ pub struct AudioStream {
 
 unsafe impl Send for AudioStream {}
 
-impl Dro
+impl Drop for AudioStream {
+    fn drop(&mut self) {
+        un
