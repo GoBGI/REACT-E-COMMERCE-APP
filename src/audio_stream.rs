@@ -36,4 +36,5 @@ impl AudioStream {
     pub fn open(
         path: &Path,
         stream_index: i32,
-  
+        track_index: i32,
+        start: f64,
