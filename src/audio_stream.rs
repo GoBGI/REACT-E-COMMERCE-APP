@@ -38,3 +38,6 @@ impl AudioStream {
         stream_index: i32,
         track_index: i32,
         start: f64,
+        length: f64,
+        target_codec: &str,
+    ) -> Option<A
