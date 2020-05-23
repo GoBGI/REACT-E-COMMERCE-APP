@@ -40,4 +40,5 @@ impl AudioStream {
         start: f64,
         length: f64,
         target_codec: &str,
-    ) -> Option<A
+    ) -> Option<AudioStream> {
+        let tmp_path = CString::new(pa
