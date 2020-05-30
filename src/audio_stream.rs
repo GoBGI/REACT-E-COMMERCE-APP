@@ -47,4 +47,6 @@ impl AudioStream {
         let config = musicd_c::AudioStreamOptions {
             path: tmp_path.as_ptr(),
             stream_index,
-            tr
+            track_index,
+            start,
+            len
