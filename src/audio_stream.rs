@@ -45,4 +45,6 @@ impl AudioStream {
         let tmp_codec = CString::new(target_codec).unwrap();
 
         let config = musicd_c::AudioStreamOptions {
-            pat
+            path: tmp_path.as_ptr(),
+            stream_index,
+            tr
