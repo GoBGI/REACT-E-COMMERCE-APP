@@ -51,4 +51,6 @@ impl AudioStream {
             start,
             length,
             target_codec: tmp_codec.as_ptr(),
-     
+        };
+
+        let result = unsafe { musicd_c::audio_stream_o
