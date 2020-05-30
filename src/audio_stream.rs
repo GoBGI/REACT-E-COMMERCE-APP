@@ -42,4 +42,4 @@ impl AudioStream {
         target_codec: &str,
     ) -> Option<AudioStream> {
         let tmp_path = CString::new(path.as_os_str().as_bytes()).unwrap();
-        let
+        let tmp_codec = CString::new(target_codec).unwrap
