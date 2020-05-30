@@ -49,4 +49,6 @@ impl AudioStream {
             stream_index,
             track_index,
             start,
-            len
+            length,
+            target_codec: tmp_codec.as_ptr(),
+     
