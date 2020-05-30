@@ -53,4 +53,7 @@ impl AudioStream {
             target_codec: tmp_codec.as_ptr(),
         };
 
-        let result = unsafe { musicd_c::audio_stream_o
+        let result = unsafe { musicd_c::audio_stream_open(&config) };
+
+        if result.is_null() {
+            Non
