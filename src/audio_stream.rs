@@ -56,4 +56,6 @@ impl AudioStream {
         let result = unsafe { musicd_c::audio_stream_open(&config) };
 
         if result.is_null() {
-            Non
+            None
+        } else {
+            Some(AudioStream { stre
