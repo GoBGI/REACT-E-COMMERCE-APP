@@ -58,4 +58,8 @@ impl AudioStream {
         if result.is_null() {
             None
         } else {
-            Some(AudioStream { stre
+            Some(AudioStream { stream: result })
+        }
+    }
+
+    pub fn next<
