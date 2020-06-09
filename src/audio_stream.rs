@@ -64,4 +64,6 @@ impl AudioStream {
 
     pub fn next<F>(&mut self, mut callback: F) -> bool
     where
-        F
+        F: FnMut(&[u8]) -> usize,
+    {
+        let mut cb: &mut d
