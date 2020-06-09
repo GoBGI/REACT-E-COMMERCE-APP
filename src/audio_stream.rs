@@ -62,4 +62,6 @@ impl AudioStream {
         }
     }
 
-    pub fn next<
+    pub fn next<F>(&mut self, mut callback: F) -> bool
+    where
+        F
