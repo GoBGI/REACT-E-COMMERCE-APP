@@ -66,4 +66,5 @@ impl AudioStream {
     where
         F: FnMut(&[u8]) -> usize,
     {
-        let mut cb: &mut d
+        let mut cb: &mut dyn FnMut(&[u8]) -> usize = &mut callback;
+    
