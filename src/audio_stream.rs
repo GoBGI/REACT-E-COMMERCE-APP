@@ -70,4 +70,5 @@ impl AudioStream {
         let cb = &mut cb;
 
         unsafe {
-            musicd_c::audio_stream_next(self.stream, cb 
+            musicd_c::audio_stream_next(self.stream, cb as *mut _ as *mut c_void, stream_c_callback)
+                >
