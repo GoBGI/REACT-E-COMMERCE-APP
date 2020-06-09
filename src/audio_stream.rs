@@ -67,4 +67,7 @@ impl AudioStream {
         F: FnMut(&[u8]) -> usize,
     {
         let mut cb: &mut dyn FnMut(&[u8]) -> usize = &mut callback;
-    
+        let cb = &mut cb;
+
+        unsafe {
+           
