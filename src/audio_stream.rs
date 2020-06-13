@@ -76,4 +76,5 @@ impl AudioStream {
     }
 
     pub async fn execute(
-       
+        mut self,
+        mut sender: Sender<R
