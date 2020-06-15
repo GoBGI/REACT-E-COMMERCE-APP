@@ -77,4 +77,5 @@ impl AudioStream {
 
     pub async fn execute(
         mut self,
-        mut sender: Sender<R
+        mut sender: Sender<Result<Vec<u8>, Box<dyn StdError + Send + Sync>>>,
+    ) {
