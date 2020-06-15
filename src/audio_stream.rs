@@ -79,3 +79,5 @@ impl AudioStream {
         mut self,
         mut sender: Sender<Result<Vec<u8>, Box<dyn StdError + Send + Sync>>>,
     ) {
+        loop {
+            let mut buf = BytesMut::
