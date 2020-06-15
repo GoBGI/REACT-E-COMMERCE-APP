@@ -84,4 +84,5 @@ impl AudioStream {
 
             let mut result = true;
 
-            
+            while result && buf.len() < 10 * 1024 {
+                resu
