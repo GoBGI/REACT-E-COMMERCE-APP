@@ -85,4 +85,5 @@ impl AudioStream {
             let mut result = true;
 
             while result && buf.len() < 10 * 1024 {
-                resu
+                result = self.next(|data| {
+                    buf.extend_from_
