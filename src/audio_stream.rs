@@ -91,4 +91,6 @@ impl AudioStream {
                 });
             }
 
-            trace!("read
+            trace!("read {} bytes from audio stream, feeding", buf.len());
+
+  
