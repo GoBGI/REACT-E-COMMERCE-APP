@@ -88,4 +88,7 @@ impl AudioStream {
                 result = self.next(|data| {
                     buf.extend_from_slice(&data);
                     data.len()
-       
+                });
+            }
+
+            trace!("read
