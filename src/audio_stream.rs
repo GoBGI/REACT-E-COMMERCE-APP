@@ -86,4 +86,6 @@ impl AudioStream {
 
             while result && buf.len() < 10 * 1024 {
                 result = self.next(|data| {
-                    buf.extend_from_
+                    buf.extend_from_slice(&data);
+                    data.len()
+       
