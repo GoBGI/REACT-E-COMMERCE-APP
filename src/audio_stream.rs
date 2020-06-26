@@ -93,4 +93,5 @@ impl AudioStream {
 
             trace!("read {} bytes from audio stream, feeding", buf.len());
 
-  
+            let result = if result {
+        
