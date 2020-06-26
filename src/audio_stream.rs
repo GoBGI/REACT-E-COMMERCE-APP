@@ -95,4 +95,4 @@ impl AudioStream {
 
             let result = if result {
                 let len = buf.len();
-                send
+                sender.send(Ok(buf.take(len).into_inner().to_vec()))
