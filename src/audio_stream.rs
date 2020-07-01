@@ -106,4 +106,6 @@ impl AudioStream {
                 debug!("channel disconnected, stopping audio stream");
                 break;
             }
-        
+        }
+    }
+}
