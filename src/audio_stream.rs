@@ -98,4 +98,4 @@ impl AudioStream {
                 sender.send(Ok(buf.take(len).into_inner().to_vec())).await
             } else {
                 debug!("audio stream finished, flushing channel");
-            
+                let _ = sender.send(Ok(vec![])).aw
