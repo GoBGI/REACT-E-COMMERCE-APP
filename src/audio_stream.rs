@@ -103,4 +103,7 @@ impl AudioStream {
             };
 
             if result.is_err() {
-                debug!("channel disconnected, stoppi
+                debug!("channel disconnected, stopping audio stream");
+                break;
+            }
+        
