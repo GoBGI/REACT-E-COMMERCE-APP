@@ -44,3 +44,43 @@ impl CacheSource {
         }
 
         Ok(Some(source))
+    }
+
+    fn get_connection(db_path: &PathBuf) -> Result<Connection> {
+        match Connection::open(db_path) {
+            Ok(c) => Ok(c),
+            Err(e) => {
+                error!(
+                    "can't open sqlite database '{}': {}",
+                    db_path.to_string_lossy(),
+                    e.description()
+                );
+                Err(e)
+            }
+        }
+    }
+
+    pub fn get(&self) -> Result<Box<dyn Cache>> {
+        match &self.db_path {
+            Some(p) => Ok(Box::new(SqliteCache {
+                conn: Self::get_connection(&p)?,
+                max_size: self.max_size,
+            })),
+            None => Ok(Box::new(DummyCache {})),
+        }
+    }
+}
+
+impl Cache for DummyCache {
+    fn get_blob(&self, key: &str) -> Result<Option<Vec<u8>>> {
+        trace!("dummy get blob '{}'", key);
+        Ok(None)
+    }
+
+    fn set_blob(&self, key: &str, _value: &[u8]) -> Result<()> {
+        trace!("dummy set blob '{}'", key);
+        Ok(())
+    }
+}
+
+impl Cache for SqliteCache {
