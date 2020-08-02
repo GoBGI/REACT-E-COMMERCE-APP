@@ -9,4 +9,5 @@ fn generate_commands(text: &str) -> Vec<Vec<Rc<str>>> {
     let mut string = String::new();
 
     for ch in iter {
-        if ch == '\n' || (!quote_delimited && ch == ' ') ||
+        if ch == '\n' || (!quote_delimited && ch == ' ') || (quote_delimited && ch == '"') {
+            if !st
