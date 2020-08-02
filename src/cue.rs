@@ -10,4 +10,5 @@ fn generate_commands(text: &str) -> Vec<Vec<Rc<str>>> {
 
     for ch in iter {
         if ch == '\n' || (!quote_delimited && ch == ' ') || (quote_delimited && ch == '"') {
-            if !st
+            if !string.is_empty() || quote_delimited {
+          
