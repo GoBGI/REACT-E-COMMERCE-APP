@@ -13,4 +13,7 @@ fn generate_commands(text: &str) -> Vec<Vec<Rc<str>>> {
             if !string.is_empty() || quote_delimited {
                 command.push(Rc::from(string));
                 string = String::new();
-                quote_delimited = f
+                quote_delimited = false;
+            }
+
+            if ch == '\n' {
