@@ -21,4 +21,6 @@ fn generate_commands(text: &str) -> Vec<Vec<Rc<str>>> {
                 command = Vec::new();
             }
         } else if ch == '"' {
-            quote_delimited = tr
+            quote_delimited = true;
+            continue;
+        } else if quote_delimit
