@@ -25,4 +25,5 @@ fn generate_commands(text: &str) -> Vec<Vec<Rc<str>>> {
             continue;
         } else if quote_delimited
             || (ch >= 'A' && ch <= 'Z')
-           
+            || (ch >= 'a' && ch <= 'z')
+            || (ch >= '0' && 
