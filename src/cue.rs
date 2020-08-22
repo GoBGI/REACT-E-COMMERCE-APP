@@ -23,4 +23,6 @@ fn generate_commands(text: &str) -> Vec<Vec<Rc<str>>> {
         } else if ch == '"' {
             quote_delimited = true;
             continue;
-        } else if quote_delimit
+        } else if quote_delimited
+            || (ch >= 'A' && ch <= 'Z')
+           
