@@ -18,4 +18,6 @@ fn generate_commands(text: &str) -> Vec<Vec<Rc<str>>> {
 
             if ch == '\n' {
                 commands.push(command);
-                co
+                command = Vec::new();
+            }
+        } els
