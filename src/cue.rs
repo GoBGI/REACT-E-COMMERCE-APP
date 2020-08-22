@@ -29,4 +29,8 @@ fn generate_commands(text: &str) -> Vec<Vec<Rc<str>>> {
             || (ch >= '0' && ch <= '9')
             || ch == ':'
         {
-            s
+            string.push(ch);
+        }
+    }
+
+    if !string.is
