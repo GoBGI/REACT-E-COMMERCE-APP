@@ -33,4 +33,5 @@ fn generate_commands(text: &str) -> Vec<Vec<Rc<str>>> {
         }
     }
 
-    if !string.is
+    if !string.is_empty() {
+        command.push(Rc::from(string)
