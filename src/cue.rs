@@ -45,4 +45,8 @@ fn generate_commands(text: &str) -> Vec<Vec<Rc<str>>> {
 #[derive(Debug, Clone)]
 pub struct Cue {
     pub title: Rc<str>,
-    p
+    pub performer: Rc<str>,
+    pub files: Vec<File>,
+}
+
+#[
