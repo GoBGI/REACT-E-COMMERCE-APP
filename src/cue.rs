@@ -49,4 +49,6 @@ pub struct Cue {
     pub files: Vec<File>,
 }
 
-#[
+#[derive(Debug, Clone)]
+pub struct File {
+    pub
