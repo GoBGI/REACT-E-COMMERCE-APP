@@ -51,4 +51,7 @@ pub struct Cue {
 
 #[derive(Debug, Clone)]
 pub struct File {
-    pub
+    pub path: Rc<str>,
+    pub tracks: Vec<Track>,
+}
+
