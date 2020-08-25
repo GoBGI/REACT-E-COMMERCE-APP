@@ -34,4 +34,12 @@ fn generate_commands(text: &str) -> Vec<Vec<Rc<str>>> {
     }
 
     if !string.is_empty() {
-        command.push(Rc::from(string)
+        command.push(Rc::from(string));
+    }
+
+    commands.push(command);
+
+    commands
+}
+
+#[derive(D
