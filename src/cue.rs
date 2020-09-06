@@ -63,4 +63,5 @@ pub struct Track {
     pub start: f64,
 }
 
-pub f
+pub fn parse_cue(text: &str) -> Cue {
+    let mut commands = ge
