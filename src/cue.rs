@@ -59,3 +59,8 @@ pub struct File {
 pub struct Track {
     pub number: u32,
     pub title: Rc<str>,
+    pub performer: Rc<str>,
+    pub start: f64,
+}
+
+pub f
