@@ -68,4 +68,8 @@ pub fn parse_cue(text: &str) -> Cue {
 
     let mut cue = Cue {
         title: Rc::from(""),
-        performer
+        performer: Rc::from(""),
+        files: Vec::new(),
+    };
+
+    let 
