@@ -55,3 +55,5 @@ pub struct File {
     pub tracks: Vec<Track>,
 }
 
+#[derive(Debug, Clone)]
+pub struct Track 
