@@ -56,4 +56,6 @@ pub struct File {
 }
 
 #[derive(Debug, Clone)]
-pub struct Track 
+pub struct Track {
+    pub number: u32,
+    pub title: Rc<str>,
