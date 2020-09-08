@@ -75,4 +75,7 @@ pub fn parse_cue(text: &str) -> Cue {
     let mut file: Option<File> = None;
     let mut track: Option<Track> = None;
 
-    let cmd_iter = commands.drain(0..commands.len()).filter(|c| c.len() 
+    let cmd_iter = commands.drain(0..commands.len()).filter(|c| c.len() > 1);
+
+    for mut cmd in cmd_iter {
+        le
