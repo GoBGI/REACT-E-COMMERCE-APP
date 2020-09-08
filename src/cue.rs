@@ -72,4 +72,5 @@ pub fn parse_cue(text: &str) -> Cue {
         files: Vec::new(),
     };
 
-    let 
+    let mut file: Option<File> = None;
+    let mut track
