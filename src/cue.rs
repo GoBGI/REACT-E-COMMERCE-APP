@@ -73,4 +73,6 @@ pub fn parse_cue(text: &str) -> Cue {
     };
 
     let mut file: Option<File> = None;
-    let mut track
+    let mut track: Option<Track> = None;
+
+    let cmd_iter =
