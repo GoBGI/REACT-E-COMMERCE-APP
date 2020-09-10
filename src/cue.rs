@@ -78,4 +78,6 @@ pub fn parse_cue(text: &str) -> Cue {
     let cmd_iter = commands.drain(0..commands.len()).filter(|c| c.len() > 1);
 
     for mut cmd in cmd_iter {
-        le
+        let mut iter = cmd.drain(0..cmd.len());
+
+        let ins
