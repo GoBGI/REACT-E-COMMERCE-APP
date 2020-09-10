@@ -83,4 +83,5 @@ pub fn parse_cue(text: &str) -> Cue {
         let instr = iter.next().unwrap();
         let arg = iter.next().unwrap();
 
-        match instr.as_ref().a
+        match instr.as_ref().as_ref() {
+            "TITLE" if file.is_none() 
