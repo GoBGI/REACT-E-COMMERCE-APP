@@ -81,4 +81,6 @@ pub fn parse_cue(text: &str) -> Cue {
         let mut iter = cmd.drain(0..cmd.len());
 
         let instr = iter.next().unwrap();
-        let arg = iter.nex
+        let arg = iter.next().unwrap();
+
+        match instr.as_ref().a
