@@ -91,4 +91,5 @@ pub fn parse_cue(text: &str) -> Cue {
                 cue.performer = arg;
             }
 
-            
+            "TITLE" if track.is_some() => {
+          
