@@ -84,4 +84,6 @@ pub fn parse_cue(text: &str) -> Cue {
         let arg = iter.next().unwrap();
 
         match instr.as_ref().as_ref() {
-            "TITLE" if file.is_none() 
+            "TITLE" if file.is_none() => {
+                cue.title = arg;
+            }
