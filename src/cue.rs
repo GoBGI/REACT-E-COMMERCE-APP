@@ -97,4 +97,5 @@ pub fn parse_cue(text: &str) -> Cue {
                 }
             }
             "PERFORMER" if track.is_some() => {
-    
+                if let Some(t) = track.as_mut() {
+            
