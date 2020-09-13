@@ -95,4 +95,6 @@ pub fn parse_cue(text: &str) -> Cue {
                 if let Some(t) = track.as_mut() {
                     t.title = arg;
                 }
-           
+            }
+            "PERFORMER" if track.is_some() => {
+    
