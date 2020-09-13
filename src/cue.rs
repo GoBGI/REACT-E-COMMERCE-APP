@@ -88,4 +88,7 @@ pub fn parse_cue(text: &str) -> Cue {
                 cue.title = arg;
             }
             "PERFORMER" if file.is_none() => {
-       
+                cue.performer = arg;
+            }
+
+            
