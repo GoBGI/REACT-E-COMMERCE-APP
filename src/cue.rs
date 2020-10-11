@@ -100,4 +100,7 @@ pub fn parse_cue(text: &str) -> Cue {
                 if let Some(t) = track.as_mut() {
                     t.performer = arg;
                 }
-    
+            }
+
+            "FILE" => {
+                if let S
