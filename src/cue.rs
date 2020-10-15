@@ -115,4 +115,6 @@ pub fn parse_cue(text: &str) -> Cue {
                 track = None;
             }
 
-            "TRACK" if file.is
+            "TRACK" if file.is_some() => {
+                if let Some(t) = track {
+     
