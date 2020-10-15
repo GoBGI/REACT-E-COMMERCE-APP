@@ -112,4 +112,7 @@ pub fn parse_cue(text: &str) -> Cue {
                     tracks: Vec::new(),
                 });
 
-                track = 
+                track = None;
+            }
+
+            "TRACK" if file.is
