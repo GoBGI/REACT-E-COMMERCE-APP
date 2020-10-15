@@ -108,4 +108,5 @@ pub fn parse_cue(text: &str) -> Cue {
                 }
 
                 file = Some(File {
-      
+                    path: arg,
+                    tracks: 
