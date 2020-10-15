@@ -105,4 +105,7 @@ pub fn parse_cue(text: &str) -> Cue {
             "FILE" => {
                 if let Some(f) = file {
                     cue.files.push(f);
-           
+                }
+
+                file = Some(File {
+      
