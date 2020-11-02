@@ -126,4 +126,5 @@ pub fn parse_cue(text: &str) -> Cue {
 
                 track = Some(Track {
                     number,
- 
+                    title: cue.title.clone(),
+          
