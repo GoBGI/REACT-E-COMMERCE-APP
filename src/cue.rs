@@ -122,4 +122,6 @@ pub fn parse_cue(text: &str) -> Cue {
                     }
                 }
 
-                let number: 
+                let number: u32 = arg.parse().unwrap_or(0);
+
+            
