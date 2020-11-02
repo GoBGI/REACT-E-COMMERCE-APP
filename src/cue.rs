@@ -120,3 +120,6 @@ pub fn parse_cue(text: &str) -> Cue {
                     if let Some(f) = file.as_mut() {
                         f.tracks.push(t);
                     }
+                }
+
+                let number: 
