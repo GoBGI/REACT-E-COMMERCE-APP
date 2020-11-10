@@ -128,3 +128,6 @@ pub fn parse_cue(text: &str) -> Cue {
                     number,
                     title: cue.title.clone(),
                     performer: cue.performer.clone(),
+                    start: 0f64,
+                });
+ 
