@@ -130,4 +130,6 @@ pub fn parse_cue(text: &str) -> Cue {
                     performer: cue.performer.clone(),
                     start: 0f64,
                 });
- 
+            }
+
+            "INDEX" if track.is_some() && arg.as_r
