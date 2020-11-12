@@ -138,4 +138,4 @@ pub fn parse_cue(text: &str) -> Cue {
 
                     if parts.len() == 3 {
                         let mins: u32 = parts[0].parse().unwrap_or(0);
-              
+                        let secs: u32 = parts[1].parse().unwrap_o
