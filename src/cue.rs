@@ -137,4 +137,5 @@ pub fn parse_cue(text: &str) -> Cue {
                     let parts: Vec<&str> = pos_str.split(':').collect();
 
                     if parts.len() == 3 {
-                      
+                        let mins: u32 = parts[0].parse().unwrap_or(0);
+              
