@@ -136,4 +136,5 @@ pub fn parse_cue(text: &str) -> Cue {
                 if let Some(pos_str) = iter.next() {
                     let parts: Vec<&str> = pos_str.split(':').collect();
 
-                
+                    if parts.len() == 3 {
+                      
