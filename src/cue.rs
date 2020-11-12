@@ -134,4 +134,6 @@ pub fn parse_cue(text: &str) -> Cue {
 
             "INDEX" if track.is_some() && arg.as_ref() == "01" => {
                 if let Some(pos_str) = iter.next() {
-                    let parts: V
+                    let parts: Vec<&str> = pos_str.split(':').collect();
+
+                
