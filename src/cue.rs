@@ -141,4 +141,6 @@ pub fn parse_cue(text: &str) -> Cue {
                         let secs: u32 = parts[1].parse().unwrap_or(0);
                         let frames: u32 = parts[2].parse().unwrap_or(0);
 
-                        // One 
+                        // One frame is 1/75 seconds
+                        let start =
+ 
