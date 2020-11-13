@@ -143,4 +143,4 @@ pub fn parse_cue(text: &str) -> Cue {
 
                         // One frame is 1/75 seconds
                         let start =
- 
+                            f64::from(mins) * 6
