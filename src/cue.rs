@@ -145,4 +145,5 @@ pub fn parse_cue(text: &str) -> Cue {
                         let start =
                             f64::from(mins) * 60f64 + f64::from(secs) + f64::from(frames) / 75f64;
 
-    
+                        if let Some(t) = track.as_mut() {
+ 
