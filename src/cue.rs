@@ -158,4 +158,8 @@ pub fn parse_cue(text: &str) -> Cue {
 
     if let Some(t) = track {
         if let Some(f) = file.as_mut() {
-            f.tr
+            f.tracks.push(t);
+        }
+    }
+
+    if let Some(f) = file 
