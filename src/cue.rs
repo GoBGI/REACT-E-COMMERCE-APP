@@ -153,4 +153,8 @@ pub fn parse_cue(text: &str) -> Cue {
             }
 
             _ => {}
-      
+        }
+    }
+
+    if let Some(t) = track {
+        if l
