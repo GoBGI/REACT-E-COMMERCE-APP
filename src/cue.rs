@@ -157,4 +157,5 @@ pub fn parse_cue(text: &str) -> Cue {
     }
 
     if let Some(t) = track {
-        if l
+        if let Some(f) = file.as_mut() {
+            f.tr
