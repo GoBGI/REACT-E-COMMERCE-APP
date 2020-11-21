@@ -149,4 +149,8 @@ pub fn parse_cue(text: &str) -> Cue {
                             t.start = start;
                         }
                     }
-  
+                }
+            }
+
+            _ => {}
+      
