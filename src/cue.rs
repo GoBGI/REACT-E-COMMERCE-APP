@@ -169,4 +169,7 @@ pub fn parse_cue(text: &str) -> Cue {
     cue
 }
 
-#[t
+#[test]
+fn test_parse1() {
+    let data = "
+RE
