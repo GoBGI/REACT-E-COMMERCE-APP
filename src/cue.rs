@@ -177,4 +177,6 @@ REM COMMENT \"comment\"
 PERFORMER \"Performer\"
 TITLE \"Title\"
 FILE \"file.cue\" WAVE
-  TRACK
+  TRACK 01 AUDIO
+    TITLE \"Track01\"
+    PERFORMER \"Performer
