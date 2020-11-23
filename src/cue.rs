@@ -174,4 +174,7 @@ fn test_parse1() {
     let data = "
 REM DISCID 123456789
 REM COMMENT \"comment\"
-PERFORM
+PERFORMER \"Performer\"
+TITLE \"Title\"
+FILE \"file.cue\" WAVE
+  TRACK
