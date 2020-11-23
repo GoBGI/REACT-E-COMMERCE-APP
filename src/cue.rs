@@ -172,4 +172,6 @@ pub fn parse_cue(text: &str) -> Cue {
 #[test]
 fn test_parse1() {
     let data = "
-RE
+REM DISCID 123456789
+REM COMMENT \"comment\"
+PERFORM
