@@ -194,4 +194,5 @@ FILE \"file.cue\" WAVE
     PERFORMER \"Performer\"
     INDEX 01 14:54:44";
 
- 
+    println!("{:?}", parse_cue(data));
+}
