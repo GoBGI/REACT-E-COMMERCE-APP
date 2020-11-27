@@ -182,4 +182,7 @@ FILE \"file.cue\" WAVE
     PERFORMER \"Performer01\"
     INDEX 01 00:00:00
   TRACK 02 AUDIO
-    TITLE \"Tra
+    TITLE \"Track02\"
+    PERFORMER \"Performer\"
+    INDEX 01 04:09:11
+ 
