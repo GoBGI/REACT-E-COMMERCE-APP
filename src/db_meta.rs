@@ -3,4 +3,5 @@ use rusqlite::{Connection, Result, NO_PARAMS};
 
 use crate::schema;
 
-pub fn ensure_schema(conn: &mut Connection, schema: &str) -> Re
+pub fn ensure_schema(conn: &mut Connection, schema: &str) -> Result<bool> {
+    trace!("trying to get schema version");
