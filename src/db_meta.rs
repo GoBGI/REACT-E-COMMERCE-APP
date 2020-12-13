@@ -9,3 +9,5 @@ pub fn ensure_schema(conn: &mut Connection, schema: &str) -> Result<bool> {
     conn.execute_batch(schema::META_SCHEMA)?;
 
     let schema_version: Option<u32> = conn
+        .query_row(
+            "SELECT value FROM Musicd WH
