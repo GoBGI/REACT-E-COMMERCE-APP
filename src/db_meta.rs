@@ -12,4 +12,6 @@ pub fn ensure_schema(conn: &mut Connection, schema: &str) -> Result<bool> {
         .query_row(
             "SELECT value FROM Musicd WHERE key = 'schema'",
             NO_PARAMS,
-         
+            |row| row.get(0),
+        )
+        .optional()
