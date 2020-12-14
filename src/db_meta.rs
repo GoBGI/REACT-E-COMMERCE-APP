@@ -14,4 +14,6 @@ pub fn ensure_schema(conn: &mut Connection, schema: &str) -> Result<bool> {
             NO_PARAMS,
             |row| row.get(0),
         )
-        .optional()
+        .optional()?;
+
+    if let Some(schema_version) = schema_version {
