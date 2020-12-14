@@ -17,3 +17,4 @@ pub fn ensure_schema(conn: &mut Connection, schema: &str) -> Result<bool> {
         .optional()?;
 
     if let Some(schema_version) = schema_version {
+        if schema_version != schema::SCHEMA_V
