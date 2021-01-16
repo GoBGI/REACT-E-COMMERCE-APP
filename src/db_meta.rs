@@ -20,4 +20,5 @@ pub fn ensure_schema(conn: &mut Connection, schema: &str) -> Result<bool> {
         if schema_version != schema::SCHEMA_VERSION {
             error!(
                 "unsupported schema version: got {}, expected {}",
-         
+                schema_version,
+                schema::SCHE
