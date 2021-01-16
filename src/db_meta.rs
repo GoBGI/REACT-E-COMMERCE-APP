@@ -19,4 +19,5 @@ pub fn ensure_schema(conn: &mut Connection, schema: &str) -> Result<bool> {
     if let Some(schema_version) = schema_version {
         if schema_version != schema::SCHEMA_VERSION {
             error!(
-                "unsuppo
+                "unsupported schema version: got {}, expected {}",
+         
