@@ -30,4 +30,6 @@ pub fn ensure_schema(conn: &mut Connection, schema: &str) -> Result<bool> {
     } else {
         debug!("schema meta not present, creating schema");
 
-       
+        let tran = conn.transaction()?;
+
+        tran.execute(
