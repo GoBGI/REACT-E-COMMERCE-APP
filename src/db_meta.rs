@@ -26,4 +26,6 @@ pub fn ensure_schema(conn: &mut Connection, schema: &str) -> Result<bool> {
             return Ok(false);
         }
 
-        debug!("schema version up-t
+        debug!("schema version up-to-date, doing nothing");
+    } else {
+        debug
