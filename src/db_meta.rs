@@ -23,4 +23,7 @@ pub fn ensure_schema(conn: &mut Connection, schema: &str) -> Result<bool> {
                 schema_version,
                 schema::SCHEMA_VERSION
             );
-            ret
+            return Ok(false);
+        }
+
+        debug!("schema version up-t
