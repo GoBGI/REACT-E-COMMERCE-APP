@@ -33,4 +33,6 @@ pub fn ensure_schema(conn: &mut Connection, schema: &str) -> Result<bool> {
         let tran = conn.transaction()?;
 
         tran.execute(
-            "INSERT INTO Musicd (key, value) VALUES ('
+            "INSERT INTO Musicd (key, value) VALUES ('schema', ?)",
+            &[schema::SCHEMA_VERSION],
+        )?
