@@ -82,3 +82,63 @@ pub async fn run_api(musicd: Arc<crate::Musicd>, bind: SocketAddr) {
         .serve(make_service)
         .await
         .expect("running server failed");
+}
+
+static OK: &[u8] = b"OK";
+static BAD_REQUEST: &[u8] = b"Bad Request";
+static UNAUTHORIZED: &[u8] = b"Unauthorized";
+static NOT_FOUND: &[u8] = b"Not Found";
+static INTERNAL_SERVER_ERROR: &[u8] = b"Internal Server Error";
+
+fn bad_request() -> Response<Body> {
+    Response::builder()
+        .status(StatusCode::BAD_REQUEST)
+        .body(BAD_REQUEST.into())
+        .unwrap()
+}
+
+fn unauthorized() -> Response<Body> {
+    Response::builder()
+        .status(StatusCode::UNAUTHORIZED)
+        .body(UNAUTHORIZED.into())
+        .unwrap()
+}
+
+fn not_found() -> Response<Body> {
+    Response::builder()
+        .status(StatusCode::NOT_FOUND)
+        .body(NOT_FOUND.into())
+        .unwrap()
+}
+
+fn server_error() -> Response<Body> {
+    Response::builder()
+        .status(StatusCode::INTERNAL_SERVER_ERROR)
+        .body(INTERNAL_SERVER_ERROR.into())
+        .unwrap()
+}
+
+fn json_ok(json: &str) -> Response<Body> {
+    Response::builder()
+        .header("Content-Type", "application/json; charset=utf8")
+        .body(json.to_string().into())
+        .unwrap()
+}
+
+struct ApiRequest {
+    request: Request<Body>,
+    musicd: Arc<Musicd>,
+    query: HttpQuery,
+    cookies: HashMap<String, String>,
+}
+
+async fn process_request(
+    request: Request<Body>,
+    musicd: Arc<Musicd>,
+) -> Result<Response<Body>, hyper::Error> {
+    debug!("request {}", request.uri());
+
+    let query = HttpQuery::from(request.uri().query().unwrap_or_default());
+
+    let cookies = match crate::http_util::parse_cookies(request.headers()) {
+        Ok(c) => c,
