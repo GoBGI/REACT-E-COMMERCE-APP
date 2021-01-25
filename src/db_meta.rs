@@ -35,4 +35,7 @@ pub fn ensure_schema(conn: &mut Connection, schema: &str) -> Result<bool> {
         tran.execute(
             "INSERT INTO Musicd (key, value) VALUES ('schema', ?)",
             &[schema::SCHEMA_VERSION],
-        )?
+        )?;
+        tran.execute_batch(schema)?;
+
+        tra
