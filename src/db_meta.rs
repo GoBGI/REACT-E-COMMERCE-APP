@@ -38,4 +38,8 @@ pub fn ensure_schema(conn: &mut Connection, schema: &str) -> Result<bool> {
         )?;
         tran.execute_batch(schema)?;
 
-        tra
+        tran.commit()?;
+    }
+
+    Ok(true)
+}
