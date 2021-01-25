@@ -32,3 +32,53 @@ impl From<hyper::Error> for Error {
 }
 
 impl From<std::io::Error> for Error {
+    fn from(err: std::io::Error) -> Error {
+        Error::IoError(err)
+    }
+}
+
+impl From<rusqlite::Error> for Error {
+    fn from(err: rusqlite::Error) -> Error {
+        Error::DatabaseError(err)
+    }
+}
+
+impl From<image::ImageError> for Error {
+    fn from(err: image::ImageError) -> Error {
+        Error::ImageError(err)
+    }
+}
+
+impl std::fmt::Display for Error {
+    fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
+        write!(f, "{}", self.description())
+    }
+}
+
+impl StdError for Error {
+    fn description(&self) -> &str {
+        match *self {
+            Error::HyperError(ref e) => e.description(),
+            Error::IoError(ref e) => e.description(),
+            Error::DatabaseError(ref e) => e.description(),
+            Error::ImageError(ref e) => e.description(),
+        }
+    }
+}
+
+pub async fn run_api(musicd: Arc<crate::Musicd>, bind: SocketAddr) {
+    let make_service = make_service_fn(move |_socket: &AddrStream| {
+        let musicd = musicd.clone();
+        async move {
+            Ok::<_, hyper::Error>(service_fn(move |req: Request<Body>| {
+                process_request(req, musicd.clone())
+            }))
+        }
+    });
+
+    info!("listening on {}", bind);
+
+    Server::bind(&bind)
+        .serve(make_service)
+        .await
+        .expect("running server failed");
