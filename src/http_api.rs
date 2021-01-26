@@ -306,3 +306,65 @@ fn api_image_file(r: &ApiRequest) -> Result<Response<Body>, Error> {
     let size = r.query.get_i64("size").unwrap_or(0);
 
     let index = r.musicd.index();
+
+    let image = match index.image(image_id)? {
+        Some(i) => i,
+        None => {
+            return Ok(not_found());
+        }
+    };
+
+    let cache_str = format!("image:{}_{}", image_id, size);
+
+    let cache = r.musicd.cache();
+    let image_data = if let Some(image_data) = cache.get_blob(&cache_str)? {
+        image_data
+    } else {
+        let node = index.node(image.node_id)?.unwrap();
+        let fs_path = match index.map_fs_path(&node.path) {
+            Some(p) => p,
+            None => {
+                return Ok(not_found());
+            }
+        };
+
+        let mut image_obj = if let Some(stream_index) = image.stream_index {
+            debug!(
+                "loading image data from media file '{}'",
+                fs_path.to_string_lossy()
+            );
+
+            let image_data = match media::media_image_data_read(&fs_path, stream_index as i32) {
+                Some(i) => i,
+                None => {
+                    return Ok(not_found());
+                }
+            };
+
+            image::load_from_memory_with_format(&image_data, image::ImageFormat::JPEG)
+        } else {
+            debug!("loading image file '{}'", fs_path.to_string_lossy());
+            image::open(&fs_path)
+        }?;
+
+        if size > 0 && size < std::cmp::max(image.width, image.height) {
+            debug!("resizing {}x{} to size {}", image.width, image.height, size);
+            image_obj = image_obj.resize(size as u32, size as u32, image::FilterType::Lanczos3);
+        }
+
+        let mut c = Cursor::new(Vec::new());
+        image_obj.write_to(&mut c, image::ImageOutputFormat::JPEG(70))?;
+
+        c.seek(SeekFrom::Start(0))?;
+        let mut image_data = Vec::new();
+        c.read_to_end(&mut image_data)?;
+
+        cache.set_blob(&cache_str, &image_data)?;
+
+        image_data
+    };
+
+    Ok(Response::builder()
+        .header("Content-Type", "image/jpeg")
+        .body(image_data.into())
+        .unwrap())
