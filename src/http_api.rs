@@ -142,3 +142,63 @@ async fn process_request(
 
     let cookies = match crate::http_util::parse_cookies(request.headers()) {
         Ok(c) => c,
+        Err(e) => {
+            debug!("invalid cookies {}", e);
+            return Ok(bad_request());
+        }
+    };
+
+    let api_request = ApiRequest {
+        request,
+        musicd,
+        query,
+        cookies,
+    };
+
+    let result = match (
+        api_request.request.method(),
+        api_request.request.uri().path(),
+    ) {
+        (&Method::GET, "/api/musicd") => Some(api_musicd(&api_request)),
+        (&Method::GET, "/api/auth") => Some(api_auth(&api_request)),
+        _ => None,
+    };
+
+    if let Some(result) = result {
+        return match result {
+            Ok(res) => Ok(res),
+            Err(_e) => Ok(server_error()),
+        };
+    }
+
+    if let Some(auth_password) = api_request.cookies.get("musicd2-auth") {
+        if !api_request.musicd.password.is_empty() && api_request.musicd.password != *auth_password
+        {
+            debug!("invalid auth");
+            return Ok(unauthorized());
+        }
+    }
+
+    let result = match (
+        api_request.request.method(),
+        api_request.request.uri().path(),
+    ) {
+        (&Method::GET, "/api/audio_stream") => api_audio_stream(&api_request),
+        (&Method::GET, "/api/image_file") => api_image_file(&api_request),
+        (&Method::GET, "/api/track_lyrics") => api_track_lyrics(&api_request).await,
+        (&Method::GET, "/api/nodes") => api_nodes(&api_request),
+        (&Method::GET, "/api/tracks") => api_tracks(&api_request),
+        (&Method::GET, "/api/artists") => api_artists(&api_request),
+        (&Method::GET, "/api/albums") => api_albums(&api_request),
+        (&Method::GET, "/api/images") => api_images(&api_request),
+        (&Method::GET, "/api/scan") => api_scan(&api_request),
+        (&Method::POST, "/api/scan") => api_scan(&api_request),
+        (&Method::GET, "/share") => res_share(&api_request),
+        _ => Ok(not_found()),
+    };
+
+    match result {
+        Ok(res) => Ok(res),
+        Err(_e) => Ok(server_error()),
+    }
+}
