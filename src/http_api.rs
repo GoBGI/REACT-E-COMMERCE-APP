@@ -202,3 +202,58 @@ async fn process_request(
         Err(_e) => Ok(server_error()),
     }
 }
+
+fn api_musicd(_: &ApiRequest) -> Result<Response<Body>, Error> {
+    Ok(json_ok("{}"))
+}
+
+fn api_auth(r: &ApiRequest) -> Result<Response<Body>, Error> {
+    let password = r.query.get_str("password").unwrap_or_default();
+    if r.musicd.password != password {
+        return Ok(unauthorized());
+    }
+
+    Ok(Response::builder()
+        .header("Set-Cookie", format!("musicd2-auth={}", r.musicd.password))
+        .body(OK.into())
+        .unwrap())
+}
+
+static CODECS: &[(&str, &str)] = &[
+    ("mp3", "audio/mpeg"),
+    ("opus", "audio/ogg"),
+    ("ogg", "audio/ogg"),
+];
+
+fn api_audio_stream(r: &ApiRequest) -> Result<Response<Body>, Error> {
+    let track_id = match r.query.get_i64("track_id") {
+        Some(id) => id,
+        None => {
+            return Ok(bad_request());
+        }
+    };
+
+    let codec_req = r.query.get_str("codec").unwrap_or(CODECS[0].0);
+    let target_codec = match CODECS.iter().find(|c| c.0 == codec_req) {
+        Some(c) => c,
+        None => {
+            return Ok(bad_request());
+        }
+    };
+
+    let start = r.query.get_i64("start").unwrap_or(0) as f64;
+    if start < 0f64 {
+        return Ok(bad_request());
+    }
+
+    let index = r.musicd.index();
+
+    let track = match index.track(track_id)? {
+        Some(t) => t,
+        None => {
+            return Ok(not_found());
+        }
+    };
+
+    let node = index.node(track.node_id)?.unwrap();
+    let fs_path = index.map_fs_path(&node.path).unwrap();
