@@ -257,3 +257,52 @@ fn api_audio_stream(r: &ApiRequest) -> Result<Response<Body>, Error> {
 
     let node = index.node(track.node_id)?.unwrap();
     let fs_path = index.map_fs_path(&node.path).unwrap();
+
+    let audio_stream = AudioStream::open(
+        &fs_path,
+        track.stream_index as i32,
+        track.track_index.unwrap_or(0) as i32,
+        start + track.start.unwrap_or_default(),
+        if track.start.is_some() {
+            track.length - start
+        } else {
+            0f64
+        },
+        target_codec.0,
+    );
+
+    let audio_stream = match audio_stream {
+        Some(s) => s,
+        None => {
+            error!(
+                "can't open audio stream from '{}'",
+                fs_path.to_string_lossy()
+            );
+            return Ok(server_error());
+        }
+    };
+
+    let (sender, receiver) =
+        tokio::sync::mpsc::channel::<Result<Vec<u8>, Box<dyn StdError + Send + Sync>>>(5);
+
+    tokio::spawn(async move {
+        audio_stream.execute(sender).await;
+    });
+
+    Ok(Response::builder()
+        .header("Content-Type", target_codec.1)
+        .body(Body::wrap_stream(receiver))
+        .unwrap())
+}
+
+fn api_image_file(r: &ApiRequest) -> Result<Response<Body>, Error> {
+    let image_id = match r.query.get_i64("image_id") {
+        Some(id) => id,
+        None => {
+            return Ok(bad_request());
+        }
+    };
+
+    let size = r.query.get_i64("size").unwrap_or(0);
+
+    let index = r.musicd.index();
