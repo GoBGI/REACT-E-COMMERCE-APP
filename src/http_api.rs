@@ -433,3 +433,59 @@ async fn api_track_lyrics(r: &ApiRequest) -> Result<Response<Body>, Error> {
         .to_string(),
     ))
 }
+
+fn api_nodes(r: &ApiRequest) -> Result<Response<Body>, Error> {
+    let (total, items) = crate::query::query_nodes(&r.musicd.index(), &r.query)?;
+
+    Ok(json_ok(
+        &json!({
+            "total": total,
+            "items": items
+        })
+        .to_string(),
+    ))
+}
+
+fn api_tracks(r: &ApiRequest) -> Result<Response<Body>, Error> {
+    let (total, items) = crate::query::query_tracks(&r.musicd.index(), &r.query)?;
+
+    Ok(json_ok(
+        &json!({
+            "total": total,
+            "items": items
+        })
+        .to_string(),
+    ))
+}
+
+fn api_artists(r: &ApiRequest) -> Result<Response<Body>, Error> {
+    let (total, items) = crate::query::query_artists(&r.musicd.index(), &r.query)?;
+
+    Ok(json_ok(
+        &json!({
+            "total": total,
+            "items": items
+        })
+        .to_string(),
+    ))
+}
+
+fn api_albums(r: &ApiRequest) -> Result<Response<Body>, Error> {
+    let (total, items) = crate::query::query_albums(&r.musicd.index(), &r.query)?;
+
+    Ok(json_ok(
+        &json!({
+            "total": total,
+            "items": items
+        })
+        .to_string(),
+    ))
+}
+
+fn api_images(r: &ApiRequest) -> Result<Response<Body>, Error> {
+    let (total, items) = crate::query::query_images(&r.musicd.index(), &r.query)?;
+
+    Ok(json_ok(
+        &json!({
+            "total": total,
+            "items": items
