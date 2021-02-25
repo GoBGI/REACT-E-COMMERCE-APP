@@ -1,4 +1,6 @@
 use std::collections::{BTreeMap, HashMap};
 
 use hyper::header::ToStrError;
-use hy
+use hyper::HeaderMap;
+
+pub fn parse_cookies(headers: &Heade
