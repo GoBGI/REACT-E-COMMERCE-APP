@@ -489,3 +489,39 @@ fn api_images(r: &ApiRequest) -> Result<Response<Body>, Error> {
         &json!({
             "total": total,
             "items": items
+        })
+        .to_string(),
+    ))
+}
+
+fn api_scan(r: &ApiRequest) -> Result<Response<Body>, Error> {
+    if let Some(action) = r.query.get_str("action") {
+        match action {
+            "start" => r.musicd.scan_thread.start(r.musicd.index()),
+            "restart" => {
+                r.musicd.scan_thread.stop();
+                r.musicd.scan_thread.start(r.musicd.index());
+            }
+            "stop" => {
+                r.musicd.scan_thread.stop();
+            }
+            _ => {}
+        }
+    }
+
+    Ok(json_ok(
+        &json!({
+            "running": r.musicd.scan_thread.is_running()
+        })
+        .to_string(),
+    ))
+}
+
+static SHARE_HTML: &[u8] = include_bytes!("./share.html");
+
+fn res_share(_r: &ApiRequest) -> Result<Response<Body>, Error> {
+    Ok(Response::builder()
+        .header("Content-Type", "text/html; charset=utf-8")
+        .body(SHARE_HTML.into())
+        .unwrap())
+}
