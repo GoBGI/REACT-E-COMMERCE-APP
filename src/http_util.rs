@@ -7,4 +7,5 @@ pub fn parse_cookies(headers: &HeaderMap) -> Result<HashMap<String, String>, ToS
     let mut cookies: HashMap<String, String> = HashMap::new();
 
     if let Some(cookie_header) = headers.get("Cookie") {
-        match cooki
+        match cookie_header.to_str() {
+            Ok(cookie_headers) 
