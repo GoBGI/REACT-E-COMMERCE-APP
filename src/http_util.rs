@@ -8,4 +8,5 @@ pub fn parse_cookies(headers: &HeaderMap) -> Result<HashMap<String, String>, ToS
 
     if let Some(cookie_header) = headers.get("Cookie") {
         match cookie_header.to_str() {
-            Ok(cookie_headers) 
+            Ok(cookie_headers) => {
+                for c in cookie_headers.sp
