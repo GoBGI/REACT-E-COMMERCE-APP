@@ -10,4 +10,6 @@ pub fn parse_cookies(headers: &HeaderMap) -> Result<HashMap<String, String>, ToS
         match cookie_header.to_str() {
             Ok(cookie_headers) => {
                 for c in cookie_headers.split(';') {
-                    let mut parts = c.split(
+                    let mut parts = c.split('=');
+                    cookies.insert(
+           
