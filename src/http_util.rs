@@ -13,4 +13,4 @@ pub fn parse_cookies(headers: &HeaderMap) -> Result<HashMap<String, String>, ToS
                     let mut parts = c.split('=');
                     cookies.insert(
                         parts.next().unwrap().to_string(),
-    
+                        parts.next().unwrap_or_default(
