@@ -15,4 +15,7 @@ pub fn parse_cookies(headers: &HeaderMap) -> Result<HashMap<String, String>, ToS
                         parts.next().unwrap().to_string(),
                         parts.next().unwrap_or_default().to_string(),
                     );
-                
+                }
+            }
+            Err(e) => {
+              
