@@ -18,4 +18,9 @@ pub fn parse_cookies(headers: &HeaderMap) -> Result<HashMap<String, String>, ToS
                 }
             }
             Err(e) => {
-              
+                return Err(e);
+            }
+        }
+    }
+
+    Ok(
