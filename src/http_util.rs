@@ -27,4 +27,8 @@ pub fn parse_cookies(headers: &HeaderMap) -> Result<HashMap<String, String>, ToS
 }
 
 #[derive(Debug)]
-pub struct HttpQue
+pub struct HttpQuery {
+    value: BTreeMap<String, String>,
+}
+
+impl Http
