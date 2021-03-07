@@ -23,4 +23,8 @@ pub fn parse_cookies(headers: &HeaderMap) -> Result<HashMap<String, String>, ToS
         }
     }
 
-    Ok(
+    Ok(cookies)
+}
+
+#[derive(Debug)]
+pub struct HttpQue
