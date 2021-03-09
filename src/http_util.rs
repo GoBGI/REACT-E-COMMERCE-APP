@@ -31,4 +31,6 @@ pub struct HttpQuery {
     value: BTreeMap<String, String>,
 }
 
-impl Http
+impl HttpQuery {
+    pub fn from(s: &str) -> HttpQuery {
+        let mut que
