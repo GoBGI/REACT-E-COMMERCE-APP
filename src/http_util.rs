@@ -38,4 +38,6 @@ impl HttpQuery {
         };
 
         for field in s.split('&') {
-            let mu
+            let mut parts = field.splitn(2, '=');
+
+            let key
