@@ -37,4 +37,5 @@ impl HttpQuery {
             value: BTreeMap::new(),
         };
 
-       
+        for field in s.split('&') {
+            let mu
