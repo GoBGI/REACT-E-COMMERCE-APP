@@ -33,4 +33,8 @@ pub struct HttpQuery {
 
 impl HttpQuery {
     pub fn from(s: &str) -> HttpQuery {
-        let mut que
+        let mut query = HttpQuery {
+            value: BTreeMap::new(),
+        };
+
+       
