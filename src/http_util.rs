@@ -40,4 +40,5 @@ impl HttpQuery {
         for field in s.split('&') {
             let mut parts = field.splitn(2, '=');
 
-            let key
+            let key = parts.next().unwrap();
+            let value = Self
