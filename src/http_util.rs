@@ -41,4 +41,6 @@ impl HttpQuery {
             let mut parts = field.splitn(2, '=');
 
             let key = parts.next().unwrap();
-            let value = Self
+            let value = Self::decode_url(parts.next().unwrap_or(""));
+
+         
