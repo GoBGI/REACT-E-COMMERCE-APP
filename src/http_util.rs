@@ -43,4 +43,6 @@ impl HttpQuery {
             let key = parts.next().unwrap();
             let value = Self::decode_url(parts.next().unwrap_or(""));
 
-         
+            query
+                .value
+                .inser
