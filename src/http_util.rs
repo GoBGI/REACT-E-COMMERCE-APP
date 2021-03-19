@@ -51,4 +51,5 @@ impl HttpQuery {
         query
     }
 
-    fn decode_url(src: &str) -> Strin
+    fn decode_url(src: &str) -> String {
+        let mut result: Vec<u8> = Vec::new()
