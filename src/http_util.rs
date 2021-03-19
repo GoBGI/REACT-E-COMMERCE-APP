@@ -48,4 +48,7 @@ impl HttpQuery {
                 .insert(key.to_string(), Self::decode_url(&value));
         }
 
-        qu
+        query
+    }
+
+    fn decode_url(src: &str) -> Strin
