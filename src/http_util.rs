@@ -45,4 +45,7 @@ impl HttpQuery {
 
             query
                 .value
-                .inser
+                .insert(key.to_string(), Self::decode_url(&value));
+        }
+
+        qu
