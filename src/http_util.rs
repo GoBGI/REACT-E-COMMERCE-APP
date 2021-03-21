@@ -55,4 +55,6 @@ impl HttpQuery {
         let mut result: Vec<u8> = Vec::new();
         let bytes = src.as_bytes();
 
-        let mut
+        let mut i = 0;
+        while i < bytes.len() {
+            match by
