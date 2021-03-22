@@ -60,4 +60,5 @@ impl HttpQuery {
             match bytes[i] {
                 b'%' if i <= bytes.len() - 3
                     && bytes[i + 1].is_ascii_hexdigit()
-                 
+                    && bytes[i + 2].is_ascii_hexdigit() =>
+       
