@@ -58,4 +58,6 @@ impl HttpQuery {
         let mut i = 0;
         while i < bytes.len() {
             match bytes[i] {
-                b'%' if i <= bytes.len() 
+                b'%' if i <= bytes.len() - 3
+                    && bytes[i + 1].is_ascii_hexdigit()
+                 
