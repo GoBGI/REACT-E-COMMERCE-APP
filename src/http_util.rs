@@ -57,4 +57,5 @@ impl HttpQuery {
 
         let mut i = 0;
         while i < bytes.len() {
-            match by
+            match bytes[i] {
+                b'%' if i <= bytes.len() 
