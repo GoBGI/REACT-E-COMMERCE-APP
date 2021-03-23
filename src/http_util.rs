@@ -63,4 +63,7 @@ impl HttpQuery {
                     && bytes[i + 2].is_ascii_hexdigit() =>
                 {
                     result.push(u8::from_str_radix(&src[i + 1..i + 3], 16).unwrap());
-            
+                    i += 3;
+                }
+                b'+' => {
+     
