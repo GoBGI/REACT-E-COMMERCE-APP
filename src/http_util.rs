@@ -70,4 +70,6 @@ impl HttpQuery {
                     i += 1;
                 }
                 ch => {
-                    res
+                    result.push(ch);
+                    i += 1;
+       
