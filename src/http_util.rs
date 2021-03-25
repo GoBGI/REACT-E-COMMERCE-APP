@@ -72,4 +72,8 @@ impl HttpQuery {
                 ch => {
                     result.push(ch);
                     i += 1;
-       
+                }
+            }
+        }
+
+        Strin
