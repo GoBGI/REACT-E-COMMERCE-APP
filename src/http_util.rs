@@ -68,4 +68,6 @@ impl HttpQuery {
                 b'+' => {
                     result.push(b' ');
                     i += 1;
-  
+                }
+                ch => {
+                    res
