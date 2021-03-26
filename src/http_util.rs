@@ -79,4 +79,5 @@ impl HttpQuery {
         String::from_utf8_lossy(&result).into_owned()
     }
 
-    pub f
+    pub fn get_str(&self, key: &str) -> Option<&str> {
+      
