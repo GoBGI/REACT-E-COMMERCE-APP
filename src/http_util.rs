@@ -76,4 +76,7 @@ impl HttpQuery {
             }
         }
 
-        Strin
+        String::from_utf8_lossy(&result).into_owned()
+    }
+
+    pub f
