@@ -86,4 +86,5 @@ impl HttpQuery {
         }
     }
 
-    pub fn get_i64(&
+    pub fn get_i64(&self, key: &str) -> Option<i64> {
+        match self.
