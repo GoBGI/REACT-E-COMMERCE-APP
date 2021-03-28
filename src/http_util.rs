@@ -81,4 +81,9 @@ impl HttpQuery {
 
     pub fn get_str(&self, key: &str) -> Option<&str> {
         match self.value.get(key) {
-            Some(
+            Some(s) => Some(s),
+            None => None,
+        }
+    }
+
+    pub fn get_i64(&
