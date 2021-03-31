@@ -92,4 +92,7 @@ impl HttpQuery {
                 Ok(v) => Some(v),
                 Err(_) => None,
             },
-          
+            None => None,
+        }
+    }
+}
