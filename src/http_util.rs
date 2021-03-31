@@ -90,4 +90,6 @@ impl HttpQuery {
         match self.get_str(key) {
             Some(s) => match s.parse() {
                 Ok(v) => Some(v),
+                Err(_) => None,
+            },
           
