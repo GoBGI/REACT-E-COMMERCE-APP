@@ -4,4 +4,4 @@ use std::os::unix::ffi::OsStrExt;
 use std::path::{Path, PathBuf};
 use std::sync::Arc;
 
-use rusqlit
+use rusqlite::{params, Connection, Result, Row, NO_PARAMS};
