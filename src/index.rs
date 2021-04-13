@@ -8,4 +8,7 @@ use rusqlite::{params, Connection, Result, Row, NO_PARAMS};
 use serde::Serialize;
 
 use crate::db_meta;
-use crate::s
+use crate::schema;
+use crate::Root;
+
+#[derive(Debug, Copy, Clone, PartialEq, Ser
