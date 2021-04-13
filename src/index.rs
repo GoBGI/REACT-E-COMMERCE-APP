@@ -11,4 +11,7 @@ use crate::db_meta;
 use crate::schema;
 use crate::Root;
 
-#[derive(Debug, Copy, Clone, PartialEq, Ser
+#[derive(Debug, Copy, Clone, PartialEq, Serialize)]
+pub enum NodeType {
+    Other = 0,
+    Directory =
