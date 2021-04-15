@@ -14,4 +14,9 @@ use crate::Root;
 #[derive(Debug, Copy, Clone, PartialEq, Serialize)]
 pub enum NodeType {
     Other = 0,
-    Directory =
+    Directory = 1,
+    File = 2,
+}
+
+impl NodeType {
+    pub fn from_i64(v
