@@ -19,4 +19,6 @@ pub enum NodeType {
 }
 
 impl NodeType {
-    pub fn from_i64(v
+    pub fn from_i64(v: i64) -> NodeType {
+        match v {
+            1 => NodeType:
