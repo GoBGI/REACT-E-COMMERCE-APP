@@ -21,4 +21,6 @@ pub enum NodeType {
 impl NodeType {
     pub fn from_i64(v: i64) -> NodeType {
         match v {
-            1 => NodeType:
+            1 => NodeType::Directory,
+            2 => NodeType::File,
+         
