@@ -23,4 +23,9 @@ impl NodeType {
         match v {
             1 => NodeType::Directory,
             2 => NodeType::File,
-         
+            _ => NodeType::Other,
+        }
+    }
+}
+
+#[derive(De
