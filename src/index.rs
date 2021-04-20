@@ -28,4 +28,6 @@ impl NodeType {
     }
 }
 
-#[derive(De
+#[derive(Debug, Clone)]
+pub struct Node {
+    pub node_id:
