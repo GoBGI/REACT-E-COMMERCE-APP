@@ -34,4 +34,9 @@ pub struct Node {
     pub node_type: NodeType,
     pub parent_id: Option<i64>,
     pub master_id: Option<i64>,
-    pub name
+    pub name: PathBuf,
+    pub path: PathBuf,
+    pub modified: i64,
+}
+
+#[deriv
