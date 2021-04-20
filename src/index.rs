@@ -30,4 +30,6 @@ impl NodeType {
 
 #[derive(Debug, Clone)]
 pub struct Node {
-    pub node_id:
+    pub node_id: i64,
+    pub node_type: NodeType,
+    pub parent_id: 
