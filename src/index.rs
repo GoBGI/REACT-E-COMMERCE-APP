@@ -32,4 +32,6 @@ impl NodeType {
 pub struct Node {
     pub node_id: i64,
     pub node_type: NodeType,
-    pub parent_id: 
+    pub parent_id: Option<i64>,
+    pub master_id: Option<i64>,
+    pub name
