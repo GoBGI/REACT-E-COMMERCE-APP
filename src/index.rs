@@ -39,4 +39,6 @@ pub struct Node {
     pub modified: i64,
 }
 
-#[deriv
+#[derive(Debug, Clone)]
+pub struct Track {
+    pub tra
