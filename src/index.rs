@@ -43,4 +43,6 @@ pub struct Node {
 pub struct Track {
     pub track_id: i64,
     pub node_id: i64,
-    pub stre
+    pub stream_index: i64,
+    pub track_index: Option<i64>,
+    pub star
