@@ -45,4 +45,7 @@ pub struct Track {
     pub node_id: i64,
     pub stream_index: i64,
     pub track_index: Option<i64>,
-    pub star
+    pub start: Option<f64>,
+    pub number: i64,
+    pub title: String,
+    
