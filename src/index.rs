@@ -51,4 +51,6 @@ pub struct Track {
     pub artist_id: i64,
     pub artist_name: String,
     pub album_id: i64,
-    pub album_name: 
+    pub album_name: String,
+    pub album_artist_id: Option<i64>,
+    pub album
