@@ -53,4 +53,8 @@ pub struct Track {
     pub album_id: i64,
     pub album_name: String,
     pub album_artist_id: Option<i64>,
-    pub album
+    pub album_artist_name: Option<String>,
+    pub length: f64,
+}
+
+#
