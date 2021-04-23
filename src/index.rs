@@ -57,4 +57,6 @@ pub struct Track {
     pub length: f64,
 }
 
-#
+#[derive(Debug, Clone)]
+pub struct Image {
+    pub i
