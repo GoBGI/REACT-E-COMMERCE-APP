@@ -59,4 +59,6 @@ pub struct Track {
 
 #[derive(Debug, Clone)]
 pub struct Image {
-    pub i
+    pub image_id: i64,
+    pub node_id: i64,
+    pub st
