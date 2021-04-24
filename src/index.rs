@@ -63,4 +63,8 @@ pub struct Image {
     pub node_id: i64,
     pub stream_index: Option<i64>,
     pub description: String,
-    pub
+    pub width: i64,
+    pub height: i64,
+}
+
+#[deriv
