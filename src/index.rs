@@ -61,4 +61,6 @@ pub struct Track {
 pub struct Image {
     pub image_id: i64,
     pub node_id: i64,
-    pub st
+    pub stream_index: Option<i64>,
+    pub description: String,
+    pub
