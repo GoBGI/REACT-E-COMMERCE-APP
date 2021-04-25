@@ -67,4 +67,6 @@ pub struct Image {
     pub height: i64,
 }
 
-#[deriv
+#[derive(Debug, Clone)]
+pub struct Album {
+    pub album_id
