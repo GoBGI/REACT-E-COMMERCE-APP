@@ -71,4 +71,6 @@ pub struct Image {
 pub struct Album {
     pub album_id: i64,
     pub name: String,
-    pub artist_id: Opt
+    pub artist_id: Option<i64>,
+    pub artist_name: Option<String>,
+    pub ima
