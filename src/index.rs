@@ -79,4 +79,8 @@ pub struct Album {
 #[derive(Debug, Clone)]
 pub struct Artist {
     pub artist_id: i64,
-    pub name:
+    pub name: String,
+}
+
+#[derive(Debug, Clone)]
+pub struct Tr
