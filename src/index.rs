@@ -91,4 +91,6 @@ pub struct TrackLyrics {
     pub modified: i64,
 }
 
-pub st
+pub struct IndexSource {
+    db_path: PathBuf,
+    roots: Arc<Vec<Root>
