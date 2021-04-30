@@ -87,4 +87,8 @@ pub struct TrackLyrics {
     pub track_id: i64,
     pub lyrics: Option<String>,
     pub provider: Option<String>,
-    pub so
+    pub source: Option<String>,
+    pub modified: i64,
+}
+
+pub st
