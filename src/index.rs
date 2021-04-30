@@ -85,4 +85,6 @@ pub struct Artist {
 #[derive(Debug, Clone)]
 pub struct TrackLyrics {
     pub track_id: i64,
-    pub lyrics: Option<
+    pub lyrics: Option<String>,
+    pub provider: Option<String>,
+    pub so
