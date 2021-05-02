@@ -98,4 +98,8 @@ pub struct IndexSource {
 
 pub struct Index {
     conn: Connection,
-    ro
+    roots: Arc<Vec<Root>>,
+}
+
+impl IndexSource {
+    pub fn create(db_
