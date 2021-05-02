@@ -93,4 +93,9 @@ pub struct TrackLyrics {
 
 pub struct IndexSource {
     db_path: PathBuf,
-    roots: Arc<Vec<Root>
+    roots: Arc<Vec<Root>>,
+}
+
+pub struct Index {
+    conn: Connection,
+    ro
