@@ -102,4 +102,4 @@ pub struct Index {
 }
 
 impl IndexSource {
-    pub fn create(db_
+    pub fn create(db_path: PathBuf, roots: Arc<Vec<Root>>) -> Result<Opti
