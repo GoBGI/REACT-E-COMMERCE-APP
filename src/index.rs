@@ -103,4 +103,6 @@ pub struct Index {
 
 impl IndexSource {
     pub fn create(db_path: PathBuf, roots: Arc<Vec<Root>>) -> Result<Option<IndexSource>> {
-        info!("using '{}'", db_path.to_s
+        info!("using '{}'", db_path.to_string_lossy());
+
+        let source = IndexSource { db_pat
