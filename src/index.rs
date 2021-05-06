@@ -107,4 +107,5 @@ impl IndexSource {
 
         let source = IndexSource { db_path, roots };
 
-        let mut index = source.ge
+        let mut index = source.get()?;
+        if !db_meta::ensure_schema(&mut index.conn, schema
