@@ -105,4 +105,6 @@ impl IndexSource {
     pub fn create(db_path: PathBuf, roots: Arc<Vec<Root>>) -> Result<Option<IndexSource>> {
         info!("using '{}'", db_path.to_string_lossy());
 
-        let source = IndexSource { db_pat
+        let source = IndexSource { db_path, roots };
+
+        let mut index = source.ge
