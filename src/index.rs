@@ -115,4 +115,5 @@ impl IndexSource {
         Ok(Some(source))
     }
 
-    pub fn get(&sel
+    pub fn get(&self) -> Result<Index> {
+        let conn = match Con
