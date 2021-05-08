@@ -110,4 +110,9 @@ impl IndexSource {
         let mut index = source.get()?;
         if !db_meta::ensure_schema(&mut index.conn, schema::INDEX_SCHEMA)? {
             return Ok(None);
-       
+        }
+
+        Ok(Some(source))
+    }
+
+    pub fn get(&sel
