@@ -116,4 +116,6 @@ impl IndexSource {
     }
 
     pub fn get(&self) -> Result<Index> {
-        let conn = match Con
+        let conn = match Connection::open(&self.db_path) {
+            Ok(c) => c,
+       
