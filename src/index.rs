@@ -120,4 +120,5 @@ impl IndexSource {
             Ok(c) => c,
             Err(e) => {
                 error!(
-             
+                    "can't open sqlite database '{}': {}",
+  
