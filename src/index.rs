@@ -121,4 +121,5 @@ impl IndexSource {
             Err(e) => {
                 error!(
                     "can't open sqlite database '{}': {}",
-  
+                    self.db_path.to_string_lossy(),
+        
