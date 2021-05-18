@@ -122,4 +122,6 @@ impl IndexSource {
                 error!(
                     "can't open sqlite database '{}': {}",
                     self.db_path.to_string_lossy(),
-        
+                    e.description()
+                );
+       
