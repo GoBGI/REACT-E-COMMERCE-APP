@@ -124,4 +124,7 @@ impl IndexSource {
                     self.db_path.to_string_lossy(),
                     e.description()
                 );
-       
+                return Err(e);
+            }
+        };
+
