@@ -128,3 +128,5 @@ impl IndexSource {
             }
         };
 
+        conn.execute_batch(
+            "PRAGMA for
