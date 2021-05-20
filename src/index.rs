@@ -134,4 +134,5 @@ impl IndexSource {
         )?;
 
         Ok(Index {
-     
+            conn,
+            roots: self.roots.cl
