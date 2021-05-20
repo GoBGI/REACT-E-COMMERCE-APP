@@ -130,4 +130,8 @@ impl IndexSource {
 
         conn.execute_batch(
             "PRAGMA foreign_keys = ON;
-            PRAGMA journal_mode = 
+            PRAGMA journal_mode = WAL;",
+        )?;
+
+        Ok(Index {
+     
