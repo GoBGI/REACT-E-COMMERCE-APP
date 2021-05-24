@@ -141,4 +141,5 @@ impl IndexSource {
 }
 
 impl Index {
-    pub fn roots(&
+    pub fn roots(&self) -> &Vec<Root> {
+        &self.r
