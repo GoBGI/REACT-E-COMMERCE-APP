@@ -135,4 +135,10 @@ impl IndexSource {
 
         Ok(Index {
             conn,
-            roots: self.roots.cl
+            roots: self.roots.clone(),
+        })
+    }
+}
+
+impl Index {
+    pub fn roots(&
