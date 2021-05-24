@@ -142,4 +142,8 @@ impl IndexSource {
 
 impl Index {
     pub fn roots(&self) -> &Vec<Root> {
-        &self.r
+        &self.roots
+    }
+
+    pub fn connection(&self) -> &Connection {
+ 
