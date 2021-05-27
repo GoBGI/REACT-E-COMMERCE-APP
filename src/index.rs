@@ -153,4 +153,5 @@ impl Index {
         &mut self.conn
     }
 
-    pub fn map_fs_path(&self, path: &Path) -> O
+    pub fn map_fs_path(&self, path: &Path) -> Option<PathBuf> {
+        let mut iter = pa
