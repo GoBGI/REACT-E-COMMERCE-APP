@@ -150,4 +150,7 @@ impl Index {
     }
 
     pub fn connection_mut(&mut self) -> &mut Connection {
-        &mut self.c
+        &mut self.conn
+    }
+
+    pub fn map_fs_path(&self, path: &Path) -> O
