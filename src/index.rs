@@ -149,4 +149,5 @@ impl Index {
         &self.conn
     }
 
-    pub fn connection_mut(&mut sel
+    pub fn connection_mut(&mut self) -> &mut Connection {
+        &mut self.c
