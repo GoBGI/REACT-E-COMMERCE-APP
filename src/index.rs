@@ -157,4 +157,5 @@ impl Index {
         let mut iter = path.iter();
 
         let root_name = match iter.next() {
-  
+            Some(name) => match name.to_str() {
+           
