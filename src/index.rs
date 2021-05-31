@@ -154,4 +154,7 @@ impl Index {
     }
 
     pub fn map_fs_path(&self, path: &Path) -> Option<PathBuf> {
-        let mut iter = pa
+        let mut iter = path.iter();
+
+        let root_name = match iter.next() {
+  
