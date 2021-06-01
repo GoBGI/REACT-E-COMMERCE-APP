@@ -159,4 +159,6 @@ impl Index {
         let root_name = match iter.next() {
             Some(name) => match name.to_str() {
                 Some(name) => name,
-                No
+                None => return None,
+            },
+            None => return None
