@@ -164,4 +164,5 @@ impl Index {
             None => return None,
         };
 
-        let root_dir = match self.roots.iter
+        let root_dir = match self.roots.iter().find(|&r| r.name == root_name) {
+            Som
