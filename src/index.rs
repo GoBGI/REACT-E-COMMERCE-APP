@@ -161,4 +161,7 @@ impl Index {
                 Some(name) => name,
                 None => return None,
             },
-            None => return None
+            None => return None,
+        };
+
+        let root_dir = match self.roots.iter
