@@ -169,4 +169,6 @@ impl Index {
             None => return None,
         };
 
-        let mut result = PathBuf::fr
+        let mut result = PathBuf::from(&root_dir.path);
+
+        for component in iter {
