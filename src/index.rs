@@ -166,4 +166,7 @@ impl Index {
 
         let root_dir = match self.roots.iter().find(|&r| r.name == root_name) {
             Some(name) => name,
-            None => return None
+            None => return None,
+        };
+
+        let mut result = PathBuf::fr
