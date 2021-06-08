@@ -172,3 +172,5 @@ impl Index {
         let mut result = PathBuf::from(&root_dir.path);
 
         for component in iter {
+            result.push(component);
+        }
