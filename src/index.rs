@@ -174,3 +174,8 @@ impl Index {
         for component in iter {
             result.push(component);
         }
+
+        Some(result)
+    }
+
+    fn _get_node(row: &Row) -
