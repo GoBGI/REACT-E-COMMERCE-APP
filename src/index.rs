@@ -178,4 +178,5 @@ impl Index {
         Some(result)
     }
 
-    fn _get_node(row: &Row) -
+    fn _get_node(row: &Row) -> Result<Node> {
+        let node_type: i64 = row.get(
