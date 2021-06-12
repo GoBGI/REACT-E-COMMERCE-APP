@@ -183,4 +183,6 @@ impl Index {
         let name_bytes: Vec<u8> = row.get(4)?;
         let path_bytes: Vec<u8> = row.get(5)?;
 
-        Ok
+        Ok(Node {
+            node_id: row.get(0)?,
+      
