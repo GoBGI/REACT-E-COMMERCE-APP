@@ -181,4 +181,6 @@ impl Index {
     fn _get_node(row: &Row) -> Result<Node> {
         let node_type: i64 = row.get(1)?;
         let name_bytes: Vec<u8> = row.get(4)?;
-    
+        let path_bytes: Vec<u8> = row.get(5)?;
+
+        Ok
