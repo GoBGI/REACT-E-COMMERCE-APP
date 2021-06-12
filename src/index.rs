@@ -185,4 +185,4 @@ impl Index {
 
         Ok(Node {
             node_id: row.get(0)?,
-      
+            node_type: NodeType::from_i64(node_type as i64),
