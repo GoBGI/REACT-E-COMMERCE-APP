@@ -188,4 +188,5 @@ impl Index {
             node_type: NodeType::from_i64(node_type as i64),
             parent_id: row.get(2)?,
             master_id: row.get(3)?,
-            name: Path::new(OsStr::from_bytes(&name_bytes)).to_path_buf(
+            name: Path::new(OsStr::from_bytes(&name_bytes)).to_path_buf(),
+            path: Path::new(OsStr::from_bytes(&path_b
