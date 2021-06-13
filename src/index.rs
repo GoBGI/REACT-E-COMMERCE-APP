@@ -189,4 +189,5 @@ impl Index {
             parent_id: row.get(2)?,
             master_id: row.get(3)?,
             name: Path::new(OsStr::from_bytes(&name_bytes)).to_path_buf(),
-            path: Path::new(OsStr::from_bytes(&path_b
+            path: Path::new(OsStr::from_bytes(&path_bytes)).to_path_buf(),
+            modified: row.
