@@ -195,4 +195,6 @@ impl Index {
     }
 
     pub fn node(&self, node_id: i64) -> Result<Option<Node>> {
-        trace!("get node nod
+        trace!("get node node_id={}", node_id);
+
+        let mut st = self.
