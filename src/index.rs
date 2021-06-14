@@ -194,4 +194,5 @@ impl Index {
         })
     }
 
-    pub fn node(&self, node_id: i64) -> R
+    pub fn node(&self, node_id: i64) -> Result<Option<Node>> {
+        trace!("get node nod
