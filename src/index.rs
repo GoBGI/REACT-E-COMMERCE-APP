@@ -198,4 +198,5 @@ impl Index {
         trace!("get node node_id={}", node_id);
 
         let mut st = self.conn.prepare(
-            "SELECT node_id, node_type
+            "SELECT node_id, node_type, parent_id, master_id, name, path, modified
+        
