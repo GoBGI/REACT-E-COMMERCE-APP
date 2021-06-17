@@ -200,4 +200,7 @@ impl Index {
         let mut st = self.conn.prepare(
             "SELECT node_id, node_type, parent_id, master_id, name, path, modified
             FROM Node
-            WHERE node_id =
+            WHERE node_id = ?",
+        )?;
+
+        let mut rows = st.query(&
