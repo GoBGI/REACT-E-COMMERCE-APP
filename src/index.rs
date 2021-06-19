@@ -203,4 +203,6 @@ impl Index {
             WHERE node_id = ?",
         )?;
 
-        let mut rows = st.query(&
+        let mut rows = st.query(&[node_id])?;
+
+        if let Some(row) = rows.next()?
