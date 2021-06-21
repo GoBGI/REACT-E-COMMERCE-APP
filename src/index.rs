@@ -205,4 +205,5 @@ impl Index {
 
         let mut rows = st.query(&[node_id])?;
 
-        if let Some(row) = rows.next()?
+        if let Some(row) = rows.next()? {
+            Ok(Some(Self::_get_node(row
