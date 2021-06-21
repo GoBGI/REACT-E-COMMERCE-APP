@@ -212,4 +212,4 @@ impl Index {
         }
     }
 
-   
+    pub fn node_by_name(&self, parent_id: Option<i64>, na
