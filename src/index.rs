@@ -213,4 +213,5 @@ impl Index {
     }
 
     pub fn node_by_name(&self, parent_id: Option<i64>, name: &Path) -> Result<Option<Node>> {
-        
+        trace!(
+            "get node parent_id={:?} name='{}'",
