@@ -217,4 +217,6 @@ impl Index {
             "get node parent_id={:?} name='{}'",
             parent_id,
             name.to_string_lossy()
- 
+        );
+
+        let mut st = self.conn.prepare(
