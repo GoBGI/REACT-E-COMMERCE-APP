@@ -219,4 +219,6 @@ impl Index {
             name.to_string_lossy()
         );
 
-        let mut st = self.conn.prepare(
+        let mut st = self.conn.prepare(match parent_id {
+            Some(_) => "
+                SELE
