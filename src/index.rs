@@ -232,4 +232,5 @@ impl Index {
 
         let name_bytes = name.as_os_str().as_bytes();
 
-  
+        let mut rows = match parent_id {
+            Some(i
