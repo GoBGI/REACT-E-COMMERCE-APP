@@ -228,4 +228,8 @@ impl Index {
                 SELECT node_id, node_type, parent_id, master_id, name, path, modified
                 FROM Node
                 WHERE name = ? AND parent_id IS NULL",
-    
+        })?;
+
+        let name_bytes = name.as_os_str().as_bytes();
+
+  
