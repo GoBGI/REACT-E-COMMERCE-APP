@@ -236,3 +236,6 @@ impl Index {
             Some(id) => st.query(params![name_bytes, id])?,
             None => st.query(&[name_bytes])?,
         };
+
+        if let Some(row) = rows.next()? {
+           
