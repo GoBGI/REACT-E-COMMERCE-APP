@@ -234,4 +234,5 @@ impl Index {
 
         let mut rows = match parent_id {
             Some(id) => st.query(params![name_bytes, id])?,
-         
+            None => st.query(&[name_bytes])?,
+        };
