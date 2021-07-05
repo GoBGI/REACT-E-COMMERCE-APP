@@ -238,4 +238,5 @@ impl Index {
         };
 
         if let Some(row) = rows.next()? {
-           
+            Ok(Some(Self::_get_node(row)?))
+        } 
