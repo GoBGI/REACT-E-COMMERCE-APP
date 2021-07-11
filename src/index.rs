@@ -245,4 +245,4 @@ impl Index {
     }
 
     pub fn node_by_path(&self, path: &Path) -> Result<Option<Node>> {
-   
+        trace!("get node path='{}'", path.to_string_
