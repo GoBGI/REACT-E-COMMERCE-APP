@@ -244,4 +244,5 @@ impl Index {
         }
     }
 
-    pub 
+    pub fn node_by_path(&self, path: &Path) -> Result<Option<Node>> {
+   
