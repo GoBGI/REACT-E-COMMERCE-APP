@@ -255,4 +255,6 @@ impl Index {
 
         let path_bytes = path.as_os_str().as_bytes();
 
-        let mut rows = st.q
+        let mut rows = st.query(&[path_bytes])?;
+
+        if let Some(row) = rows.next(
