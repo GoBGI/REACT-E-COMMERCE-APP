@@ -253,4 +253,6 @@ impl Index {
             WHERE path = ?",
         )?;
 
-        let path_byte
+        let path_bytes = path.as_os_str().as_bytes();
+
+        let mut rows = st.q
