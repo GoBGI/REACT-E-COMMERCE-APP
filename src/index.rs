@@ -248,4 +248,4 @@ impl Index {
         trace!("get node path='{}'", path.to_string_lossy());
 
         let mut st = self.conn.prepare(
-          
+            "SELECT node_id, node_type, parent_id, master_id, nam
