@@ -268,4 +268,5 @@ impl Index {
         trace!("list nodes by parent_id={:?}", parent_id);
 
         let mut st = self.conn.prepare(match parent_id {
-            Som
+            Some(_) => "
+                SELECT node_id, node_type, parent_id,
