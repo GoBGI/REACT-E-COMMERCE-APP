@@ -264,4 +264,5 @@ impl Index {
         }
     }
 
-    pub fn nodes_by_parent(&self, parent_id: Option<i64>) -> Res
+    pub fn nodes_by_parent(&self, parent_id: Option<i64>) -> Result<Vec<Node>> {
+        trace!("list nodes by p
