@@ -264,4 +264,4 @@ impl Index {
         }
     }
 
- 
+    pub fn nodes_by_parent(&self, parent_id: Option<i64>) -> Res
