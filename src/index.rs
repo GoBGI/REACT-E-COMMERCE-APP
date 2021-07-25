@@ -269,4 +269,5 @@ impl Index {
 
         let mut st = self.conn.prepare(match parent_id {
             Some(_) => "
-                SELECT node_id, node_type, parent_id,
+                SELECT node_id, node_type, parent_id, master_id, name, path, modified
+                FROM Node
