@@ -271,3 +271,5 @@ impl Index {
             Some(_) => "
                 SELECT node_id, node_type, parent_id, master_id, name, path, modified
                 FROM Node
+                WHERE parent_id = ?",
+            Non
