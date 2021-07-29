@@ -278,4 +278,5 @@ impl Index {
                 WHERE parent_id IS NULL",
         })?;
 
-        let mut rows = match
+        let mut rows = match parent_id {
+            Some(id) => st.query(&[i
