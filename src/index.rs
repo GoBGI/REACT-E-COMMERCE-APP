@@ -281,4 +281,8 @@ impl Index {
         let mut rows = match parent_id {
             Some(id) => st.query(&[id])?,
             None => st.query(NO_PARAMS)?,
+        };
+
+        let mut result = Vec::new();
+
       
