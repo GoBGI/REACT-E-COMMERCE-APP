@@ -279,4 +279,6 @@ impl Index {
         })?;
 
         let mut rows = match parent_id {
-            Some(id) => st.query(&[i
+            Some(id) => st.query(&[id])?,
+            None => st.query(NO_PARAMS)?,
+      
