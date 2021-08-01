@@ -287,4 +287,9 @@ impl Index {
 
         while let Some(row) = rows.next()? {
             result.push(Self::_get_node(row)?);
-        
+        }
+
+        Ok(result)
+    }
+
+    pub fn create_node
