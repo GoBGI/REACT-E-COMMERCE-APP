@@ -285,4 +285,5 @@ impl Index {
 
         let mut result = Vec::new();
 
-      
+        while let Some(row) = rows.next()? {
+  
