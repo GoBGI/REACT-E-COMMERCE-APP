@@ -292,4 +292,5 @@ impl Index {
         Ok(result)
     }
 
-    pub fn create_node
+    pub fn create_node(&self, node: &Node) -> Result<Node> {
+        let mut s
