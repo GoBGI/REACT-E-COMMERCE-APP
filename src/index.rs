@@ -286,4 +286,5 @@ impl Index {
         let mut result = Vec::new();
 
         while let Some(row) = rows.next()? {
-  
+            result.push(Self::_get_node(row)?);
+        
