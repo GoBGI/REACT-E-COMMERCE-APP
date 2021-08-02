@@ -293,4 +293,5 @@ impl Index {
     }
 
     pub fn create_node(&self, node: &Node) -> Result<Node> {
-        let mut s
+        let mut st = self.conn.prepare(
+            "INSERT
