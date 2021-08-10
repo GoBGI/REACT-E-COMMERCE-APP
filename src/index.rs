@@ -299,4 +299,5 @@ impl Index {
         )?;
 
         st.execute(params![
-      
+            node.node_type as i64,
+            nod
