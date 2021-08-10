@@ -302,4 +302,5 @@ impl Index {
             node.node_type as i64,
             node.parent_id,
             node.master_id,
-            node.nam
+            node.name.as_os_str().as_bytes(),
+            node.path.as_os
