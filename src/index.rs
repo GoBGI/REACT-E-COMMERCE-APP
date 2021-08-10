@@ -295,4 +295,8 @@ impl Index {
     pub fn create_node(&self, node: &Node) -> Result<Node> {
         let mut st = self.conn.prepare(
             "INSERT INTO Node (node_type, parent_id, master_id, name, path, modified)
-            VALUES (?, ?, ?, ?, ?, ?
+            VALUES (?, ?, ?, ?, ?, ?)",
+        )?;
+
+        st.execute(params![
+      
