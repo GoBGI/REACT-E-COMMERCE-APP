@@ -300,4 +300,6 @@ impl Index {
 
         st.execute(params![
             node.node_type as i64,
-            nod
+            node.parent_id,
+            node.master_id,
+            node.nam
