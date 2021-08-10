@@ -303,4 +303,8 @@ impl Index {
             node.parent_id,
             node.master_id,
             node.name.as_os_str().as_bytes(),
-            node.path.as_os
+            node.path.as_os_str().as_bytes(),
+            node.modified,
+        ])?;
+
+  
