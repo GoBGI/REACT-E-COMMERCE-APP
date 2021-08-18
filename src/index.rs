@@ -315,4 +315,6 @@ impl Index {
     }
 
     pub fn delete_node(&self, node_id: i64) -> Result<()> {
-        trace!("
+        trace!("delete node node_id={}", node_id);
+
+        self.c
