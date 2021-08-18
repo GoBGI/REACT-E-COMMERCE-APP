@@ -314,4 +314,5 @@ impl Index {
         Ok(result)
     }
 
-    pub fn delete_no
+    pub fn delete_node(&self, node_id: i64) -> Result<()> {
+        trace!("
