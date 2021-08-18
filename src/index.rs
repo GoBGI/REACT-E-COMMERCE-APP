@@ -309,4 +309,9 @@ impl Index {
 
         let result = self.node(self.conn.last_insert_rowid())?.unwrap();
 
-        debug!("create {:?}", result
+        debug!("create {:?}", result);
+
+        Ok(result)
+    }
+
+    pub fn delete_no
