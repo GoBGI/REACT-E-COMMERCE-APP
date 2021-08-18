@@ -307,4 +307,6 @@ impl Index {
             node.modified,
         ])?;
 
-        let result = self.node(self.conn.last_in
+        let result = self.node(self.conn.last_insert_rowid())?.unwrap();
+
+        debug!("create {:?}", result
