@@ -307,4 +307,4 @@ impl Index {
             node.modified,
         ])?;
 
-  
+        let result = self.node(self.conn.last_in
