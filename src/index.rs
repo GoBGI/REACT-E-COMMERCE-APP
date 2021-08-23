@@ -318,4 +318,7 @@ impl Index {
         trace!("delete node node_id={}", node_id);
 
         self.conn
-            .execute("DELETE FROM Node WHE
+            .execute("DELETE FROM Node WHERE node_id = ?", &[node_id])?;
+        Ok(())
+    }
+
