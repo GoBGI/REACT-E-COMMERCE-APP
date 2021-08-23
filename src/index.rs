@@ -323,4 +323,4 @@ impl Index {
     }
 
     pub fn set_node_modified(&self, node_id: i64, modified: i64) -> Result<()> {
-        
+        trace!("set node node_id={} modified={}", node_id, 
