@@ -322,4 +322,5 @@ impl Index {
         Ok(())
     }
 
-    pub fn set_node_modified(&self, node_id: i64
+    pub fn set_node_modified(&self, node_id: i64, modified: i64) -> Result<()> {
+        
