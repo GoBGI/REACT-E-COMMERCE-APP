@@ -333,4 +333,7 @@ impl Index {
     }
 
     pub fn set_node_master(&self, node_id: i64, master_id: i64) -> Result<()> {
-        trace!("set node node_id={} master_id={}", node_id, master_id
+        trace!("set node node_id={} master_id={}", node_id, master_id);
+
+        self.conn.execute(
+            "UPDATE No
