@@ -332,4 +332,5 @@ impl Index {
         Ok(())
     }
 
-    pub fn set_node_master(&self, node_
+    pub fn set_node_master(&self, node_id: i64, master_id: i64) -> Result<()> {
+        trace!(
