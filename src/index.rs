@@ -329,4 +329,7 @@ impl Index {
             "UPDATE Node SET modified = ? WHERE node_id = ?",
             params![modified, node_id],
         )?;
-     
+        Ok(())
+    }
+
+    pub fn set_node_master(&self, node_
