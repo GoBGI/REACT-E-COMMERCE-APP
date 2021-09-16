@@ -336,4 +336,5 @@ impl Index {
         trace!("set node node_id={} master_id={}", node_id, master_id);
 
         self.conn.execute(
-            "UPDATE No
+            "UPDATE Node SET master_id = ? WHERE node_id = ?",
+    
