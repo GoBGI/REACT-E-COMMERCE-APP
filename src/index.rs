@@ -337,4 +337,5 @@ impl Index {
 
         self.conn.execute(
             "UPDATE Node SET master_id = ? WHERE node_id = ?",
+            params![master_id, node_id],
     
