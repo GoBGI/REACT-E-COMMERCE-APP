@@ -342,4 +342,5 @@ impl Index {
         Ok(())
     }
 
-    pub fn c
+    pub fn clear_node(&self, node_id: i64) -> Result<()> {
+       
