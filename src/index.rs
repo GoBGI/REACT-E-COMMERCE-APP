@@ -348,4 +348,5 @@ impl Index {
         self.conn
             .execute("DELETE FROM Track WHERE node_id = ?", &[node_id])?;
 
-        self.co
+        self.conn
+            .execute("DELETE FROM Image W
