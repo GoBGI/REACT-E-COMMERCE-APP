@@ -346,4 +346,6 @@ impl Index {
         trace!("clear node node_id={}", node_id);
 
         self.conn
-            .execute("DELETE FROM Track WH
+            .execute("DELETE FROM Track WHERE node_id = ?", &[node_id])?;
+
+        self.co
