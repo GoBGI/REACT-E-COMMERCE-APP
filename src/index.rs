@@ -343,4 +343,7 @@ impl Index {
     }
 
     pub fn clear_node(&self, node_id: i64) -> Result<()> {
-        trace!("clear node node_id={}", node_id)
+        trace!("clear node node_id={}", node_id);
+
+        self.conn
+            .execute("DELETE FROM Track WH
