@@ -351,4 +351,8 @@ impl Index {
         self.conn
             .execute("DELETE FROM Image WHERE node_id = ?", &[node_id])?;
 
-        Ok((
+        Ok(())
+    }
+
+    fn _get_track(row: &Row) -> Result<Track> {
+   
