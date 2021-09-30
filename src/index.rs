@@ -357,4 +357,5 @@ impl Index {
     fn _get_track(row: &Row) -> Result<Track> {
         Ok(Track {
             track_id: row.get(0)?,
-   
+            node_id: row.get(1)?,
+            st
