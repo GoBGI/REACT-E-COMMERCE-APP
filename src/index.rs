@@ -359,4 +359,6 @@ impl Index {
             track_id: row.get(0)?,
             node_id: row.get(1)?,
             stream_index: row.get(2)?,
-            track_index: ro
+            track_index: row.get(3)?,
+            start: row.get(4)?,
+            numb
