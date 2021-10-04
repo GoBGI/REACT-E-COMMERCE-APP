@@ -361,4 +361,5 @@ impl Index {
             stream_index: row.get(2)?,
             track_index: row.get(3)?,
             start: row.get(4)?,
-            numb
+            number: row.get(5)?,
+            title: row.get(
