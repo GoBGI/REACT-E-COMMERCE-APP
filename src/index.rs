@@ -364,4 +364,5 @@ impl Index {
             number: row.get(5)?,
             title: row.get(6)?,
             artist_id: row.get(7)?,
-         
+            artist_name: row.get(8)?,
+            album_id: r
