@@ -358,4 +358,5 @@ impl Index {
         Ok(Track {
             track_id: row.get(0)?,
             node_id: row.get(1)?,
-            st
+            stream_index: row.get(2)?,
+            track_index: ro
