@@ -362,4 +362,6 @@ impl Index {
             track_index: row.get(3)?,
             start: row.get(4)?,
             number: row.get(5)?,
-            title: row.get(
+            title: row.get(6)?,
+            artist_id: row.get(7)?,
+         
