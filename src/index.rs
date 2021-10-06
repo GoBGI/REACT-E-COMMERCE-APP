@@ -369,4 +369,8 @@ impl Index {
             album_name: row.get(10)?,
             album_artist_id: row.get(11)?,
             album_artist_name: row.get(12)?,
-            lengt
+            length: row.get(13)?,
+        })
+    }
+
+    pub fn track(&self, t
