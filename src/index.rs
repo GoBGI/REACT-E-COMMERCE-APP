@@ -373,4 +373,5 @@ impl Index {
         })
     }
 
-    pub fn track(&self, t
+    pub fn track(&self, track_id: i64) -> Result<Option<Track>> {
+        trace!("get
