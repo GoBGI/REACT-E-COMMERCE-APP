@@ -374,4 +374,6 @@ impl Index {
     }
 
     pub fn track(&self, track_id: i64) -> Result<Option<Track>> {
-        trace!("get
+        trace!("get track track_id={}", track_id);
+
+        let mut st = self.con
