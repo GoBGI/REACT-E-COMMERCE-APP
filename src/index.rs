@@ -378,4 +378,4 @@ impl Index {
 
         let mut st = self.conn
             .prepare(
-                "SELECT track_id, 
+                "SELECT track_id, node_id, stream_index, track_index, start, numbe
