@@ -392,4 +392,6 @@ impl Index {
         }
     }
 
-    pub fn create_track(&self, track: &Track) -> Result
+    pub fn create_track(&self, track: &Track) -> Result<Track> {
+        let mut st = self.conn
+      
