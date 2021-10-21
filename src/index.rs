@@ -390,4 +390,6 @@ impl Index {
         } else {
             Ok(None)
         }
-    
+    }
+
+    pub fn create_track(&self, track: &Track) -> Result
