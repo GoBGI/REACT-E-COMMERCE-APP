@@ -380,4 +380,7 @@ impl Index {
             .prepare(
                 "SELECT track_id, node_id, stream_index, track_index, start, number, title, artist_id, artist_name, album_id, album_name, album_artist_id, album_artist_name, length
                 FROM Track
-                WHERE track
+                WHERE track_id = ?"
+            )?;
+
+        let mut rows = st.qu
