@@ -383,4 +383,6 @@ impl Index {
                 WHERE track_id = ?"
             )?;
 
-        let mut rows = st.qu
+        let mut rows = st.query(&[track_id])?;
+
+        if let Some(row) = rows.ne
