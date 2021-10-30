@@ -395,4 +395,4 @@ impl Index {
     pub fn create_track(&self, track: &Track) -> Result<Track> {
         let mut st = self.conn
             .prepare(
-                "INSERT INTO Track (node_i
+                "INSERT INTO Track (node_id, stream_index, track_index, start, number,
