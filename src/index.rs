@@ -396,4 +396,5 @@ impl Index {
         let mut st = self.conn
             .prepare(
                 "INSERT INTO Track (node_id, stream_index, track_index, start, number, title, artist_id, artist_name, album_id, album_name, album_artist_id, album_artist_name, length)
-                
+                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"
+        
