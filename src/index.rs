@@ -400,4 +400,6 @@ impl Index {
             )?;
 
         st.execute(params![
-            track.
+            track.node_id,
+            track.stream_index,
+            track.track_index,
