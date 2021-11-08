@@ -403,3 +403,6 @@ impl Index {
             track.node_id,
             track.stream_index,
             track.track_index,
+            track.start,
+            track.number,
+       
