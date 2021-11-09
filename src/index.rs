@@ -415,4 +415,6 @@ impl Index {
             track.length,
         ])?;
 
-        let r
+        let result = self.track(self.conn.last_insert_rowid())?.unwrap();
+
+    
