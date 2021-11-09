@@ -408,4 +408,6 @@ impl Index {
             track.title,
             track.artist_id,
             track.artist_name,
-            track
+            track.album_id,
+            track.album_name,
+            trac
