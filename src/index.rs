@@ -405,4 +405,5 @@ impl Index {
             track.track_index,
             track.start,
             track.number,
-       
+            track.title,
+            track.art
