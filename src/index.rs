@@ -411,4 +411,8 @@ impl Index {
             track.album_id,
             track.album_name,
             track.album_artist_id,
-            track.album_artist
+            track.album_artist_name,
+            track.length,
+        ])?;
+
+        let r
