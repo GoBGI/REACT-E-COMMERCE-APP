@@ -417,4 +417,7 @@ impl Index {
 
         let result = self.track(self.conn.last_insert_rowid())?.unwrap();
 
-    
+        debug!("create {:?}", result);
+
+        Ok(result)
+ 
