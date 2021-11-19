@@ -425,4 +425,5 @@ impl Index {
     fn _get_image(row: &Row) -> Result<Image> {
         Ok(Image {
             image_id: row.get(0)?,
-  
+            node_id: row.get(1)?,
+            stream_index
