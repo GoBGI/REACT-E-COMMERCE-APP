@@ -422,4 +422,7 @@ impl Index {
         Ok(result)
     }
 
-    fn _get_image(row: &Row) -> Resul
+    fn _get_image(row: &Row) -> Result<Image> {
+        Ok(Image {
+            image_id: row.get(0)?,
+  
