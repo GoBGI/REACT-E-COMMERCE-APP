@@ -427,4 +427,6 @@ impl Index {
             image_id: row.get(0)?,
             node_id: row.get(1)?,
             stream_index: row.get(2)?,
-            description: row.
+            description: row.get(3)?,
+            width: row.get(4)?,
+            height: row
