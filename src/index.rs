@@ -426,4 +426,5 @@ impl Index {
         Ok(Image {
             image_id: row.get(0)?,
             node_id: row.get(1)?,
-            stream_index
+            stream_index: row.get(2)?,
+            description: row.
