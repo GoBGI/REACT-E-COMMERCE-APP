@@ -434,4 +434,6 @@ impl Index {
     }
 
     pub fn image(&self, image_id: i64) -> Result<Option<Image>> {
-      
+        trace!("get image image_id={}", image_id);
+
+        let mut s
