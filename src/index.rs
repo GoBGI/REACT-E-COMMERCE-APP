@@ -437,4 +437,6 @@ impl Index {
         trace!("get image image_id={}", image_id);
 
         let mut st = self.conn.prepare(
-            "SELECT image_id, node_id, st
+            "SELECT image_id, node_id, stream_index, description, width, height
+            FROM Image
+       
