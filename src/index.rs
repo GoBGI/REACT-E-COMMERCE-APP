@@ -429,4 +429,8 @@ impl Index {
             stream_index: row.get(2)?,
             description: row.get(3)?,
             width: row.get(4)?,
-            height: row
+            height: row.get(5)?,
+        })
+    }
+
+    pub fn image(&self, imag
