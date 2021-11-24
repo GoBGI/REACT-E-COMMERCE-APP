@@ -439,4 +439,7 @@ impl Index {
         let mut st = self.conn.prepare(
             "SELECT image_id, node_id, stream_index, description, width, height
             FROM Image
-       
+            WHERE image_id = ?",
+        )?;
+
+        l
