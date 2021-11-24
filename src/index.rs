@@ -445,4 +445,6 @@ impl Index {
         let mut rows = st.query(&[image_id])?;
 
         if let Some(row) = rows.next()? {
-            Ok(Some(S
+            Ok(Some(Self::_get_image(row)?))
+        } else {
+            O
