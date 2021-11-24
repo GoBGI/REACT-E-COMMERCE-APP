@@ -447,4 +447,8 @@ impl Index {
         if let Some(row) = rows.next()? {
             Ok(Some(Self::_get_image(row)?))
         } else {
-            O
+            Ok(None)
+        }
+    }
+
+    pub fn create_image(&self, i
