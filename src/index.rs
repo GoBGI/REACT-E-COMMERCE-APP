@@ -442,4 +442,6 @@ impl Index {
             WHERE image_id = ?",
         )?;
 
-        l
+        let mut rows = st.query(&[image_id])?;
+
+        if let Som
