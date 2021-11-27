@@ -451,4 +451,5 @@ impl Index {
         }
     }
 
-    pub fn create_image(&self, i
+    pub fn create_image(&self, image: &Image) -> Result<Image> {
+        let
