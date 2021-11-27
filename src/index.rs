@@ -452,4 +452,5 @@ impl Index {
     }
 
     pub fn create_image(&self, image: &Image) -> Result<Image> {
-        let
+        let mut st = self.conn.prepare(
+            "INSERT INTO Image (n
