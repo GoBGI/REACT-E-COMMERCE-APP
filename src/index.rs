@@ -453,4 +453,5 @@ impl Index {
 
     pub fn create_image(&self, image: &Image) -> Result<Image> {
         let mut st = self.conn.prepare(
-            "INSERT INTO Image (n
+            "INSERT INTO Image (node_id, stream_index, description, width, height)
+ 
