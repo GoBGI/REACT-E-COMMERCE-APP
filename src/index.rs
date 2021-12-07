@@ -457,4 +457,6 @@ impl Index {
             VALUES (?, ?, ?, ?, ?)",
         )?;
 
-        st.execu
+        st.execute(params![
+            image.node_id,
+    
