@@ -459,4 +459,5 @@ impl Index {
 
         st.execute(params![
             image.node_id,
-    
+            image.stream_index,
+            image.
