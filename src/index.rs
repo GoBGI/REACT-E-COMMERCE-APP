@@ -465,4 +465,6 @@ impl Index {
             image.height
         ])?;
 
-        let result = sel
+        let result = self.image(self.conn.last_insert_rowid())?.unwrap();
+
+        d
