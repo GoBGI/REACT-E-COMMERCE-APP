@@ -462,4 +462,7 @@ impl Index {
             image.stream_index,
             image.description,
             image.width,
-           
+            image.height
+        ])?;
+
+        let result = sel
