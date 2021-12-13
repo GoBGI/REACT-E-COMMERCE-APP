@@ -467,4 +467,7 @@ impl Index {
 
         let result = self.image(self.conn.last_insert_rowid())?.unwrap();
 
-        d
+        debug!("create {:?}", result);
+
+        Ok(result)
+ 
