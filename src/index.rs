@@ -470,4 +470,7 @@ impl Index {
         debug!("create {:?}", result);
 
         Ok(result)
- 
+    }
+
+    fn _get_artist(row: &Row) -> Result<Artist> {
+  
