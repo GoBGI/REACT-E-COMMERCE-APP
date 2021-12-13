@@ -473,4 +473,6 @@ impl Index {
     }
 
     fn _get_artist(row: &Row) -> Result<Artist> {
-  
+        Ok(Artist {
+            artist_id: row.get(0)?,
+ 
