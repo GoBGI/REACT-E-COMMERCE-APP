@@ -479,4 +479,5 @@ impl Index {
         })
     }
 
-    pub fn artist(&self, artist_id: i64) -> Re
+    pub fn artist(&self, artist_id: i64) -> Result<Option<Artist>> {
+        trace!("get artist artist_i
