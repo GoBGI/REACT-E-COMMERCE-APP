@@ -478,3 +478,5 @@ impl Index {
             name: row.get(1)?,
         })
     }
+
+    pub fn artist(&self, artist_id: i64) -> Re
