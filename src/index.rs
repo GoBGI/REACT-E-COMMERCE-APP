@@ -482,4 +482,6 @@ impl Index {
     pub fn artist(&self, artist_id: i64) -> Result<Option<Artist>> {
         trace!("get artist artist_id={}", artist_id);
 
-        let mut st = self.conn.p
+        let mut st = self.conn.prepare(
+            "SELECT artist_id, name
+   
