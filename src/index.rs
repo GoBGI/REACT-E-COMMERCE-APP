@@ -484,4 +484,5 @@ impl Index {
 
         let mut st = self.conn.prepare(
             "SELECT artist_id, name
-   
+            FROM Artist
+            WHERE artist_id = 
