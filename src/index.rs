@@ -498,4 +498,6 @@ impl Index {
     }
 
     pub fn artist_by_name(&self, name: &str) -> Result<Option<Artist>> {
-        trac
+        trace!("get artist name={}", name);
+
+        le
