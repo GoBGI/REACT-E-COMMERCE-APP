@@ -493,4 +493,8 @@ impl Index {
         if let Some(row) = rows.next()? {
             Ok(Some(Self::_get_artist(row)?))
         } else {
-            Ok
+            Ok(None)
+        }
+    }
+
+    pub fn artist_by_name(&
