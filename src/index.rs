@@ -490,4 +490,5 @@ impl Index {
 
         let mut rows = st.query(&[artist_id])?;
 
- 
+        if let Some(row) = rows.next()? {
+            Ok(Some
