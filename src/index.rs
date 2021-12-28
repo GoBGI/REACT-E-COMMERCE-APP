@@ -500,4 +500,5 @@ impl Index {
     pub fn artist_by_name(&self, name: &str) -> Result<Option<Artist>> {
         trace!("get artist name={}", name);
 
-        le
+        let mut st = self.conn.prepare(
+            "SELECT 
