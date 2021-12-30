@@ -501,4 +501,6 @@ impl Index {
         trace!("get artist name={}", name);
 
         let mut st = self.conn.prepare(
-            "SELECT 
+            "SELECT artist_id, name
+            FROM Artist
+            WHERE name 
