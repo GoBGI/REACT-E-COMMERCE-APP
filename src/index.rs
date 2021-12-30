@@ -506,4 +506,7 @@ impl Index {
             WHERE name = ?",
         )?;
 
-        let mut rows = st.query(&[name])?
+        let mut rows = st.query(&[name])?;
+
+        if let Some(row) = rows.next()? {
+            
