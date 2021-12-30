@@ -503,4 +503,7 @@ impl Index {
         let mut st = self.conn.prepare(
             "SELECT artist_id, name
             FROM Artist
-            WHERE name 
+            WHERE name = ?",
+        )?;
+
+        let mut rows = st.query(&[name])?
