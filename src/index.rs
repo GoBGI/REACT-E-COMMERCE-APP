@@ -509,4 +509,6 @@ impl Index {
         let mut rows = st.query(&[name])?;
 
         if let Some(row) = rows.next()? {
-            
+            Ok(Some(Self::_get_artist(row)?))
+        } else {
+ 
