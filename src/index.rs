@@ -511,4 +511,8 @@ impl Index {
         if let Some(row) = rows.next()? {
             Ok(Some(Self::_get_artist(row)?))
         } else {
- 
+            Ok(None)
+        }
+    }
+
+    pub fn create_a
