@@ -515,4 +515,5 @@ impl Index {
         }
     }
 
-    pub fn create_a
+    pub fn create_artist(&self, name: &str) -> Result<Artist> {
+        let mut st = self
