@@ -521,4 +521,6 @@ impl Index {
             VALUES (?)",
         )?;
 
-     
+        st.execute(params![name])?;
+
+        let result = se
