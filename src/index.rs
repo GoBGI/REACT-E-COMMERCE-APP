@@ -517,4 +517,8 @@ impl Index {
 
     pub fn create_artist(&self, name: &str) -> Result<Artist> {
         let mut st = self.conn.prepare(
-            "INSERT INTO Artist (n
+            "INSERT INTO Artist (name)
+            VALUES (?)",
+        )?;
+
+     
