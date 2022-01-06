@@ -527,4 +527,7 @@ impl Index {
 
         debug!("create {:?}", result);
 
-        O
+        Ok(result)
+    }
+
+    fn _get_album(row: &Row) -> Re
