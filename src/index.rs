@@ -524,3 +524,7 @@ impl Index {
         st.execute(params![name])?;
 
         let result = self.artist(self.conn.last_insert_rowid())?.unwrap();
+
+        debug!("create {:?}", result);
+
+        O
