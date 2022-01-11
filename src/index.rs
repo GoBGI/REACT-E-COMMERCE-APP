@@ -530,4 +530,6 @@ impl Index {
         Ok(result)
     }
 
-    fn _get_album(row: &Row) -> Re
+    fn _get_album(row: &Row) -> Result<Album> {
+        Ok(Album {
+            album_id: 
