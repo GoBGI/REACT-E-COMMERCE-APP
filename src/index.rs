@@ -537,4 +537,7 @@ impl Index {
             artist_id: row.get(2)?,
             artist_name: row.get(3)?,
             image_id: row.get(4)?,
- 
+        })
+    }
+
+    pub fn album(&self, al
