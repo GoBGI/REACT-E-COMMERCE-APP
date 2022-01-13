@@ -534,4 +534,5 @@ impl Index {
         Ok(Album {
             album_id: row.get(0)?,
             name: row.get(1)?,
-      
+            artist_id: row.get(2)?,
+            artist_
