@@ -540,4 +540,5 @@ impl Index {
         })
     }
 
-    pub fn album(&self, al
+    pub fn album(&self, album_id: i64) -> Result<Option<Album>> {
+        trace!
