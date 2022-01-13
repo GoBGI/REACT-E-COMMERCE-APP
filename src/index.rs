@@ -532,4 +532,6 @@ impl Index {
 
     fn _get_album(row: &Row) -> Result<Album> {
         Ok(Album {
-            album_id: 
+            album_id: row.get(0)?,
+            name: row.get(1)?,
+      
