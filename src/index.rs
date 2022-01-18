@@ -543,3 +543,5 @@ impl Index {
     pub fn album(&self, album_id: i64) -> Result<Option<Album>> {
         trace!("get album album_id={}", album_id);
 
+        let mut st = self.conn.prepare(
+          
