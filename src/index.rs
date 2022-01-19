@@ -548,3 +548,5 @@ impl Index {
                 FROM Album
                 WHERE album_id = ?",
         )?;
+
+        let mut rows = st.query(&[album_id]
