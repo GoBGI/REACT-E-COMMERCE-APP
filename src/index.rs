@@ -544,4 +544,4 @@ impl Index {
         trace!("get album album_id={}", album_id);
 
         let mut st = self.conn.prepare(
-          
+            "SELECT Album.album_id, Album.name, Album.artist_
