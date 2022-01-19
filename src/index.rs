@@ -549,4 +549,7 @@ impl Index {
                 WHERE album_id = ?",
         )?;
 
-        let mut rows = st.query(&[album_id]
+        let mut rows = st.query(&[album_id])?;
+
+        if let Some(row) = rows.next()? {
+      
