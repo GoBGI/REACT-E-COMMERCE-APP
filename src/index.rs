@@ -552,4 +552,5 @@ impl Index {
         let mut rows = st.query(&[album_id])?;
 
         if let Some(row) = rows.next()? {
-      
+            Ok(Some(Self::_get_album(row)?))
+     
