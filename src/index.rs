@@ -553,4 +553,7 @@ impl Index {
 
         if let Some(row) = rows.next()? {
             Ok(Some(Self::_get_album(row)?))
-     
+        } else {
+            Ok(None)
+        }
+    }
