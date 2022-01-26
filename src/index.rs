@@ -558,4 +558,5 @@ impl Index {
         }
     }
 
-    pub fn create_album(&self, name: &str) -> 
+    pub fn create_album(&self, name: &str) -> Result<Album> {
+        let mut st = self.conn.
