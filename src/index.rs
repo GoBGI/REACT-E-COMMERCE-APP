@@ -557,3 +557,5 @@ impl Index {
             Ok(None)
         }
     }
+
+    pub fn create_album(&self, name: &str) -> 
