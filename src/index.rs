@@ -559,4 +559,4 @@ impl Index {
     }
 
     pub fn create_album(&self, name: &str) -> Result<Album> {
-        let mut st = self.conn.
+        let mut st = self.conn.prepare("INSERT INTO Album (name) VALUES (?)
