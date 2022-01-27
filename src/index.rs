@@ -559,4 +559,8 @@ impl Index {
     }
 
     pub fn create_album(&self, name: &str) -> Result<Album> {
-        let mut st = self.conn.prepare("INSERT INTO Album (name) VALUES (?)
+        let mut st = self.conn.prepare("INSERT INTO Album (name) VALUES (?)")?;
+
+        st.execute(params![name])?;
+
+        
