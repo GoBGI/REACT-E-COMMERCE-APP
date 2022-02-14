@@ -563,4 +563,6 @@ impl Index {
 
         st.execute(params![name])?;
 
-        let result = self.album(self.conn.last_in
+        let result = self.album(self.conn.last_insert_rowid())?.unwrap();
+
+        debug!("cre
