@@ -563,4 +563,4 @@ impl Index {
 
         st.execute(params![name])?;
 
-        
+        let result = self.album(self.conn.last_in
