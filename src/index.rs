@@ -572,4 +572,6 @@ impl Index {
 
     pub fn find_album(&self, track_node_id: i64, album_name: &str) -> Result<Option<Album>> {
         trace!(
-            "find album track_node_i
+            "find album track_node_id={} album_name={}",
+            track_node_id,
+  
