@@ -570,3 +570,4 @@ impl Index {
         Ok(result)
     }
 
+    pub fn find_album(&self, track_node_id: i64, al
