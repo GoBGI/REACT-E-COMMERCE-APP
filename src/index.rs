@@ -574,4 +574,7 @@ impl Index {
         trace!(
             "find album track_node_id={} album_name={}",
             track_node_id,
-  
+            album_name
+        );
+
+        // Search the 
