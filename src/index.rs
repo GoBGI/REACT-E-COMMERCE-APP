@@ -579,4 +579,4 @@ impl Index {
 
         // Search the same directory
         let mut st = self.conn.prepare(
-  
+            "SELECT Album.album_id, Album.name, A
