@@ -582,4 +582,5 @@ impl Index {
             "SELECT Album.album_id, Album.name, Album.artist_id, Album.artist_name, Album.image_id
                 FROM Album
                 INNER JOIN Node AS node ON node.node_id = ?
-                INNER JOI
+                INNER JOIN Node AS other_node ON node.parent_id = node.parent_id
+    
