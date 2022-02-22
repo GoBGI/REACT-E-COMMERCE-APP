@@ -577,4 +577,6 @@ impl Index {
             album_name
         );
 
-        // Search the 
+        // Search the same directory
+        let mut st = self.conn.prepare(
+  
