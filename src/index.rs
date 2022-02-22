@@ -583,4 +583,4 @@ impl Index {
                 FROM Album
                 INNER JOIN Node AS node ON node.node_id = ?
                 INNER JOIN Node AS other_node ON node.parent_id = node.parent_id
-    
+                INNER JOIN Track AS track ON track.node_id =
