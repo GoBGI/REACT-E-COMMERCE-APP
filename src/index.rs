@@ -587,4 +587,4 @@ impl Index {
                 WHERE track.album_id = Album.album_id AND Album.name = ?",
         )?;
 
-        let 
+        let mut rows = st.query(params![track_node_id, album_
