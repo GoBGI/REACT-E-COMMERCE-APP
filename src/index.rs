@@ -593,4 +593,6 @@ impl Index {
             return Ok(Some(Self::_get_album(row)?));
         }
 
-        // See if there's an unused albu
+        // See if there's an unused album
+        let mut st = self.conn.prepare(
+            "SELECT Alb
