@@ -590,4 +590,7 @@ impl Index {
         let mut rows = st.query(params![track_node_id, album_name])?;
 
         if let Some(row) = rows.next()? {
-            return Ok(Some(Self::_get_albu
+            return Ok(Some(Self::_get_album(row)?));
+        }
+
+        // See if there's an unused albu
