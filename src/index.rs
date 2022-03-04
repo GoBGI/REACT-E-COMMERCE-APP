@@ -595,4 +595,5 @@ impl Index {
 
         // See if there's an unused album
         let mut st = self.conn.prepare(
-            "SELECT Album.album_id, Album.name, Album.artist_id, Album.artist_nam
+            "SELECT Album.album_id, Album.name, Album.artist_id, Album.artist_name, Album.image_id
+                FROM Album
