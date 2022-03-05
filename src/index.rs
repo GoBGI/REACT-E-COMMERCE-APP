@@ -597,4 +597,5 @@ impl Index {
         let mut st = self.conn.prepare(
             "SELECT Album.album_id, Album.name, Album.artist_id, Album.artist_name, Album.image_id
                 FROM Album
-                LEFT OUTER JOIN Track ON Track
+                LEFT OUTER JOIN Track ON Track.album_id = Album.album_id
+                WHERE T
