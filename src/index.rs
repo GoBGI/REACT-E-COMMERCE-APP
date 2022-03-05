@@ -599,4 +599,6 @@ impl Index {
                 FROM Album
                 LEFT OUTER JOIN Track ON Track.album_id = Album.album_id
                 WHERE Track.track_id IS NULL AND Album.name = ?",
-   
+        )?;
+
+        let mut rows = st.query(params![al
