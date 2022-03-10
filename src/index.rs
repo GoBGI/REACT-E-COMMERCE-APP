@@ -601,4 +601,6 @@ impl Index {
                 WHERE Track.track_id IS NULL AND Album.name = ?",
         )?;
 
-        let mut rows = st.query(params![al
+        let mut rows = st.query(params![album_name])?;
+
+        if let Some(row) = rows.next()
