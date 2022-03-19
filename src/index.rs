@@ -610,4 +610,5 @@ impl Index {
         Ok(None)
     }
 
-    fn _get_track_lyrics(row: &Row)
+    fn _get_track_lyrics(row: &Row) -> Result<TrackLyrics> {
+        Ok(TrackLyrics
