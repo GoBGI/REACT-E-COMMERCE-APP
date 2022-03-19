@@ -607,3 +607,7 @@ impl Index {
             return Ok(Some(Self::_get_album(row)?));
         }
 
+        Ok(None)
+    }
+
+    fn _get_track_lyrics(row: &Row)
