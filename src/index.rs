@@ -616,4 +616,8 @@ impl Index {
             lyrics: row.get(1)?,
             provider: row.get(2)?,
             source: row.get(3)?,
-            modified:
+            modified: row.get(4)?,
+        })
+    }
+
+    pub fn track_lyrics(&s
