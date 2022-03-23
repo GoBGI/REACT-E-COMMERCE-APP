@@ -615,4 +615,5 @@ impl Index {
             track_id: row.get(0)?,
             lyrics: row.get(1)?,
             provider: row.get(2)?,
-  
+            source: row.get(3)?,
+            modified:
