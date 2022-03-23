@@ -613,4 +613,6 @@ impl Index {
     fn _get_track_lyrics(row: &Row) -> Result<TrackLyrics> {
         Ok(TrackLyrics {
             track_id: row.get(0)?,
-            lyrics: row.
+            lyrics: row.get(1)?,
+            provider: row.get(2)?,
+  
