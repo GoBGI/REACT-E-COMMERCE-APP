@@ -624,4 +624,4 @@ impl Index {
         trace!("get track lyrics track_id={}", track_id);
 
         let mut st = self.conn.prepare(
-            "SELECT TrackLyrics.track
+            "SELECT TrackLyrics.track_id, TrackLyrics.lyrics, TrackLyrics.provider, TrackLyrics.sou
