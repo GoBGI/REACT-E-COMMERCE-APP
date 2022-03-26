@@ -620,4 +620,5 @@ impl Index {
         })
     }
 
-    pub fn track_lyrics(&s
+    pub fn track_lyrics(&self, track_id: i64) -> Result<Option<TrackLyrics>> {
+        
