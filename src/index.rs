@@ -623,4 +623,5 @@ impl Index {
     pub fn track_lyrics(&self, track_id: i64) -> Result<Option<TrackLyrics>> {
         trace!("get track lyrics track_id={}", track_id);
 
-        le
+        let mut st = self.conn.prepare(
+            "SELECT TrackLyrics.track
