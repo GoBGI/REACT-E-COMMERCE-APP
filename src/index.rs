@@ -625,4 +625,6 @@ impl Index {
 
         let mut st = self.conn.prepare(
             "SELECT TrackLyrics.track_id, TrackLyrics.lyrics, TrackLyrics.provider, TrackLyrics.source, TrackLyrics.modified
-                FR
+                FROM TrackLyrics
+                WHERE track_id = ?",
+        )?;
