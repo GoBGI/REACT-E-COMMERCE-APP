@@ -633,4 +633,9 @@ impl Index {
 
         if let Some(row) = rows.next()? {
             Ok(Some(Self::_get_track_lyrics(row)?))
-        
+        } else {
+            Ok(None)
+        }
+    }
+
+   
