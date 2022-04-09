@@ -628,3 +628,5 @@ impl Index {
                 FROM TrackLyrics
                 WHERE track_id = ?",
         )?;
+
+        let mut rows = st.query(&[track_id]
