@@ -632,4 +632,5 @@ impl Index {
         let mut rows = st.query(&[track_id])?;
 
         if let Some(row) = rows.next()? {
-         
+            Ok(Some(Self::_get_track_lyrics(row)?))
+        
