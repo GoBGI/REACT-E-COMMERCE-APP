@@ -638,4 +638,5 @@ impl Index {
         }
     }
 
-    pub fn set_track_lyrics(&self, track_lyrics: &TrackLyric
+    pub fn set_track_lyrics(&self, track_lyrics: &TrackLyrics) -> Result<TrackLyrics> {
+        let mut st = self.co
