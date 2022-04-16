@@ -638,4 +638,4 @@ impl Index {
         }
     }
 
-   
+    pub fn set_track_lyrics(&self, track_lyrics: &TrackLyric
