@@ -648,4 +648,4 @@ impl Index {
             track_lyrics.source,
         ])?;
 
-        let result = self
+        let result = self.track_lyrics(self.conn.last_insert_rowid())?.u
