@@ -645,4 +645,7 @@ impl Index {
             track_lyrics.track_id,
             track_lyrics.lyrics,
             track_lyrics.provider,
-            track_lyr
+            track_lyrics.source,
+        ])?;
+
+        let result = self
