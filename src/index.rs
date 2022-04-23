@@ -644,3 +644,5 @@ impl Index {
         st.execute(params![
             track_lyrics.track_id,
             track_lyrics.lyrics,
+            track_lyrics.provider,
+            track_lyr
