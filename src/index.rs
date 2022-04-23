@@ -652,4 +652,7 @@ impl Index {
 
         debug!("set {:?}", result);
 
-        Ok(resul
+        Ok(result)
+    }
+
+    pub fn process_node_updates(&self, no
