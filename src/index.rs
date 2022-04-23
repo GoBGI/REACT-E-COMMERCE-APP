@@ -641,4 +641,6 @@ impl Index {
     pub fn set_track_lyrics(&self, track_lyrics: &TrackLyrics) -> Result<TrackLyrics> {
         let mut st = self.conn.prepare("INSERT OR REPLACE INTO TrackLyrics (track_id, lyrics, provider, source, modified) VALUES (?, ?, ?, ?, strftime('%s','now'))")?;
 
-        st.execute(params!
+        st.execute(params![
+            track_lyrics.track_id,
+            track_lyrics.lyrics,
