@@ -655,4 +655,5 @@ impl Index {
         Ok(result)
     }
 
-    pub fn process_node_updates(&self, no
+    pub fn process_node_updates(&self, node_id: i64) -> Result<()> {
+        trace!
