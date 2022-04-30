@@ -660,4 +660,5 @@ impl Index {
 
         self.conn
             .execute(
-              
+                "UPDATE Album
+                SET (artist_i
