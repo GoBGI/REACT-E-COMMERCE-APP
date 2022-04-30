@@ -663,4 +663,5 @@ impl Index {
                 "UPDATE Album
                 SET (artist_id, artist_name) =
                     (
-                
+                        SELECT id, name FROM
+                    
