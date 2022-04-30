@@ -656,4 +656,8 @@ impl Index {
     }
 
     pub fn process_node_updates(&self, node_id: i64) -> Result<()> {
-        trace!("process node updates node_id={}", node_i
+        trace!("process node updates node_id={}", node_id);
+
+        self.conn
+            .execute(
+              
