@@ -664,4 +664,5 @@ impl Index {
                 SET (artist_id, artist_name) =
                     (
                         SELECT id, name FROM
-                    
+                            (
+                                SELECT id, 
