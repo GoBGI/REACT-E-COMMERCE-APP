@@ -665,4 +665,5 @@ impl Index {
                     (
                         SELECT id, name FROM
                             (
-                                SELECT id, 
+                                SELECT id, name FROM
+                                    (
