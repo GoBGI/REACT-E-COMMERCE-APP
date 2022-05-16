@@ -670,4 +670,5 @@ impl Index {
                                         SELECT Track.album_artist_id AS id, Track.album_artist_name AS name
                                         FROM Track
                                         WHERE Track.album_id = Album.album_id
-                                        GROUP BY Track.album_artist_id, Track.album_artist_n
+                                        GROUP BY Track.album_artist_id, Track.album_artist_name
+                                        ORDER BY count
