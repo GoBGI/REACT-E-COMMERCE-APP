@@ -674,4 +674,6 @@ impl Index {
                                         ORDER BY count(Track.album_artist_name) DESC
                                     )
                                 UNION
-                                SELECT i
+                                SELECT id, name FROM
+                                    (
+        
