@@ -673,4 +673,5 @@ impl Index {
                                         GROUP BY Track.album_artist_id, Track.album_artist_name
                                         ORDER BY count(Track.album_artist_name) DESC
                                     )
-                             
+                                UNION
+                                SELECT i
