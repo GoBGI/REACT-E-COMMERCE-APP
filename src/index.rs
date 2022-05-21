@@ -676,4 +676,5 @@ impl Index {
                                 UNION
                                 SELECT id, name FROM
                                     (
-                                        SELECT Track.artist_id AS id,
+                                        SELECT Track.artist_id AS id, Track.artist_name AS name
+                           
