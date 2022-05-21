@@ -677,4 +677,5 @@ impl Index {
                                 SELECT id, name FROM
                                     (
                                         SELECT Track.artist_id AS id, Track.artist_name AS name
+                                        FROM Track
                            
