@@ -678,4 +678,4 @@ impl Index {
                                     (
                                         SELECT Track.artist_id AS id, Track.artist_name AS name
                                         FROM Track
-                           
+                                        WHERE Track.album_id = Album.al
