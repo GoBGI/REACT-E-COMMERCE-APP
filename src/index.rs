@@ -679,4 +679,5 @@ impl Index {
                                         SELECT Track.artist_id AS id, Track.artist_name AS name
                                         FROM Track
                                         WHERE Track.album_id = Album.album_id
-                                        GRO
+                                        GROUP BY Track.album_artist_id, Track.album_artist_name
+            
