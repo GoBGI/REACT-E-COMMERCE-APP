@@ -682,4 +682,5 @@ impl Index {
                                         GROUP BY Track.album_artist_id, Track.album_artist_name
                                         ORDER BY count(Track.artist_name) DESC
                                     )
-   
+                            )
+                        WHERE i
