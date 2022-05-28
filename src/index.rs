@@ -687,4 +687,6 @@ impl Index {
                         LIMIT 1
                     )
                 WHERE Album.album_id IN
-        
+                    (
+                        SELECT Track.album_id
+       
