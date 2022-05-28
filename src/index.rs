@@ -683,4 +683,6 @@ impl Index {
                                         ORDER BY count(Track.artist_name) DESC
                                     )
                             )
-                        WHERE i
+                        WHERE id IS NOT NULL
+                        LIMIT 1
+                
