@@ -685,4 +685,6 @@ impl Index {
                             )
                         WHERE id IS NOT NULL
                         LIMIT 1
-                
+                    )
+                WHERE Album.album_id IN
+        
