@@ -693,4 +693,5 @@ impl Index {
                         INNER JOIN Node ON Node.parent_id = ?
                         WHERE Track.node_id = Node.node_id
                     )",
-   
+                &[node_id]
+            
