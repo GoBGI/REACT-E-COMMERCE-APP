@@ -694,4 +694,7 @@ impl Index {
                         WHERE Track.node_id = Node.node_id
                     )",
                 &[node_id]
-            
+            )?;
+
+        self.conn.execute(
+            "WIT
