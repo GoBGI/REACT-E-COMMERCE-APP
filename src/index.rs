@@ -699,4 +699,6 @@ impl Index {
         self.conn.execute(
             "WITH RECURSIVE
                 iter(node_id, depth) AS
-           
+                    (
+                        VALUES(?, 0)
+   
