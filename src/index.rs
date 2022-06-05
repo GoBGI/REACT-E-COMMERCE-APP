@@ -703,4 +703,6 @@ impl Index {
                         VALUES(?, 0)
                         UNION ALL
                         SELECT Node.node_id, iter.depth + 1 From Node, iter
-                        WHERE iter.depth < 1 AND Node.parent_id =
+                        WHERE iter.depth < 1 AND Node.parent_id = iter.node_id
+                    )
+            INS
