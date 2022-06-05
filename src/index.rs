@@ -701,4 +701,5 @@ impl Index {
                 iter(node_id, depth) AS
                     (
                         VALUES(?, 0)
-   
+                        UNION ALL
+                      
