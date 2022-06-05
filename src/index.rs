@@ -702,4 +702,4 @@ impl Index {
                     (
                         VALUES(?, 0)
                         UNION ALL
-                      
+                        SELECT Node.node_id, iter.depth + 1 From Node, iter
