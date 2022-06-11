@@ -708,4 +708,5 @@ impl Index {
             INSERT OR IGNORE INTO AlbumImage (album_id, image_id)    
             SELECT album.album_id, image.image_id
             FROM iter
-            INNER JOIN Node image_node ON 
+            INNER JOIN Node image_node ON image_node.parent_id = iter.node_id
+            IN
