@@ -709,4 +709,4 @@ impl Index {
             SELECT album.album_id, image.image_id
             FROM iter
             INNER JOIN Node image_node ON image_node.parent_id = iter.node_id
-            IN
+            INNER JOIN Image image ON image.node_id = image_
