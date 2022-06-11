@@ -705,4 +705,6 @@ impl Index {
                         SELECT Node.node_id, iter.depth + 1 From Node, iter
                         WHERE iter.depth < 1 AND Node.parent_id = iter.node_id
                     )
-            INSERT OR IGNORE INTO AlbumImage (album_id, image_id)  
+            INSERT OR IGNORE INTO AlbumImage (album_id, image_id)    
+            SELECT album.album_id, image.image_id
+   
