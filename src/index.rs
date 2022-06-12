@@ -710,4 +710,5 @@ impl Index {
             FROM iter
             INNER JOIN Node image_node ON image_node.parent_id = iter.node_id
             INNER JOIN Image image ON image.node_id = image_node.node_id
-            INNER JOIN Node track_node ON t
+            INNER JOIN Node track_node ON track_node.parent_id = ?
+            INNER JOIN Track tra
