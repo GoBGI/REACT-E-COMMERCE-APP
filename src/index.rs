@@ -714,4 +714,7 @@ impl Index {
             INNER JOIN Track track ON track.node_id = track_node.node_id
             INNER JOIN Album album ON album.album_id = track.album_id
             WHERE
-                
+                iter.depth = 0
+                OR
+                (
+        
