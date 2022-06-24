@@ -717,4 +717,5 @@ impl Index {
                 iter.depth = 0
                 OR
                 (
+                    SELECT count(track.track_id)
         
