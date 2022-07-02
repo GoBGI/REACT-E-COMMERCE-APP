@@ -728,4 +728,6 @@ impl Index {
         )?;
 
         self.conn
- 
+            .execute(
+                "UPDATE Album
+     
