@@ -721,4 +721,5 @@ impl Index {
                     FROM Node track_node
                     INNER JOIN Track track ON track.node_id = track_node.node_id
                     WHERE
-                        tr
+                        track_node.parent_id = iter.node_id
+           
