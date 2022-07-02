@@ -730,4 +730,6 @@ impl Index {
         self.conn
             .execute(
                 "UPDATE Album
+                SET image_id = 
+                    (
      
