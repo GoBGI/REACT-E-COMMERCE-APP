@@ -724,4 +724,8 @@ impl Index {
                         track_node.parent_id = iter.node_id
                     LIMIT 1
                 ) = 0",
-            &[
+            &[node_id, node_id],
+        )?;
+
+        self.conn
+ 
