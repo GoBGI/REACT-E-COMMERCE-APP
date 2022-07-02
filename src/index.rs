@@ -718,4 +718,5 @@ impl Index {
                 OR
                 (
                     SELECT count(track.track_id)
-        
+                    FROM Node track_node
+                    I
