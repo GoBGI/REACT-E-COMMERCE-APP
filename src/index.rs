@@ -722,4 +722,6 @@ impl Index {
                     INNER JOIN Track track ON track.node_id = track_node.node_id
                     WHERE
                         track_node.parent_id = iter.node_id
-           
+                    LIMIT 1
+                ) = 0",
+            &[
