@@ -719,4 +719,4 @@ impl Index {
                 (
                     SELECT count(track.track_id)
                     FROM Node track_node
-                    I
+                    INNER JOIN Track track ON track.node_id = track_nod
