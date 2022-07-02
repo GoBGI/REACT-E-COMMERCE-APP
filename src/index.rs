@@ -732,4 +732,5 @@ impl Index {
                 "UPDATE Album
                 SET image_id = 
                     (
-     
+                        SELECT image.image_id
+             
