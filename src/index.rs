@@ -733,4 +733,5 @@ impl Index {
                 SET image_id = 
                     (
                         SELECT image.image_id
-             
+                        FROM AlbumImage album_image
+   
