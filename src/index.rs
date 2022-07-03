@@ -734,4 +734,4 @@ impl Index {
                     (
                         SELECT image.image_id
                         FROM AlbumImage album_image
-   
+                        INNER JOIN Image 
