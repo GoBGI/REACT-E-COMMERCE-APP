@@ -736,4 +736,6 @@ impl Index {
                         FROM AlbumImage album_image
                         INNER JOIN Image image ON image.image_id = album_image.image_id
                         LEFT OUTER JOIN AlbumImagePattern pattern ON image.description LIKE pattern.pattern
-                        WHERE album_image.album_i
+                        WHERE album_image.album_id = Album.album_id
+                        ORDER BY
+        
