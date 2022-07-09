@@ -738,4 +738,5 @@ impl Index {
                         LEFT OUTER JOIN AlbumImagePattern pattern ON image.description LIKE pattern.pattern
                         WHERE album_image.album_id = Album.album_id
                         ORDER BY
-        
+                            pattern.rowid IS NULL ASC,
+    
