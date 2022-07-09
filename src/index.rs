@@ -742,3 +742,5 @@ impl Index {
                             pattern.rowid ASC,
                             image.description COLLATE NOCASE ASC
                     )
+                WHERE Album.album_id IN
+                    
