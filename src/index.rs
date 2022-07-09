@@ -739,4 +739,5 @@ impl Index {
                         WHERE album_image.album_id = Album.album_id
                         ORDER BY
                             pattern.rowid IS NULL ASC,
-    
+                            pattern.rowid ASC,
+                    
