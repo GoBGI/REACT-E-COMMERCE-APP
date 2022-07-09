@@ -743,4 +743,6 @@ impl Index {
                             image.description COLLATE NOCASE ASC
                     )
                 WHERE Album.album_id IN
-                    
+                    (
+                        SELECT Track.album_id
+               
