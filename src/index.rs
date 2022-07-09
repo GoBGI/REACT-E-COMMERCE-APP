@@ -740,4 +740,5 @@ impl Index {
                         ORDER BY
                             pattern.rowid IS NULL ASC,
                             pattern.rowid ASC,
-                    
+                            image.description COLLATE NOCASE ASC
+                    )
