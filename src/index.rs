@@ -745,4 +745,5 @@ impl Index {
                 WHERE Album.album_id IN
                     (
                         SELECT Track.album_id
-               
+                        FROM Track
+                        INNER
