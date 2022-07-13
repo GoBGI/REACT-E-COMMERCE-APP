@@ -747,4 +747,6 @@ impl Index {
                         SELECT Track.album_id
                         FROM Track
                         INNER JOIN Node ON Node.parent_id = ?
-                        WH
+                        WHERE Track.node_id = Node.node_id
+                    )",
+          
