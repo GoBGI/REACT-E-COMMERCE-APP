@@ -753,4 +753,7 @@ impl Index {
             )?;
 
         Ok(())
- 
+    }
+
+    pub fn debug_truncate(&self) -> Result<()> {
+        
