@@ -760,4 +760,6 @@ impl Index {
 
         self.conn.execute_batch(
             "DELETE FROM Track;
-            DELETE FRO
+            DELETE FROM Image;
+            DELETE FROM Artist;
+            DELETE F
