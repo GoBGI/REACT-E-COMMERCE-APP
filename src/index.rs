@@ -758,4 +758,6 @@ impl Index {
     pub fn debug_truncate(&self) -> Result<()> {
         trace!("debug truncate");
 
-        self.conn.execut
+        self.conn.execute_batch(
+            "DELETE FROM Track;
+            DELETE FRO
