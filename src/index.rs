@@ -762,4 +762,8 @@ impl Index {
             "DELETE FROM Track;
             DELETE FROM Image;
             DELETE FROM Artist;
-            DELETE F
+            DELETE FROM Album;
+            DELETE FROM Node;",
+        )?;
+
+        Ok
