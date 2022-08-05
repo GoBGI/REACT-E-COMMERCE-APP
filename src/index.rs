@@ -766,4 +766,6 @@ impl Index {
             DELETE FROM Node;",
         )?;
 
-        Ok
+        Ok(())
+    }
+}
