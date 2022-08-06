@@ -7,4 +7,7 @@ use log::{Level, Metadata, Record};
 
 use crate::musicd_c::{self, LogLevel};
 
-pub stru
+pub struct Logger;
+
+impl log::Log for Logger {
+    fn e
