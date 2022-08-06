@@ -5,4 +5,6 @@ use std::os::raw::{c_char, c_int};
 use chrono::prelude::*;
 use log::{Level, Metadata, Record};
 
-use crate::
+use crate::musicd_c::{self, LogLevel};
+
+pub stru
