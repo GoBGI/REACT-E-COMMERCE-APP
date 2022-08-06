@@ -10,4 +10,5 @@ use crate::musicd_c::{self, LogLevel};
 pub struct Logger;
 
 impl log::Log for Logger {
-    fn e
+    fn enabled(&self, metadata: &Metadata) -> bool {
+        
