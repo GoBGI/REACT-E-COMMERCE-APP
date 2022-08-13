@@ -11,4 +11,7 @@ pub struct Logger;
 
 impl log::Log for Logger {
     fn enabled(&self, metadata: &Metadata) -> bool {
-        
+        metadata.target().starts_with("musicd2")
+    }
+
+    fn
