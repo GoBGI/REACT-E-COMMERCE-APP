@@ -14,4 +14,5 @@ impl log::Log for Logger {
         metadata.target().starts_with("musicd2")
     }
 
-    fn
+    fn log(&self, record: &Record) {
+        if !self.enabled(record.m
