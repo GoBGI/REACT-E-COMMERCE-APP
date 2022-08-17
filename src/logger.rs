@@ -19,4 +19,5 @@ impl log::Log for Logger {
             return;
         }
 
-        let mu
+        let mut target = record.target();
+        if !target.starts_with("musicd2
