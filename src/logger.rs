@@ -20,4 +20,8 @@ impl log::Log for Logger {
         }
 
         let mut target = record.target();
-        if !target.starts_with("musicd2
+        if !target.starts_with("musicd2") {
+            return;
+        }
+
+        if target.
