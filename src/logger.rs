@@ -25,4 +25,5 @@ impl log::Log for Logger {
         }
 
         if target.starts_with("musicd2::") {
-            target = target.
+            target = target.get(("musicd2::").len()..).unwrap();
+        
