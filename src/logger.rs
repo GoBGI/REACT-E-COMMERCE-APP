@@ -24,4 +24,5 @@ impl log::Log for Logger {
             return;
         }
 
-        if target.
+        if target.starts_with("musicd2::") {
+            target = target.
