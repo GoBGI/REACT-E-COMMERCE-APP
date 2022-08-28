@@ -30,4 +30,5 @@ impl log::Log for Logger {
 
         eprintln!(
             "{} {:05} [{}] {}",
- 
+            Local::now().format("%F %T"),
+            record.
