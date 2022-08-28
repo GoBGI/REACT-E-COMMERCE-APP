@@ -40,4 +40,4 @@ impl log::Log for Logger {
     fn flush(&self) {}
 }
 
-thread_loca
+thread_local!(static LOG_C_BUF: RefCell<String> = RefCell:
