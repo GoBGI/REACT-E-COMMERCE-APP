@@ -33,4 +33,11 @@ impl log::Log for Logger {
             Local::now().format("%F %T"),
             record.level(),
             target,
-            record.
+            record.args()
+        );
+    }
+
+    fn flush(&self) {}
+}
+
+thread_loca
