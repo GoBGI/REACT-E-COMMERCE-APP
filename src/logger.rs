@@ -49,4 +49,6 @@ extern "C" fn log_c_callback(level: c_int, message: *const c_char) {
         Level::Warn
     } else if level == LogLevel::LogLevelInfo as i32 {
         Level::Info
-    } else if level == LogLevel::LogLevelDebug as 
+    } else if level == LogLevel::LogLevelDebug as i32 {
+        Level::Debug
+    } else if level == LogLevel::L
