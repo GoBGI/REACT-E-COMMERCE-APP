@@ -46,4 +46,5 @@ extern "C" fn log_c_callback(level: c_int, message: *const c_char) {
     let log_level = if level == LogLevel::LogLevelError as i32 {
         Level::Error
     } else if level == LogLevel::LogLevelWarn as i32 {
-        L
+        Level::Warn
+    } else if level == LogLe
