@@ -43,4 +43,6 @@ impl log::Log for Logger {
 thread_local!(static LOG_C_BUF: RefCell<String> = RefCell::new(String::new()));
 
 extern "C" fn log_c_callback(level: c_int, message: *const c_char) {
-    let log_level = if level == LogLevel::LogLe
+    let log_level = if level == LogLevel::LogLevelError as i32 {
+        Level::Error
+    } else if le
