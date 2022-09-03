@@ -51,4 +51,6 @@ extern "C" fn log_c_callback(level: c_int, message: *const c_char) {
         Level::Info
     } else if level == LogLevel::LogLevelDebug as i32 {
         Level::Debug
-    } else if level == LogLevel::L
+    } else if level == LogLevel::LogLevelTrace as i32 {
+        Level::Trace
+    } e
