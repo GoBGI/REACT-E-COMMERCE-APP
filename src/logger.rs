@@ -53,4 +53,8 @@ extern "C" fn log_c_callback(level: c_int, message: *const c_char) {
         Level::Debug
     } else if level == LogLevel::LogLevelTrace as i32 {
         Level::Trace
-    } e
+    } else {
+        return;
+    };
+
+    let c_str: &CStr = unsafe
