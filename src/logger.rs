@@ -57,4 +57,5 @@ extern "C" fn log_c_callback(level: c_int, message: *const c_char) {
         return;
     };
 
-    let c_str: &CStr = unsafe
+    let c_str: &CStr = unsafe { CStr::from_ptr(message) };
+    let string = String::from_utf8_loss
