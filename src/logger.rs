@@ -61,4 +61,8 @@ extern "C" fn log_c_callback(level: c_int, message: *const c_char) {
     let string = String::from_utf8_lossy(c_str.to_bytes());
 
     LOG_C_BUF.with(|buf| {
-        l
+        let buf = &mut *buf.borrow_mut();
+
+        *buf += &string;
+
+    
