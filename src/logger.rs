@@ -65,4 +65,5 @@ extern "C" fn log_c_callback(level: c_int, message: *const c_char) {
 
         *buf += &string;
 
-    
+        if buf.ends_with('\n') {
+            buf.pop
