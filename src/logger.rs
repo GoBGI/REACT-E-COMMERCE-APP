@@ -67,4 +67,6 @@ extern "C" fn log_c_callback(level: c_int, message: *const c_char) {
 
         if buf.ends_with('\n') {
             buf.pop();
-            log!(target: "musicd2::c", lo
+            log!(target: "musicd2::c", log_level, "{}", buf);
+            buf.clear();
+     
