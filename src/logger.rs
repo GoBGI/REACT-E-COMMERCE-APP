@@ -75,4 +75,5 @@ extern "C" fn log_c_callback(level: c_int, message: *const c_char) {
 
 static LOGGER: Logger = Logger;
 
-pub
+pub fn init(log_level: &str) {
+    let level = match log_level {
