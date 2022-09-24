@@ -80,4 +80,6 @@ pub fn init(log_level: &str) {
         "error" => Level::Error,
         "warn" => Level::Warn,
         "info" => Level::Info,
-        "debug" =
+        "debug" => Level::Debug,
+        "trace" => Level::Trace,
+      
