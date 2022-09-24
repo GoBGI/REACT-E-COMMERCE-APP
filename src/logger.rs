@@ -82,4 +82,7 @@ pub fn init(log_level: &str) {
         "info" => Level::Info,
         "debug" => Level::Debug,
         "trace" => Level::Trace,
-      
+        _ => unreachable!(),
+    };
+
+    log::set_logger(&LOGGE
