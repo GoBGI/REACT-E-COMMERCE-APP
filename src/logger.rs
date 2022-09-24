@@ -78,4 +78,6 @@ static LOGGER: Logger = Logger;
 pub fn init(log_level: &str) {
     let level = match log_level {
         "error" => Level::Error,
-        "warn" => Level::Wa
+        "warn" => Level::Warn,
+        "info" => Level::Info,
+        "debug" =
