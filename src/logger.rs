@@ -85,4 +85,5 @@ pub fn init(log_level: &str) {
         _ => unreachable!(),
     };
 
-    log::set_logger(&LOGGE
+    log::set_logger(&LOGGER).unwrap();
+    log::set_max_level(level.to_le
