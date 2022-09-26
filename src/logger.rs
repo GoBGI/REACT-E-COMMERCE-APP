@@ -89,4 +89,6 @@ pub fn init(log_level: &str) {
     log::set_max_level(level.to_level_filter());
 
     unsafe {
-        musicd_c::musicd_log_
+        musicd_c::musicd_log_setup(log_c_callback);
+    }
+}
