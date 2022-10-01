@@ -58,3 +58,48 @@ async fn try_lyricwiki_lyrics(artist: &str, title: &str) -> Result<Option<Lyrics
                 source: url.to_string(),
             }));
         }
+    }
+
+    Ok(None)
+}
+
+fn parse_lyricwiki_lyrics(body: &str) -> Option<String> {
+    let begin_pattern = "<div class='lyricbox'>";
+    let end_pattern = "<div class='lyricsbreak'>";
+
+    let begin_index = match body.find(begin_pattern) {
+        Some(i) => i + begin_pattern.len(),
+        None => {
+            trace!("begin '{}' not found", begin_pattern);
+            return None;
+        }
+    };
+
+    let end_index = match body.find(end_pattern) {
+        Some(i) => i,
+        None => {
+            trace!("end '{}' not found", end_pattern);
+            return None;
+        }
+    };
+
+    let mut result = String::new();
+
+    let body = &body[begin_index..end_index];
+
+    let bytes = body.as_bytes();
+    let mut i = 0;
+    while i < bytes.len() {
+        match bytes[i] {
+            b'&' if i <= bytes.len() - 3 && bytes[i + 1] == b'#' => {
+                let mut i2 = i + 2;
+                while i2 < bytes.len() && bytes[i2] != b';' {
+                    i2 += 1;
+                }
+
+                if let Ok(s) = std::str::from_utf8(&bytes[i + 2..i2]) {
+                    if let Ok(cp) = s.parse() {
+                        if let Some(ch) = std::char::from_u32(cp) {
+                            result.push(ch);
+                        }
+                    }
