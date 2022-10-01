@@ -9,3 +9,7 @@ mod http_api;
 mod http_util;
 mod index;
 mod logger;
+mod lyrics;
+mod media;
+mod musicd_c;
+mod q
