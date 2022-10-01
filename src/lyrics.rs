@@ -103,3 +103,29 @@ fn parse_lyricwiki_lyrics(body: &str) -> Option<String> {
                             result.push(ch);
                         }
                     }
+                }
+
+                i = i2;
+            }
+            b'<' => {
+                let mut i2 = i;
+                while i2 < bytes.len() && bytes[i2] != b'>' {
+                    i2 += 1;
+                }
+
+                if let Ok(s) = std::str::from_utf8(&bytes[i..=i2]) {
+                    if s == "<br />" {
+                        result.push('\n')
+                    }
+                }
+
+                i = i2 + 1;
+            }
+            _ => {
+                i += 1;
+            }
+        }
+    }
+
+    Some(result)
+}
