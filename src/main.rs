@@ -28,4 +28,7 @@ use clap::Arg;
 use cache::{Cache, CacheSource};
 use index::{Index, IndexSource};
 use scan::ScanThread;
-use 
+use store::{Store, StoreSource};
+
+pub struct Musicd {
+    cac
