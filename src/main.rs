@@ -31,4 +31,6 @@ use scan::ScanThread;
 use store::{Store, StoreSource};
 
 pub struct Musicd {
-    cac
+    cache_source: CacheSource,
+    index_source: IndexSource,
+    store_
