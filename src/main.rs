@@ -33,4 +33,6 @@ use store::{Store, StoreSource};
 pub struct Musicd {
     cache_source: CacheSource,
     index_source: IndexSource,
-    store_
+    store_source: StoreSource,
+    scan_thread: ScanThread,
+    
