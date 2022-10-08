@@ -26,4 +26,6 @@ use std::sync::Arc;
 use clap::Arg;
 
 use cache::{Cache, CacheSource};
-use inde
+use index::{Index, IndexSource};
+use scan::ScanThread;
+use 
