@@ -41,3 +41,6 @@ pub struct Musicd {
 pub struct Root {
     pub name: String,
     pub path: PathBuf,
+}
+
+pub const MUSICD_VERSION: &str = env!("CARGO_PKG_VERSION
