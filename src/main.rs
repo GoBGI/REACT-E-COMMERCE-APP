@@ -38,4 +38,6 @@ pub struct Musicd {
     password: String,
 }
 
-pub struct Roo
+pub struct Root {
+    pub name: String,
+    pub path: PathBuf,
