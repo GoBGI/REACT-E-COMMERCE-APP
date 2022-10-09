@@ -43,4 +43,7 @@ pub struct Root {
     pub path: PathBuf,
 }
 
-pub const MUSICD_VERSION: &str = env!("CARGO_PKG_VERSION
+pub const MUSICD_VERSION: &str = env!("CARGO_PKG_VERSION");
+
+impl Musicd {
+    pub fn cache(&self
