@@ -35,4 +35,7 @@ pub struct Musicd {
     index_source: IndexSource,
     store_source: StoreSource,
     scan_thread: ScanThread,
-    
+    password: String,
+}
+
+pub struct Roo
