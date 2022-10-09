@@ -50,4 +50,5 @@ impl Musicd {
         self.cache_source.get().expect("can't open cache")
     }
 
-    p
+    pub fn index(&self) -> Index {
+        self.index_source
