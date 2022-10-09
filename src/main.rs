@@ -47,4 +47,7 @@ pub const MUSICD_VERSION: &str = env!("CARGO_PKG_VERSION");
 
 impl Musicd {
     pub fn cache(&self) -> Box<dyn Cache> {
-        self.cache_source.get(
+        self.cache_source.get().expect("can't open cache")
+    }
+
+    p
