@@ -51,4 +51,7 @@ impl Musicd {
     }
 
     pub fn index(&self) -> Index {
-        self.index_source
+        self.index_source.get().expect("can't open index")
+    }
+
+    pub fn store(&self
