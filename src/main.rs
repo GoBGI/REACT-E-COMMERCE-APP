@@ -61,4 +61,5 @@ impl Musicd {
     }
 }
 
-#[tokio::
+#[tokio::main]
+async fn main() -> Result<(), Box<dyn std::e
