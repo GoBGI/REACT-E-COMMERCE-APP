@@ -56,4 +56,9 @@ impl Musicd {
 
     pub fn store(&self) -> Store {
         self.store_source
-            .get(self.index()
+            .get(self.index())
+            .expect("can't open store")
+    }
+}
+
+#[tokio::
