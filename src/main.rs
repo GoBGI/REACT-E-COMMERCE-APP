@@ -62,4 +62,6 @@ impl Musicd {
 }
 
 #[tokio::main]
-async fn main() -> Result<(), Box<dyn std::e
+async fn main() -> Result<(), Box<dyn std::error::Error>> {
+    let matches = clap::App::new("musicd2")
+        
