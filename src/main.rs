@@ -66,4 +66,6 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
     let matches = clap::App::new("musicd2")
         .version(MUSICD_VERSION)
         .arg(
-            Arg::wit
+            Arg::with_name("bind")
+                .long("bind")
+           
