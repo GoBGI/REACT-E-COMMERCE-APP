@@ -69,4 +69,7 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
             Arg::with_name("bind")
                 .long("bind")
                 .help("HTTP server address and port")
-           
+                .default_value("127.0.0.1:6801"),
+        )
+        .arg(
+ 
