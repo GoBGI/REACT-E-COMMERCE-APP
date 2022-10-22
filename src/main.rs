@@ -68,4 +68,5 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
         .arg(
             Arg::with_name("bind")
                 .long("bind")
+                .help("HTTP server address and port")
            
