@@ -72,4 +72,5 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
                 .default_value("127.0.0.1:6801"),
         )
         .arg(
- 
+            Arg::with_name("cache-limit")
+   
