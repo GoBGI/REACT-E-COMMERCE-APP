@@ -73,4 +73,5 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
         )
         .arg(
             Arg::with_name("cache-limit")
-   
+                .long("cache-limit")
+               
