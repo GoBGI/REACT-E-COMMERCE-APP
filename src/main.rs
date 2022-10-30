@@ -78,3 +78,5 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
                 .default_value("104857600"),
         )
         .arg(
+            Arg::with_name("directory")
+   
