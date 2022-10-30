@@ -75,4 +75,6 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
             Arg::with_name("cache-limit")
                 .long("cache-limit")
                 .help("Maximum cache size in bytes")
-                .defaul
+                .default_value("104857600"),
+        )
+        .arg(
