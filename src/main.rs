@@ -86,3 +86,5 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
         .arg(
             Arg::with_name("disable-cache")
                 .long("disable-cache")
+                .help("Disable any use of cache"),
+       
