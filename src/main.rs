@@ -82,4 +82,6 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
                 .long("directory")
                 .help("Database directory")
                 .default_value("~/.musicd2"),
-    
+        )
+        .arg(
+            Arg::with_name("d
