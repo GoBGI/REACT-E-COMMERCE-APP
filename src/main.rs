@@ -89,4 +89,6 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
                 .help("Disable any use of cache"),
         )
         .arg(
-            Arg::with_name("lo
+            Arg::with_name("log-level")
+                .long("log-level")
+     
