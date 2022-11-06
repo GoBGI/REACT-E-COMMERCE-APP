@@ -84,4 +84,5 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
                 .default_value("~/.musicd2"),
         )
         .arg(
-            Arg::with_name("d
+            Arg::with_name("disable-cache")
+                .long("disable-cache")
