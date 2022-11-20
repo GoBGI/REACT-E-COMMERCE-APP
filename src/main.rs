@@ -95,4 +95,5 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
                 .default_value("info")
                 .possible_values(&["error", "warn", "info", "debug", "trace"]),
         )
-     
+        .arg(
+            Arg::with_name("no-initi
