@@ -96,4 +96,6 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
                 .possible_values(&["error", "warn", "info", "debug", "trace"]),
         )
         .arg(
-            Arg::with_name("no-initi
+            Arg::with_name("no-initial-scan")
+                .long("no-initial-scan")
+       
