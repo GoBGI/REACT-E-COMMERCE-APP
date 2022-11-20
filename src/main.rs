@@ -92,4 +92,5 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
             Arg::with_name("log-level")
                 .long("log-level")
                 .help("Log level")
-                .default_v
+                .default_value("info")
+                .possible_values(&["error",
