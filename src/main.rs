@@ -101,4 +101,5 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
                 .help("Disable initial scan"),
         )
         .arg(
-        
+            Arg::with_name("password")
+               
