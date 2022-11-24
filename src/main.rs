@@ -98,4 +98,7 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
         .arg(
             Arg::with_name("no-initial-scan")
                 .long("no-initial-scan")
-       
+                .help("Disable initial scan"),
+        )
+        .arg(
+        
