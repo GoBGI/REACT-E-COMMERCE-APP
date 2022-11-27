@@ -103,4 +103,5 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
         .arg(
             Arg::with_name("password")
                 .long("password")
-                .help("Authenti
+                .help("Authentication password, empty disables authentication")
+          
