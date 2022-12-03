@@ -107,4 +107,6 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
                 .default_value(""),
         )
         .arg(
-            Ar
+            Arg::with_name("root")
+                .long("root")
+     
