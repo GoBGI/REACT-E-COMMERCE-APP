@@ -113,4 +113,6 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
                 .value_names(&["name", "path"])
                 .takes_value(true)
                 .multiple(true)
-                .number_of_
+                .number_of_values(2),
+        )
+        .get_matc
