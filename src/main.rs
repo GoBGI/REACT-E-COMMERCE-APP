@@ -121,4 +121,6 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
         .value_of("bind")
         .unwrap()
         .parse()
-        
+        .expect("invalid bind address");
+
+    let cach
