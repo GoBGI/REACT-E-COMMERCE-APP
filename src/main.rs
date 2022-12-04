@@ -110,4 +110,5 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
             Arg::with_name("root")
                 .long("root")
                 .help("One or more music root directories with unique names")
-                .value_names(&["nam
+                .value_names(&["name", "path"])
+                .takes_value(true)
