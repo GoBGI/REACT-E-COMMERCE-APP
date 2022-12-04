@@ -109,4 +109,4 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
         .arg(
             Arg::with_name("root")
                 .long("root")
-     
+                .help("One or more music root directori
