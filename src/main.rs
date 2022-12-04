@@ -118,4 +118,7 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
         .get_matches();
 
     let bind: SocketAddr = matches
-        .value_o
+        .value_of("bind")
+        .unwrap()
+        .parse()
+        
