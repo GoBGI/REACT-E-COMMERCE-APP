@@ -123,4 +123,6 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
         .parse()
         .expect("invalid bind address");
 
-    let cache_limit = clap::value_t_or_exit!(matches.value
+    let cache_limit = clap::value_t_or_exit!(matches.value_of("cache-limit"), usize);
+
+    let director
