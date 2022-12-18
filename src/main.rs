@@ -128,4 +128,6 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
     let directory = &shellexpand::tilde(matches.value_of("directory").unwrap()).into_owned();
     let directory = Path::new(directory);
 
-    logger::init(matches.value_of
+    logger::init(matches.value_of("log-level").unwrap());
+
+    info!("{}", MUSICD_VERSION
