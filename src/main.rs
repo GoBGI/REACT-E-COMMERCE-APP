@@ -125,4 +125,5 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
 
     let cache_limit = clap::value_t_or_exit!(matches.value_of("cache-limit"), usize);
 
-    let directory = &shellexpand::tilde(matches.value_of("directory").u
+    let directory = &shellexpand::tilde(matches.value_of("directory").unwrap()).into_owned();
+    let directory = Pat
