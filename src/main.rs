@@ -135,4 +135,4 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
     let mut roots: Vec<Root> = Vec::new();
 
     if matches.is_present("root") {
-        
+        let mut root_iter = matches.values_of("root").u
