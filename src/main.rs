@@ -130,4 +130,7 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
 
     logger::init(matches.value_of("log-level").unwrap());
 
-    info!("{}", MUSICD_VERSION
+    info!("{}", MUSICD_VERSION);
+
+    let mut roots: Vec<Root> = Vec::new();
+
