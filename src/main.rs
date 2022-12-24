@@ -138,4 +138,5 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
         let mut root_iter = matches.values_of("root").unwrap();
         while let Some(name) = root_iter.next() {
             if let Some(path) = root_iter.next() {
-        
+                roots.push(Root {
+                    name: 
