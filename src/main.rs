@@ -137,4 +137,5 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
     if matches.is_present("root") {
         let mut root_iter = matches.values_of("root").unwrap();
         while let Some(name) = root_iter.next() {
-    
+            if let Some(path) = root_iter.next() {
+        
