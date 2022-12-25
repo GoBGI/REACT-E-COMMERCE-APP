@@ -139,4 +139,5 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
         while let Some(name) = root_iter.next() {
             if let Some(path) = root_iter.next() {
                 roots.push(Root {
-                    name: 
+                    name: name.to_string(),
+                    path: Path::new(OsStr::from
