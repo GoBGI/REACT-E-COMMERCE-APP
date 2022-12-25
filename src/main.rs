@@ -141,4 +141,5 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
                 roots.push(Root {
                     name: name.to_string(),
                     path: Path::new(OsStr::from_bytes(shellexpand::tilde(path).as_bytes()))
-     
+                        .to_path_buf(),
+                });
