@@ -149,4 +149,6 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
 
     let roots = Arc::new(roots);
 
-    std::fs::create_dir_all(directory).expect
+    std::fs::create_dir_all(directory).expect("can't create directory");
+
+    let cache_path = if
