@@ -143,3 +143,8 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
                     path: Path::new(OsStr::from_bytes(shellexpand::tilde(path).as_bytes()))
                         .to_path_buf(),
                 });
+            }
+        }
+    }
+
+    let roots = Arc::n
