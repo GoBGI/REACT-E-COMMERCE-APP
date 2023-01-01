@@ -159,4 +159,6 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
 
     let cache_source = CacheSource::create(cache_path, cache_limit)
         .unwrap()
-        .
+        .unwrap();
+
+    let index_source = IndexSource::create(directory.join(
