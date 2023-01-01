@@ -153,3 +153,5 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
 
     let cache_path = if matches.is_present("disable-cache") {
         None
+    } else {
+        Some(directory.join("ca
