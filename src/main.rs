@@ -151,4 +151,5 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
 
     std::fs::create_dir_all(directory).expect("can't create directory");
 
-    let cache_path = if
+    let cache_path = if matches.is_present("disable-cache") {
+        None
