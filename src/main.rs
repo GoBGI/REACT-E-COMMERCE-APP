@@ -157,4 +157,6 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
         Some(directory.join("cache.db"))
     };
 
-    let cache_source = CacheSource::create
+    let cache_source = CacheSource::create(cache_path, cache_limit)
+        .unwrap()
+        .
