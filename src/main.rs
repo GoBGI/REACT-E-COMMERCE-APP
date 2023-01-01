@@ -161,4 +161,6 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
         .unwrap()
         .unwrap();
 
-    let index_source = IndexSource::create(directory.join(
+    let index_source = IndexSource::create(directory.join("index.db"), roots.clone())
+        .unwrap()
+  
