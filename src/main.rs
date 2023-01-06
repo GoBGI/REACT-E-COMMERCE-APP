@@ -167,4 +167,8 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
 
     let store_source = StoreSource::create(directory.join("store.db"), index_source.get().unwrap())
         .unwrap()
-        .unwr
+        .unwrap();
+
+    let scan_thread = scan::ScanThread::new();
+
+    
