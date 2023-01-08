@@ -171,4 +171,6 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
 
     let scan_thread = scan::ScanThread::new();
 
-    
+    let musicd = Arc::new(Musicd {
+        cache_source,
+       
