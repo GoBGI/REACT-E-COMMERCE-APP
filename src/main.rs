@@ -176,3 +176,4 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
         index_source,
         store_source,
         scan_thread,
+        password: matches.value_of("password").unwrap(
