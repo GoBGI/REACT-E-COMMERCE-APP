@@ -179,4 +179,6 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
         password: matches.value_of("password").unwrap().to_string(),
     });
 
-    let index = music
+    let index = musicd.index();
+
+    if matches.is_present("no-initial-
