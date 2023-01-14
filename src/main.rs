@@ -184,4 +184,8 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
     if matches.is_present("no-initial-scan") {
         info!("initial scan disabled");
     } else {
-        musicd.scan_thread.start(
+        musicd.scan_thread.start(index);
+    }
+
+    let mut store = musicd.store();
+    sto
