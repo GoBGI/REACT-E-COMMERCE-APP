@@ -188,4 +188,6 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
     }
 
     let mut store = musicd.store();
-    sto
+    store.synchronize().unwrap();
+
+    http_api::run_api(mus
