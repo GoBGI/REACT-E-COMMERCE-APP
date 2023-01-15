@@ -90,3 +90,55 @@ struct MediaInfo *media_info_from_path(const char *path) {
                 media_info->images = image_info;
             } else {
                 image_cur->next = image_info;
+            }
+
+            image_cur = image_info;
+
+            continue;
+        }
+    }
+
+    avformat_close_input(&avctx);
+    return media_info;
+}
+
+static char *extract_name_from_path(const char *path) {
+    const char *start, *end;
+
+    for (start = (char *)path + strlen(path); start > path && *(start - 1) != '/'; --start) { }
+    for (end = start; *end != '.' && *end != '\0'; ++end) { }
+
+    return av_strndup(start, end - start);
+}
+
+static struct TrackInfo *try_get_track_info(
+    const AVFormatContext *avctx,
+    int stream_index,
+    int track_index,
+    const char *path
+) {
+    const AVStream *stream = avctx->streams[stream_index];
+
+    if (stream->codecpar->codec_type != AVMEDIA_TYPE_AUDIO) {
+        return NULL;
+    }
+
+    double length = avctx->duration > 0
+        ? avctx->duration / (double)AV_TIME_BASE
+        : stream->duration * (double)av_q2d(stream->time_base);
+
+    if (length <= 0) {
+        return NULL;
+    }
+
+    struct TrackInfo *track_info = malloc(sizeof(struct TrackInfo));
+    memset(track_info, 0, sizeof(struct TrackInfo));
+
+    track_info->stream_index = stream_index;
+    track_info->track_index = track_index;
+
+    track_info->length = length;
+
+    const char *tmp = get_metadata(avctx, stream_index, "track");
+    if (tmp) {
+        sscanf(tmp, "%d", &track_info->number);
