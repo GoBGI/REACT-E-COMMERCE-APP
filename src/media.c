@@ -209,3 +209,50 @@ static struct ImageInfo *try_get_image_info(
 
     return image_info;
 }
+
+//     // TODO multiple tracks in single file
+//     // char *tmp;
+//     // int track_count;
+//     // tmp = copy_metadata(avctx, "tracks");
+//     // if (tmp) {
+//     //     sscanf(tmp, "%d", &track_count);
+//     // } else {
+//     //     track_count = 1;
+//     // }
+
+static void track_info_free(struct TrackInfo *track_info) {
+    while (track_info) {
+        free(track_info->title);
+        free(track_info->artist);
+        free(track_info->album);
+        free(track_info->album_artist);
+
+        struct TrackInfo *prev = track_info;
+        track_info = track_info->next;
+        free(prev);
+    }
+}
+
+static void image_info_free(struct ImageInfo *image_info) {
+    while (image_info) {
+        free(image_info->description);
+
+        struct ImageInfo *prev = image_info;
+        image_info = image_info->next;
+        free(prev);
+    }
+}
+
+void media_info_free(struct MediaInfo *media_info) {
+    track_info_free(media_info->tracks);
+    image_info_free(media_info->images);
+    free(media_info);
+}
+
+int media_image_data_read(
+    const char *path,
+    int32_t stream_index,
+    uint8_t **out_data,
+    size_t *out_len
+) {
+    int result;
