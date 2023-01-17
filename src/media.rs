@@ -52,3 +52,47 @@ pub fn media_info_from_path(path: &Path) -> Option<(Vec<Track>, Vec<Image>)> {
                 length: track_info.duration,
             }
         });
+
+        cur = unsafe { (*cur).next };
+    }
+
+    let mut cur: *const musicd_c::ImageInfo = unsafe { (*file_info).images };
+    while !cur.is_null() {
+        images.push(unsafe {
+            let image_info = &(*cur);
+
+            Image {
+                image_id: 0i64,
+                node_id: 0i64,
+                stream_index: Some(i64::from(image_info.stream_index)),
+                description: convert_string(image_info.description),
+                width: i64::from(image_info.width),
+                height: i64::from(image_info.height),
+            }
+        });
+
+        cur = unsafe { (*cur).next };
+    }
+
+    unsafe {
+        musicd_c::media_info_free(file_info);
+    }
+
+    Some((tracks, images))
+}
+
+pub fn media_image_data_read(path: &Path, stream_index: i32) -> Option<Vec<u8>> {
+    let tmp_path = CString::new(path.as_os_str().as_bytes()).unwrap();
+
+    let mut data: *mut u8 = std::ptr::null_mut();
+    let mut len: usize = 0;
+
+    unsafe {
+        if musicd_c::media_image_data_read(
+            tmp_path.as_ptr(),
+            stream_index,
+            &mut data as *mut *mut u8,
+            &mut len as *mut usize,
+        ) == 0
+        {
+            return None;
