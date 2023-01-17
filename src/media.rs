@@ -96,3 +96,14 @@ pub fn media_image_data_read(path: &Path, stream_index: i32) -> Option<Vec<u8>> 
         ) == 0
         {
             return None;
+        }
+    }
+
+    let result = unsafe { std::slice::from_raw_parts(data, len) }.to_vec();
+
+    unsafe {
+        musicd_c::media_image_data_free(data);
+    }
+
+    Some(result)
+}
