@@ -142,3 +142,70 @@ static struct TrackInfo *try_get_track_info(
     const char *tmp = get_metadata(avctx, stream_index, "track");
     if (tmp) {
         sscanf(tmp, "%d", &track_info->number);
+    } else {
+        track_info->number = track_index;
+    }
+
+    track_info->title = copy_metadata(avctx, stream_index, "title");
+    if (!track_info->title) {
+        track_info->title = copy_metadata(avctx, stream_index, "song");
+    }
+    if (!track_info->title) {
+        track_info->title = extract_name_from_path(path);
+    }
+
+    track_info->artist = copy_metadata(avctx, stream_index, "artist");
+    if (!track_info->artist) {
+        copy_metadata(avctx, stream_index, "author");
+    }
+
+    track_info->album = copy_metadata(avctx, stream_index, "album");
+    if (!track_info->album) {
+        track_info->album = copy_metadata(avctx, stream_index, "game");
+    }
+
+    track_info->album_artist = copy_metadata(avctx, stream_index, "album_artist");
+    if (!track_info->album_artist) {
+        track_info->album_artist = copy_metadata(avctx, stream_index, "albumartist");
+    }
+    if (!track_info->album_artist) {
+        track_info->album_artist = copy_metadata(avctx, stream_index, "album artist");
+    }
+
+    return track_info;
+}
+
+static struct ImageInfo *try_get_image_info(
+    const AVFormatContext *avctx,
+    int stream_index,
+    const char *path
+) {
+    const AVStream *stream = avctx->streams[stream_index];
+
+    if (!(stream->disposition & AV_DISPOSITION_ATTACHED_PIC)
+        || stream->codecpar->codec_id != AV_CODEC_ID_MJPEG) {
+        return NULL;
+    }
+
+    int width = stream->codecpar->width;
+    int height = stream->codecpar->height;
+
+    if (width <= 0 || height <= 0) {
+        return NULL;
+    }
+
+    struct ImageInfo *image_info = malloc(sizeof(struct ImageInfo));
+    memset(image_info, 0, sizeof(struct ImageInfo));
+
+    image_info->stream_index = stream_index;
+
+    image_info->description = copy_metadata(avctx, stream_index, "comment");
+    if (!image_info->description) {
+        image_info->description = extract_name_from_path(path);
+    }
+
+    image_info->width = width;
+    image_info->height = height;
+
+    return image_info;
+}
