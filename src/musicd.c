@@ -8,4 +8,6 @@ static void lav_callback(void *av_class, int av_level, const char *fmt, va_list 
     int level = 0;
 
     if (av_level >= AV_LOG_DEBUG) {
-      
+        return;
+    } else if (av_level >= AV_LOG_VERBOSE) {
+        level 
