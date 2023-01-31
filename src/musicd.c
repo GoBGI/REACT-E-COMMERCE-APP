@@ -11,4 +11,6 @@ static void lav_callback(void *av_class, int av_level, const char *fmt, va_list 
         return;
     } else if (av_level >= AV_LOG_VERBOSE) {
         level = LogLevelTrace;
-    } else if (av_level >= AV_LOG
+    } else if (av_level >= AV_LOG_INFO) {
+        level = LogLevelDebug;
+   
