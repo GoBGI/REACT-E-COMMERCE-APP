@@ -16,4 +16,8 @@ static void lav_callback(void *av_class, int av_level, const char *fmt, va_list 
     } else if (av_level >= AV_LOG_WARNING) {
         level = LogLevelWarn;
     } else {
-        level = 
+        level = LogLevelError;
+    }
+
+    char buf[1024];
+    vsnpri
