@@ -20,4 +20,6 @@ static void lav_callback(void *av_class, int av_level, const char *fmt, va_list 
     }
 
     char buf[1024];
-    vsnpri
+    vsnprintf(buf, sizeof(buf) - 1, fmt, va_args);
+
+    l
