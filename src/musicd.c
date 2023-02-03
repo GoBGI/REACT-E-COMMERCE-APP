@@ -26,4 +26,8 @@ static void lav_callback(void *av_class, int av_level, const char *fmt, va_list 
 }
 
 void musicd_log_setup(void (*callback)(int level, const char *)) {
-    av_log_se
+    av_log_set_callback(lav_callback);
+    log_callback = callback;
+}
+
+void lav_e
