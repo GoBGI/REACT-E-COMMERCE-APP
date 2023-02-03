@@ -30,4 +30,5 @@ void musicd_log_setup(void (*callback)(int level, const char *)) {
     log_callback = callback;
 }
 
-void lav_e
+void lav_error(const char *msg, int lav_result) {
+    char buf[1024]
