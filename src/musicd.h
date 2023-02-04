@@ -1,4 +1,7 @@
 #pragma once
 
 #include <stdint.h>
-#i
+#include <pthread.h>
+
+#include <libavcodec/avcodec.h>
+#include <lib
