@@ -4,4 +4,5 @@
 #include <pthread.h>
 
 #include <libavcodec/avcodec.h>
-#include <lib
+#include <libavformat/avformat.h>
+#include <libavfilter/avfilt
