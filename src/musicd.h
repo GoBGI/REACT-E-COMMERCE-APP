@@ -10,4 +10,6 @@
 #include <libavfilter/buffersrc.h>
 #include <libavutil/opt.h>
 
-stru
+struct MediaInfo {
+    struct TrackInfo *tracks;
+    str
