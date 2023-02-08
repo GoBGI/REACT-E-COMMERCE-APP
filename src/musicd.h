@@ -7,4 +7,7 @@
 #include <libavformat/avformat.h>
 #include <libavfilter/avfilter.h>
 #include <libavfilter/buffersink.h>
-#include <l
+#include <libavfilter/buffersrc.h>
+#include <libavutil/opt.h>
+
+stru
