@@ -12,4 +12,8 @@
 
 struct MediaInfo {
     struct TrackInfo *tracks;
-    str
+    struct ImageInfo *images;
+};
+
+struct TrackInfo {
+ 
