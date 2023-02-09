@@ -18,4 +18,6 @@ struct MediaInfo {
 struct TrackInfo {
     struct TrackInfo *next;
     int32_t stream_index;
-    int32_t 
+    int32_t track_index;
+    int32_t number;
+    char *title;
