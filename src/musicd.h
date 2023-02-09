@@ -28,4 +28,7 @@ struct TrackInfo {
     double length;
 };
 
-struct ImageI
+struct ImageInfo {
+    struct ImageInfo *next;
+    int32_t stream_index;
+  
