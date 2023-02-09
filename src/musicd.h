@@ -24,3 +24,8 @@ struct TrackInfo {
     char *artist;
     char *album;
     char *album_artist;
+    double start;
+    double length;
+};
+
+struct ImageI
