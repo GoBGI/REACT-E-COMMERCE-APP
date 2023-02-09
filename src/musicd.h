@@ -21,3 +21,6 @@ struct TrackInfo {
     int32_t track_index;
     int32_t number;
     char *title;
+    char *artist;
+    char *album;
+    char *album_artist;
