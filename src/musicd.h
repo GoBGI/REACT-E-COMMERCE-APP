@@ -33,4 +33,8 @@ struct ImageInfo {
     int32_t stream_index;
     char *description;
     int32_t width;
-    int32
+    int32_t height;
+};
+
+struct AudioStreamOptions {
+    char *path;
