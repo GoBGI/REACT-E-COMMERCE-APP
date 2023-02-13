@@ -31,4 +31,6 @@ struct TrackInfo {
 struct ImageInfo {
     struct ImageInfo *next;
     int32_t stream_index;
-  
+    char *description;
+    int32_t width;
+    int32
