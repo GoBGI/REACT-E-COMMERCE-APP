@@ -38,3 +38,5 @@ struct ImageInfo {
 
 struct AudioStreamOptions {
     char *path;
+    int32_t stream_index;
+    int32_t track_in
