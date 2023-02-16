@@ -43,3 +43,7 @@ struct AudioStreamOptions {
     double start;
     double length;
     char *target_codec;
+};
+
+struct AudioStream {
+    AVFormatContext *in_ctx,
