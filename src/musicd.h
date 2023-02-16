@@ -50,4 +50,6 @@ struct AudioStream {
     AVStream *in_stream, *out_stream;
     AVCodec *decoder, *encoder;
     AVCodecContext *dec_ctx, *enc_ctx;
-    
+    AVIOContext *out_ioctx;
+    AVFilterGraph *filter_graph;
+    AVFi
