@@ -46,4 +46,6 @@ struct AudioStreamOptions {
 };
 
 struct AudioStream {
-    AVFormatContext *in_ctx,
+    AVFormatContext *in_ctx, *out_ctx;
+    AVStream *in_stream, *out_stream;
+    AVCod
