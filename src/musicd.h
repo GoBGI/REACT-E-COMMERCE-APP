@@ -52,4 +52,4 @@ struct AudioStream {
     AVCodecContext *dec_ctx, *enc_ctx;
     AVIOContext *out_ioctx;
     AVFilterGraph *filter_graph;
-    AVFi
+    AVFilterContext *abuffer_ctx, *aformat_ctx, *abuffersink_ctx
