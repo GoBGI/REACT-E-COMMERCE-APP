@@ -68,4 +68,6 @@ enum LogLevel {
     LogLevelTrace = 5
 };
 
-void musicd_log_setup(void (*callback)(int level, co
+void musicd_log_setup(void (*callback)(int level, const char *));
+
+void lav_error(const char *
