@@ -56,4 +56,5 @@ struct AudioStream {
     int64_t end_pts;
     int started;
     int finished;
-    void *wr
+    void *write_opaque;
+    int (*write_callback)(void *opaque, ui
