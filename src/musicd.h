@@ -61,4 +61,6 @@ struct AudioStream {
 };
 
 enum LogLevel {
-    LogLevelEr
+    LogLevelError = 1,
+    LogLevelWarn = 2,
+    LogLevelInfo = 3,
