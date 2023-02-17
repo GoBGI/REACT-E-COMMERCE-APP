@@ -57,4 +57,8 @@ struct AudioStream {
     int started;
     int finished;
     void *write_opaque;
-    int (*write_callback)(void *opaque, ui
+    int (*write_callback)(void *opaque, uint8_t *buf, int len);
+};
+
+enum LogLevel {
+    LogLevelEr
