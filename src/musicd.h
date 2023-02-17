@@ -68,4 +68,4 @@ enum LogLevel {
     LogLevelTrace = 5
 };
 
-void musi
+void musicd_log_setup(void (*callback)(int level, co
