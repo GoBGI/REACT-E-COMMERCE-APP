@@ -70,4 +70,6 @@ enum LogLevel {
 
 void musicd_log_setup(void (*callback)(int level, const char *));
 
-void lav_error(const char *
+void lav_error(const char *msg, int lav_result);
+
+struct MediaInfo *media_in
