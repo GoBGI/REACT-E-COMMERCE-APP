@@ -77,4 +77,5 @@ void media_info_free(struct MediaInfo *media_info);
 
 struct AudioStream *audio_stream_open(const struct AudioStreamOptions *options);
 int audio_stream_next(
-    struct Audio
+    struct AudioStream *audio_stream,
+    void *write_opaque,
