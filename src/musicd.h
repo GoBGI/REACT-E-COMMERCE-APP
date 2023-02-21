@@ -83,4 +83,6 @@ int audio_stream_next(
 void audio_stream_close(struct AudioStream *stream);
 
 int media_image_data_read(
- 
+    const char *path,
+    int32_t stream_index,
+    
