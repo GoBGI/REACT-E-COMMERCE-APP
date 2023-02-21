@@ -75,4 +75,6 @@ void lav_error(const char *msg, int lav_result);
 struct MediaInfo *media_info_from_path(const char *path);
 void media_info_free(struct MediaInfo *media_info);
 
-struct AudioStream *audio_stream_open(const str
+struct AudioStream *audio_stream_open(const struct AudioStreamOptions *options);
+int audio_stream_next(
+    struct Audio
