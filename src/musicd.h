@@ -80,4 +80,7 @@ int audio_stream_next(
     struct AudioStream *audio_stream,
     void *write_opaque,
     int (*write_callback)(void *opaque, uint8_t *buf, int len));
-void audio_stream_close(struct Audi
+void audio_stream_close(struct AudioStream *stream);
+
+int media_image_data_read(
+ 
