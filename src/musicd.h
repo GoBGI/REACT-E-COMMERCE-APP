@@ -87,4 +87,4 @@ int media_image_data_read(
     int32_t stream_index,
     uint8_t **out_data,
     size_t *out_len);
-void med
+void media_image_data_free(uint8_t *data);
