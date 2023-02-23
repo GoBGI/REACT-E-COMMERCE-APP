@@ -57,3 +57,16 @@ extern "C" {
     pub fn audio_stream_open(config: *const AudioStreamOptions) -> *const c_void;
     pub fn audio_stream_next(
         audio_stream: *const c_void,
+        opaque: *const c_void,
+        callback: extern "C" fn(opaque: *const c_void, buf: *const u8, len: c_int) -> c_int,
+    ) -> c_int;
+    pub fn audio_stream_close(audio_stream: *const c_void);
+
+    pub fn media_image_data_read(
+        path: *const c_char,
+        stream_index: i32,
+        out_data: *mut *mut u8,
+        out_len: *mut usize,
+    ) -> c_int;
+    pub fn media_image_data_free(data: *mut u8);
+}
