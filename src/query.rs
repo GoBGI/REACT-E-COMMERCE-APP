@@ -265,3 +265,58 @@ pub struct TrackItem {
     album_id: i64,
     album_name: String,
     length: f64,
+    node_path: String,
+}
+
+pub fn query_tracks(
+    index: &Index,
+    query: &HttpQuery,
+) -> Result<(i64, Vec<TrackItem>), rusqlite::Error> {
+    let mut opts = QueryOptions::new();
+
+    opts.bind_filter_i64(&query, "track_id", "Track.track_id = ?");
+    opts.bind_filter_i64(&query, "node_id", "Track.node_id = ?");
+    opts.bind_filter_i64(&query, "number", "Track.number = ?");
+    opts.bind_filter_str(&query, "title", "Track.title LIKE ? COLLATE NOCASE");
+    opts.bind_filter_i64(&query, "artist_id", "Track.artist_id = ?");
+    opts.bind_filter_str(
+        &query,
+        "artist_name",
+        "Track.artist_name LIKE ? COLLATE NOCASE",
+    );
+    opts.bind_filter_i64(&query, "album_id", "Track.album_id = ?");
+    opts.bind_filter_str(
+        &query,
+        "album_name",
+        "Track.album_name LIKE ? COLLATE NOCASE",
+    );
+
+    if let Some(search) = query.get_str("search") {
+        let mut values: Vec<Box<dyn ToSql>> = Vec::new();
+        values.push(Box::new(format!("%{}%", search)));
+        values.push(Box::new(format!("%{}%", search)));
+        values.push(Box::new(format!("%{}%", search)));
+
+        opts.filter_values(
+            "(Track.title LIKE ? OR Track.artist_name LIKE ? OR Track.album_name LIKE ?)",
+            values,
+        );
+    }
+
+    opts.order_string("Track.album_name, Track.number, Track.title");
+
+    opts.bind_range(&query);
+
+    let conn = index.connection();
+
+    let total = opts.get_total(&conn, "SELECT COUNT(Track.track_id) FROM Track")?;
+
+    let (mut st, values) = opts.into_items_query(
+        &conn,
+        "SELECT
+            Track.track_id,
+            Track.node_id,
+            Track.number,
+            Track.title,
+            Track.artist_id,
+            Track.artist_name,
