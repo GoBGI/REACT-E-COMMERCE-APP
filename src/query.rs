@@ -320,3 +320,62 @@ pub fn query_tracks(
             Track.title,
             Track.artist_id,
             Track.artist_name,
+            Track.album_id,
+            Track.album_name,
+            Track.length,
+
+            (
+                SELECT Node.path
+                FROM Node
+                WHERE Node.node_id = Track.node_id
+            ) AS node_path
+
+        FROM Track",
+    )?;
+
+    let mut rows = st.query(&values)?;
+
+    let mut items: Vec<TrackItem> = Vec::new();
+
+    while let Some(row) = rows.next()? {
+        let path: Vec<u8> = row.get(9)?;
+
+        items.push(TrackItem {
+            track_id: row.get(0)?,
+            node_id: row.get(1)?,
+            number: row.get(2)?,
+            title: row.get(3)?,
+            artist_id: row.get(4)?,
+            artist_name: row.get(5)?,
+            album_id: row.get(6)?,
+            album_name: row.get(7)?,
+            length: row.get(8)?,
+            node_path: OsStr::from_bytes(&path).to_string_lossy().to_string(),
+        });
+    }
+
+    Ok((total, items))
+}
+
+#[derive(Serialize)]
+pub struct ArtistItem {
+    artist_id: i64,
+    name: String,
+    track_count: i64,
+}
+
+pub fn query_artists(
+    index: &Index,
+    query: &HttpQuery,
+) -> Result<(i64, Vec<ArtistItem>), rusqlite::Error> {
+    let mut opts = QueryOptions::new();
+
+    opts.bind_filter_i64(&query, "artist_id", "Artist.artist_id = ?");
+    opts.bind_filter_str(&query, "name", "Artist.name LIKE ? COLLATE NOCASE");
+    opts.bind_filter_str(&query, "search", "Artist.name LIKE ? COLLATE NOCASE");
+
+    opts.order_string("Artist.name");
+
+    opts.bind_range(&query);
+
+    let conn = index.connection();
