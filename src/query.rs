@@ -206,3 +206,62 @@ pub fn query_nodes(
         } else {
             "SELECT
                 Node.node_id,
+                Node.parent_id,
+                Node.node_type,
+                Node.name,
+                Node.path,
+
+                (
+                    SELECT COUNT(track_id)
+                    FROM Track
+                    INNER JOIN Node track_node ON track_node.node_id = Track.node_id
+                    WHERE track_node.parent_id = Node.node_id
+                ) AS track_count,
+                (
+                    SELECT COUNT(image_id)
+                    FROM Image
+                    INNER JOIN Node image_node ON image_node.node_id = Image.node_id
+                    WHERE image_node.parent_id = Node.node_id
+                ) AS image_count,
+
+                0 AS all_track_count,
+                0 AS all_image_count
+
+            FROM Node"
+        },
+    )?;
+
+    let mut rows = st.query(&values)?;
+    let mut items: Vec<NodeItem> = Vec::new();
+
+    while let Some(row) = rows.next().unwrap() {
+        let name: Vec<u8> = row.get(3)?;
+        let path: Vec<u8> = row.get(4)?;
+
+        items.push(NodeItem {
+            node_id: row.get(0)?,
+            parent_id: row.get(1)?,
+            node_type: NodeType::from_i64(row.get(2)?),
+            name: OsStr::from_bytes(&name).to_string_lossy().to_string(),
+            path: OsStr::from_bytes(&path).to_string_lossy().to_string(),
+            track_count: row.get(5)?,
+            image_count: row.get(6)?,
+            all_track_count: row.get(7)?,
+            all_image_count: row.get(8)?,
+        });
+    }
+
+    Ok((total, items))
+}
+
+#[derive(Serialize)]
+pub struct TrackItem {
+    track_id: i64,
+    node_id: i64,
+    number: i64,
+    title: String,
+    artist_id: i64,
+    artist_name: String,
+    album_id: i64,
+    album_name: String,
+    length: f64,
