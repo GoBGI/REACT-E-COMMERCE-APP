@@ -145,3 +145,64 @@ pub struct NodeItem {
 pub fn query_nodes(
     index: &Index,
     query: &HttpQuery,
+) -> Result<(i64, Vec<NodeItem>), rusqlite::Error> {
+    let mut opts = QueryOptions::new();
+
+    let mut parent_id_filter = false;
+
+    if let Some(parent_id) = query.get_str("parent_id") {
+        if let Ok(parent_id) = parent_id.parse::<i64>() {
+            opts.filter_value("Node.parent_id = ?", parent_id);
+            parent_id_filter = true;
+        } else if parent_id == "null" {
+            opts.filter("Node.parent_id IS NULL");
+            parent_id_filter = true;
+        }
+    }
+
+    opts.bind_range(&query);
+
+    let conn = index.connection();
+
+    let total = opts.get_total(&conn, "SELECT COUNT(Node.node_id) FROM Node")?;
+
+    let (mut st, values) = opts.into_items_query(
+        &conn,
+        if parent_id_filter {
+            "SELECT
+                Node.node_id,
+                Node.parent_id,
+                Node.node_type,
+                Node.name,
+                Node.path,
+
+                (
+                    SELECT COUNT(track_id)
+                    FROM Track
+                    INNER JOIN Node track_node ON track_node.node_id = Track.node_id
+                    WHERE track_node.parent_id = Node.node_id
+                ) AS track_count,
+                (
+                    SELECT COUNT(image_id)
+                    FROM Image
+                    INNER JOIN Node image_node ON image_node.node_id = Image.node_id
+                    WHERE image_node.parent_id = Node.node_id
+                ) AS image_count,
+
+                (
+                    SELECT COUNT(track_id)
+                    FROM Node AS child_node
+                    INNER JOIN Track ON Track.node_id = child_node.node_id
+                    WHERE child_node.path LIKE Node.path || '/%'
+                ) AS all_track_count,
+                (
+                    SELECT COUNT(image_id)
+                    FROM Node AS child_node
+                    INNER JOIN Image ON Image.node_id = child_node.node_id
+                    WHERE child_node.path LIKE Node.path || '/%'
+                ) AS all_image_count
+
+            FROM Node"
+        } else {
+            "SELECT
+                Node.node_id,
