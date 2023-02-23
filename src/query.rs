@@ -94,3 +94,54 @@ impl QueryOptions {
         let mut st = conn.prepare(&sql)?;
 
         Ok(st.query_row(&self.values, |row| row.get(0))?)
+    }
+
+    pub fn into_items_query<'a>(
+        mut self,
+        conn: &'a Connection,
+        select_from: &str,
+    ) -> Result<(Statement<'a>, Vec<Box<dyn ToSql>>), rusqlite::Error> {
+        let mut sql = select_from.to_string();
+
+        if !self.clauses.is_empty() {
+            sql += " WHERE ";
+            sql += &self.clauses.join(" AND ");
+        }
+
+        if let Some(order) = self.order_string {
+            sql += " ORDER BY ";
+            sql += &order;
+        }
+
+        if let Some(limit) = self.limit {
+            sql += " LIMIT ?";
+            self.values.push(Box::new(limit));
+        }
+
+        if let Some(offset) = self.offset {
+            sql += " OFFSET ?";
+            self.values.push(Box::new(offset));
+        }
+
+        let st = conn.prepare(&sql)?;
+
+        Ok((st, self.values))
+    }
+}
+
+#[derive(Serialize)]
+pub struct NodeItem {
+    node_id: i64,
+    parent_id: Option<i64>,
+    node_type: NodeType,
+    name: String,
+    path: String,
+    track_count: i64,
+    image_count: i64,
+    all_track_count: i64,
+    all_image_count: i64,
+}
+
+pub fn query_nodes(
+    index: &Index,
+    query: &HttpQuery,
