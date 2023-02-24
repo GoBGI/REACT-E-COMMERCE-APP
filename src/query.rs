@@ -485,3 +485,38 @@ pub fn query_images(
     query: &HttpQuery,
 ) -> Result<(i64, Vec<ImageItem>), rusqlite::Error> {
     let mut opts = QueryOptions::new();
+
+    opts.bind_filter_i64(&query, "image_id", "Image.image_id = ?");
+    opts.bind_filter_i64(&query, "node_id", "Image.node_id = ?");
+    opts.bind_filter_str(&query, "description", "Image.description = ?");
+    opts.bind_filter_i64(&query, "album_id", "(SELECT album_id FROM AlbumImage WHERE AlbumImage.album_id = ? AND AlbumImage.image_id = Image.image_id LIMIT 1) IS NOT NULL");
+
+    opts.bind_range(&query);
+
+    let conn = index.connection();
+
+    let total = opts.get_total(&conn, "SELECT COUNT(Image.image_id) FROM Image")?;
+
+    let (mut st, values) = opts.into_items_query(
+        &conn,
+        "SELECT
+            Image.image_id,
+            Image.node_id,
+            Image.description
+        FROM Image",
+    )?;
+
+    let mut rows = st.query(&values)?;
+
+    let mut items: Vec<ImageItem> = Vec::new();
+
+    while let Some(row) = rows.next()? {
+        items.push(ImageItem {
+            image_id: row.get(0)?,
+            node_id: row.get(1)?,
+            description: row.get(2)?,
+        });
+    }
+
+    Ok((total, items))
+}
