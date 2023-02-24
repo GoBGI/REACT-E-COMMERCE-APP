@@ -428,3 +428,60 @@ pub fn query_albums(
         "artist_name",
         "Album.artist_name LIKE ? COLLATE NOCASE",
     );
+
+    if let Some(search) = query.get_str("search") {
+        let mut values: Vec<Box<dyn ToSql>> = Vec::new();
+        values.push(Box::new(format!("%{}%", search)));
+        values.push(Box::new(format!("%{}%", search)));
+
+        opts.filter_values("(Album.name LIKE ? OR Album.artist_name LIKE ?)", values);
+    }
+
+    opts.order_string("Album.artist_name, Album.name");
+
+    opts.bind_range(&query);
+
+    let conn = index.connection();
+
+    let total = opts.get_total(&conn, "SELECT COUNT(Album.album_id) FROM Album")?;
+
+    let (mut st, values) = opts.into_items_query(&conn,
+        "SELECT
+            Album.album_id,
+            Album.name,
+            Album.artist_id,
+            Album.artist_name,
+            Album.image_id,
+            (SELECT count(Track.track_id) FROM Track WHERE Track.album_id = Album.album_id) AS track_count
+        FROM Album")?;
+
+    let mut rows = st.query(&values)?;
+
+    let mut items: Vec<AlbumItem> = Vec::new();
+
+    while let Some(row) = rows.next()? {
+        items.push(AlbumItem {
+            album_id: row.get(0)?,
+            name: row.get(1)?,
+            artist_id: row.get(2)?,
+            artist_name: row.get(3)?,
+            image_id: row.get(4)?,
+            track_count: row.get(5)?,
+        });
+    }
+
+    Ok((total, items))
+}
+
+#[derive(Serialize)]
+pub struct ImageItem {
+    image_id: i64,
+    node_id: i64,
+    description: String,
+}
+
+pub fn query_images(
+    index: &Index,
+    query: &HttpQuery,
+) -> Result<(i64, Vec<ImageItem>), rusqlite::Error> {
+    let mut opts = QueryOptions::new();
