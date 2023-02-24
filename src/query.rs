@@ -379,3 +379,52 @@ pub fn query_artists(
     opts.bind_range(&query);
 
     let conn = index.connection();
+
+    let total = opts.get_total(&conn, "SELECT COUNT(Artist.artist_id) FROM Artist")?;
+
+    let (mut st, values) = opts.into_items_query(&conn,
+        "SELECT
+            Artist.artist_id,
+            Artist.name,
+            (SELECT count(Track.track_id) FROM Track WHERE Track.artist_id = Artist.artist_id) AS track_count
+        FROM Artist")?;
+
+    let mut rows = st.query(&values)?;
+
+    let mut items: Vec<ArtistItem> = Vec::new();
+
+    while let Some(row) = rows.next()? {
+        items.push(ArtistItem {
+            artist_id: row.get(0)?,
+            name: row.get(1)?,
+            track_count: row.get(2)?,
+        });
+    }
+
+    Ok((total, items))
+}
+
+#[derive(Serialize)]
+pub struct AlbumItem {
+    album_id: i64,
+    name: String,
+    artist_id: Option<i64>,
+    artist_name: Option<String>,
+    image_id: Option<i64>,
+    track_count: i64,
+}
+
+pub fn query_albums(
+    index: &Index,
+    query: &HttpQuery,
+) -> Result<(i64, Vec<AlbumItem>), rusqlite::Error> {
+    let mut opts = QueryOptions::new();
+
+    opts.bind_filter_i64(&query, "album_id", "Album.album_id = ?");
+    opts.bind_filter_str(&query, "name", "Album.name LIKE ? COLLATE NOCASE");
+    opts.bind_filter_i64(&query, "artist_id", "Album.artist_id = ?");
+    opts.bind_filter_str(
+        &query,
+        "artist_name",
+        "Album.artist_name LIKE ? COLLATE NOCASE",
+    );
