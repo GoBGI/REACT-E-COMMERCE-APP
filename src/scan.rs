@@ -76,3 +76,40 @@ impl ScanThread {
         }
 
         let stop = self.stop.clone();
+
+        let mut join_handle = self.join_handle.lock().unwrap();
+
+        self.stop.store(false, Ordering::Relaxed);
+
+        *join_handle = Some(std::thread::spawn(move || {
+            let mut scan = Scan {
+                stop,
+                stop_detected: false,
+                index,
+            };
+
+            scan.scan_core()
+        }));
+    }
+
+    pub fn stop(&self) {
+        let mut join_handle = self.join_handle.lock().unwrap();
+
+        self.stop.store(true, Ordering::Relaxed);
+
+        if let Some(handle) = join_handle.take() {
+            handle.join().unwrap();
+        }
+    }
+}
+
+struct Scan {
+    stop: Arc<AtomicBool>,
+    stop_detected: bool,
+    index: Index,
+}
+
+enum NodeArg<'a> {
+    Node(Node),
+    Name(&'a Path),
+}
