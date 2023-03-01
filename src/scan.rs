@@ -207,3 +207,54 @@ impl Scan {
         for (name, path) in roots {
             if self.interrupted() {
                 return stat;
+            }
+
+            debug!("root '{}' = '{}'", name, path.to_string_lossy());
+
+            match self.scan_node_unprepared(None, Path::new(OsStr::from_bytes(name.as_bytes()))) {
+                Ok(s) => {
+                    if let Some(s) = s {
+                        stat.add(&s);
+                    }
+                }
+                Err(e) => {
+                    error!(
+                        "can't scan root '{}' -> '{}': {}",
+                        name,
+                        path.to_string_lossy(),
+                        e.description()
+                    );
+                }
+            }
+        }
+
+        info!("done in {}s: {:?}", start_instant.elapsed().as_secs(), stat);
+
+        stat
+    }
+
+    fn scan_node_unprepared(
+        &mut self,
+        parent: Option<&Node>,
+        name: &Path,
+    ) -> Result<Option<ScanStat>> {
+        let scan_node = self.prepare_node(parent, NodeArg::Name(name))?;
+        self.scan_node(scan_node)
+    }
+
+    fn scan_node(&mut self, scan_node: ScanNode) -> Result<Option<ScanStat>> {
+        let ScanNode {
+            parent,
+            node,
+            fs_path,
+            modified,
+        } = scan_node;
+
+        let result = if node.node_type == NodeType::Directory {
+            let result = self.process_directory_node(&node, &fs_path, node.modified != modified)?;
+
+            if let Some(result) = &result {
+                if result.changed() {
+                    self.index.process_node_updates(node.node_id)?;
+                }
+            }
