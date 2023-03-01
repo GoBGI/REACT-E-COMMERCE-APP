@@ -164,3 +164,46 @@ impl Scan {
             .is_err()
         {
             return stat;
+        }
+
+        if self
+            .index
+            .connection()
+            .execute_batch(
+                "
+                INSERT INTO AlbumImagePattern (pattern)
+                VALUES
+                    ('album cover'),
+                    ('albumcover'),
+                    ('albumart'),
+                    ('album'),
+                    ('front'),
+                    ('folder'),
+                    ('front%'),
+                    ('cover%'),
+                    ('folder%'),
+                    ('%front%'),
+                    ('%cover%'),
+                    ('%folder%'),
+                    ('%albumart%'),
+                    ('%album%'),
+                    ('%jacket%'),
+                    ('%card%')",
+            )
+            .is_err()
+        {
+            return stat;
+        }
+
+        let roots: Vec<(String, PathBuf)> = self
+            .index
+            .roots()
+            .iter()
+            .map(|r| (r.name.to_string(), r.path.to_path_buf()))
+            .collect();
+
+        let start_instant = Instant::now();
+
+        for (name, path) in roots {
+            if self.interrupted() {
+                return stat;
