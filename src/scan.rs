@@ -314,3 +314,64 @@ impl Scan {
                 None,
             ),
         };
+
+        let fs_path = match self.index.map_fs_path(&path) {
+            Some(p) => p,
+            None => {
+                error!("can't map path '{}'", path.display());
+                return Err(Error::OtherError);
+            }
+        };
+
+        if node.is_none() {
+            node = self.index.node_by_name(parent_id, &name)?;
+        }
+
+        let metadata = match fs::metadata(&fs_path) {
+            Ok(m) => m,
+            Err(e) => {
+                error!(
+                    "metadata error '{}': {}",
+                    fs_path.to_string_lossy(),
+                    e.description()
+                );
+
+                if let Some(node) = node {
+                    self.index.delete_node(node.node_id)?;
+                }
+
+                return Err(Error::OtherError);
+            }
+        };
+
+        let modified = match metadata
+            .modified()?
+            .duration_since(std::time::SystemTime::UNIX_EPOCH)
+        {
+            Ok(n) => n.as_secs(),
+            Err(_) => {
+                error!("invalid modified '{}'", fs_path.to_string_lossy());
+
+                if let Some(node) = node {
+                    self.index.delete_node(node.node_id)?;
+                }
+
+                return Err(Error::OtherError);
+            }
+        } as i64;
+
+        let node_type = if metadata.is_dir() {
+            NodeType::Directory
+        } else if metadata.is_file() {
+            NodeType::File
+        } else {
+            NodeType::Other
+        };
+
+        if let Some(n) = &node {
+            if n.node_type != node_type {
+                trace!(
+                    "node '{}' type has changed ({:?} => {:?}), recreating node",
+                    fs_path.to_string_lossy(),
+                    n.node_type,
+                    node_type
