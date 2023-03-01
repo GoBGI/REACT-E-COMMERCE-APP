@@ -258,3 +258,59 @@ impl Scan {
                     self.index.process_node_updates(node.node_id)?;
                 }
             }
+
+            Ok(result)
+        } else if node.node_type == NodeType::File && node.modified != modified {
+            let parent = match parent {
+                Some(n) => n,
+                None => {
+                    error!(
+                        "root node '{}' isn't directory",
+                        node.name.to_string_lossy()
+                    );
+                    return Err(Error::OtherError);
+                }
+            };
+
+            let result = if let Some(_master_id) = node.master_id {
+                // TODO should this trigger master rescan?
+                None
+            } else {
+                self.index.clear_node(node.node_id)?;
+
+                self.process_file_node(parent, &node, &fs_path)?
+            };
+
+            Ok(result)
+        } else {
+            Ok(None)
+        };
+
+        if node.modified != modified {
+            self.index.set_node_modified(node.node_id, modified)?;
+        }
+
+        result
+    }
+
+    fn prepare_node<'a>(
+        &mut self,
+        parent: Option<&'a Node>,
+        node_arg: NodeArg,
+    ) -> Result<ScanNode<'a>> {
+        let parent_id = match parent {
+            Some(node) => Some(node.node_id),
+            None => None,
+        };
+
+        let (name, path, mut node) = match node_arg {
+            NodeArg::Node(node) => (node.name.clone(), node.path.clone(), Some(node)),
+            NodeArg::Name(name) => (
+                PathBuf::from(name),
+                match parent {
+                    Some(parent_node) => PathBuf::from(&parent_node.path).join(name),
+                    None => PathBuf::from(name),
+                },
+                None,
+            ),
+        };
