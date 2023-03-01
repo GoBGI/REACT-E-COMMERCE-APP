@@ -375,3 +375,50 @@ impl Scan {
                     fs_path.to_string_lossy(),
                     n.node_type,
                     node_type
+                );
+                self.index.delete_node(n.node_id)?;
+
+                node = None;
+            }
+        }
+
+        let node = match node {
+            Some(n) => n,
+            None => {
+                let node = Node {
+                    node_id: 0,
+                    node_type,
+                    parent_id: match parent {
+                        Some(p) => Some(p.node_id),
+                        None => None,
+                    },
+                    master_id: None,
+                    name: name.to_path_buf(),
+                    path,
+                    modified: 0,
+                };
+
+                self.index.create_node(&node)?
+            }
+        };
+
+        // trace!("prepare_node {} = {}", node.node_id, fs_path.to_string_lossy());
+
+        Ok(ScanNode {
+            parent,
+            node,
+            fs_path,
+            modified,
+        })
+    }
+
+    fn process_directory_node(
+        &mut self,
+        node: &Node,
+        fs_path: &Path,
+        modified: bool,
+    ) -> Result<Option<ScanStat>> {
+        debug!("directory '{}'", fs_path.to_string_lossy());
+
+        let mut stat = ScanStat {
+            ..Default::default()
