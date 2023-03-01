@@ -113,3 +113,54 @@ enum NodeArg<'a> {
     Node(Node),
     Name(&'a Path),
 }
+
+struct ScanNode<'a> {
+    parent: Option<&'a Node>,
+    node: Node,
+    fs_path: PathBuf,
+    modified: i64,
+}
+
+#[derive(Debug, Default)]
+struct ScanStat {
+    tracks: i32,
+    images: i32,
+}
+
+impl ScanStat {
+    fn add(&mut self, other: &ScanStat) {
+        self.tracks += other.tracks;
+        self.images += other.images;
+    }
+
+    fn changed(&self) -> bool {
+        self.tracks > 0 || self.images > 0
+    }
+}
+
+impl Scan {
+    fn interrupted(&mut self) -> bool {
+        let stop = self.stop.load(Ordering::Relaxed);
+
+        if stop && !self.stop_detected {
+            self.stop_detected = true;
+            debug!("interrupt noted, stopping");
+        }
+
+        stop
+    }
+
+    fn scan_core(&mut self) -> ScanStat {
+        info!("started");
+
+        let mut stat = ScanStat {
+            ..Default::default()
+        };
+
+        if self
+            .index
+            .connection()
+            .execute_batch("DELETE FROM AlbumImagePattern;")
+            .is_err()
+        {
+            return stat;
