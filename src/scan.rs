@@ -422,3 +422,57 @@ impl Scan {
 
         let mut stat = ScanStat {
             ..Default::default()
+        };
+
+        let mut fs_entries: Vec<_> = Vec::new();
+
+        if modified {
+            for entry in fs::read_dir(fs_path)? {
+                fs_entries.push(entry?.file_name());
+            }
+        } else {
+            trace!("directory was not modified, not reading file system entries");
+        }
+
+        let index_nodes = self.index.nodes_by_parent(Some(node.node_id))?;
+        for index_node in index_nodes {
+            if let Some(pos) = fs_entries.iter().position(|e| e == &index_node.name) {
+                fs_entries.remove(pos);
+            }
+
+            if let Ok(scan_node) = self.prepare_node(Some(node), NodeArg::Node(index_node)) {
+                if let Ok(Some(node_stat)) = self.scan_node(scan_node) {
+                    stat.add(&node_stat);
+                }
+            }
+        }
+
+        for entry in fs_entries {
+            if self.interrupted() {
+                return Ok(Some(stat));
+            }
+
+            if let Ok(Some(node_stat)) = self.scan_node_unprepared(Some(&node), Path::new(&entry)) {
+                stat.add(&node_stat);
+            }
+        }
+
+        Ok(Some(stat))
+    }
+
+    fn process_file_node(
+        &mut self,
+        parent: &Node,
+        node: &Node,
+        fs_path: &Path,
+    ) -> Result<Option<ScanStat>> {
+        let extension = match fs_path.extension().and_then(|e| e.to_str()) {
+            Some(e) => e.to_ascii_lowercase(),
+            None => {
+                return Ok(None);
+            }
+        };
+
+        if let Some(stat) = self.try_process_cue_file(&extension, parent, node, &fs_path)? {
+            return Ok(Some(stat));
+        }
