@@ -531,3 +531,53 @@ impl Scan {
             let file_tracks = match media::media_info_from_path(&file_node.fs_path) {
                 Some(t) => t.0,
                 None => continue,
+            };
+
+            let file_track = match file_tracks.first() {
+                Some(t) => t,
+                None => continue,
+            };
+
+            let mut tracks: Vec<Track> = Vec::new();
+
+            for cue_track in file.tracks {
+                tracks.push(Track {
+                    track_id: 0,
+                    node_id: file_node.node.node_id,
+                    stream_index: file_track.stream_index,
+                    track_index: file_track.track_index,
+                    number: i64::from(cue_track.number),
+                    title: cue_track.title.trim().to_string(),
+                    artist_id: 0, // Resolved later
+                    artist_name: cue_track.performer.trim().to_string(),
+                    album_id: 0, // Resolved later
+                    album_name: cue.title.trim().to_string(),
+                    album_artist_id: None,
+                    album_artist_name: if cue.performer.len() > 0 {
+                        Some(cue.performer.trim().to_string())
+                    } else {
+                        None
+                    },
+                    start: Some(cue_track.start as f64),
+                    length: 0f64,
+                });
+            }
+
+            // Calculate lengths
+            let mut last_start = file_track.length;
+            for track in tracks.iter_mut().rev() {
+                let start = track.start.unwrap_or(0f64);
+                track.length = last_start - start;
+                last_start = start;
+            }
+
+            self.index.clear_node(file_node.node.node_id)?;
+
+            for track in tracks.iter_mut() {
+                track.artist_id = match self.index.artist_by_name(&track.artist_name)? {
+                    Some(a) => a,
+                    None => self.index.create_artist(&track.artist_name)?,
+                }
+                .artist_id;
+
+                track.album_id = match self
