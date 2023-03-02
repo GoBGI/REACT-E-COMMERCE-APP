@@ -581,3 +581,52 @@ impl Scan {
                 .artist_id;
 
                 track.album_id = match self
+                    .index
+                    .find_album(file_node.node.node_id, &track.album_name)?
+                {
+                    Some(a) => a,
+                    None => self.index.create_album(&track.album_name)?,
+                }
+                .album_id;
+
+                if let Some(album_artist_name) = &track.album_artist_name {
+                    track.album_artist_id = Some(
+                        match self.index.artist_by_name(&album_artist_name)? {
+                            Some(a) => a,
+                            None => self.index.create_artist(&album_artist_name)?,
+                        }
+                        .artist_id,
+                    );
+                }
+
+                self.index.create_track(&track)?;
+
+                stat.tracks += 1;
+            }
+
+            self.index
+                .set_node_master(file_node.node.node_id, node.node_id)?;
+            self.index
+                .set_node_modified(file_node.node.node_id, file_node.modified)?;
+        }
+
+        Ok(Some(stat))
+    }
+
+    // This list is what extensions image crate recognizes
+    const IMAGE_EXTENSIONS: &'static [&'static str] = &[
+        "jpg", "jpeg", "png", "gif", "webp", "tif", "tiff", "tga", "bmp", "ico", "hdr", "pbm",
+        "pam", "ppm", "pgm",
+    ];
+
+    fn try_process_image_file(
+        &mut self,
+        extension: &str,
+        node: &Node,
+        fs_path: &Path,
+    ) -> Result<Option<ScanStat>> {
+        if !Scan::IMAGE_EXTENSIONS.iter().any(|&e| extension == e) {
+            return Ok(None);
+        }
+
+        debug!("image file '{}'", fs_path.to_string_lossy());
