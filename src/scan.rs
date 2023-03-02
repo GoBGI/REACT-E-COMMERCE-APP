@@ -476,3 +476,58 @@ impl Scan {
         if let Some(stat) = self.try_process_cue_file(&extension, parent, node, &fs_path)? {
             return Ok(Some(stat));
         }
+
+        if let Some(stat) = self.try_process_image_file(&extension, node, &fs_path)? {
+            return Ok(Some(stat));
+        }
+
+        if let Some(stat) = self.try_process_audio_file(node, &fs_path)? {
+            return Ok(Some(stat));
+        }
+
+        debug!("no handler found for file '{}'", fs_path.to_string_lossy());
+
+        Ok(None)
+    }
+
+    fn try_process_cue_file(
+        &mut self,
+        extension: &str,
+        parent: &Node,
+        node: &Node,
+        fs_path: &Path,
+    ) -> Result<Option<ScanStat>> {
+        if extension != "cue" {
+            return Ok(None);
+        }
+
+        debug!("cue file '{}'", fs_path.to_string_lossy());
+
+        let cue_text = std::fs::read_to_string(&fs_path)?;
+        let cue = cue::parse_cue(&cue_text);
+
+        if cue.files.is_empty() {
+            debug!("no file entries in cue file, ignoring");
+            return Ok(None);
+        }
+
+        let mut stat = ScanStat {
+            ..Default::default()
+        };
+
+        for file in cue.files {
+            if file.tracks.is_empty() {
+                continue;
+            }
+
+            let file_node = match self.prepare_node(
+                Some(parent),
+                NodeArg::Name(Path::new(OsStr::from_bytes(&file.path.as_bytes()))),
+            ) {
+                Ok(n) => n,
+                Err(_) => continue,
+            };
+
+            let file_tracks = match media::media_info_from_path(&file_node.fs_path) {
+                Some(t) => t.0,
+                None => continue,
