@@ -679,3 +679,43 @@ impl Scan {
         };
 
         for track in tracks.iter_mut() {
+            track.node_id = node.node_id;
+
+            track.artist_id = match self.index.artist_by_name(&track.artist_name)? {
+                Some(a) => a,
+                None => self.index.create_artist(&track.artist_name)?,
+            }
+            .artist_id;
+
+            track.album_id = match self.index.find_album(node.node_id, &track.album_name)? {
+                Some(a) => a,
+                None => self.index.create_album(&track.album_name)?,
+            }
+            .album_id;
+
+            if let Some(album_artist_name) = &track.album_artist_name {
+                track.album_artist_id = Some(
+                    match self.index.artist_by_name(&album_artist_name)? {
+                        Some(a) => a,
+                        None => self.index.create_artist(&album_artist_name)?,
+                    }
+                    .artist_id,
+                );
+            }
+
+            self.index.create_track(track)?;
+
+            stat.tracks += 1;
+        }
+
+        for image in images.iter_mut() {
+            image.node_id = node.node_id;
+
+            self.index.create_image(image)?;
+
+            stat.images += 1;
+        }
+
+        Ok(Some(stat))
+    }
+}
