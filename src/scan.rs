@@ -630,3 +630,52 @@ impl Scan {
         }
 
         debug!("image file '{}'", fs_path.to_string_lossy());
+
+        let dimensions = match image::image_dimensions(fs_path) {
+            Ok(i) => i,
+            Err(e) => {
+                error!(
+                    "can't open image file '{}': {}",
+                    fs_path.to_string_lossy(),
+                    e.description()
+                );
+                return Ok(None);
+            }
+        };
+
+        let description = match node.name.file_stem() {
+            Some(s) => match s.to_str() {
+                Some(s) => s.to_string(),
+                None => String::new(),
+            },
+            None => String::new(),
+        };
+
+        self.index.create_image(&Image {
+            image_id: 0,
+            node_id: node.node_id,
+            stream_index: None,
+            description,
+            width: i64::from(dimensions.0),
+            height: i64::from(dimensions.1),
+        })?;
+
+        Ok(Some(ScanStat {
+            images: 1,
+            ..Default::default()
+        }))
+    }
+
+    fn try_process_audio_file(&mut self, node: &Node, fs_path: &Path) -> Result<Option<ScanStat>> {
+        debug!("try audio file '{}'", fs_path.to_string_lossy());
+
+        let (mut tracks, mut images) = match media::media_info_from_path(&fs_path) {
+            Some(m) => m,
+            None => return Ok(None),
+        };
+
+        let mut stat = ScanStat {
+            ..Default::default()
+        };
+
+        for track in tracks.iter_mut() {
