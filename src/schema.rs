@@ -7,4 +7,7 @@ CREATE TABLE IF NOT EXISTS Musicd (
 ";
 
 pub const CACHE_SCHEMA: &str = "
-CREATE TABLE Cach
+CREATE TABLE Cache (
+    key TEXT PRIMARY KEY,
+    value BLOB,
+    size I
