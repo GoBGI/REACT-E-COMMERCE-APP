@@ -10,4 +10,8 @@ pub const CACHE_SCHEMA: &str = "
 CREATE TABLE Cache (
     key TEXT PRIMARY KEY,
     value BLOB,
-    size I
+    size INTEGER,
+    last_access INTEGER);
+";
+
+pub cons
