@@ -14,4 +14,6 @@ CREATE TABLE Cache (
     last_access INTEGER);
 ";
 
-pub cons
+pub const INDEX_SCHEMA: &str = "
+CREATE TABLE Node (
+    
