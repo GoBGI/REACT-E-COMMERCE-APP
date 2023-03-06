@@ -23,4 +23,5 @@ CREATE TABLE Node (
     name TEXT NOT NULL,
     path TEXT NOT NULL,
     modified INTEGER NOT NULL,
-    FOREIGN KEY(pare
+    FOREIGN KEY(parent_id) REFERENCES Node(node_id) ON DELETE CASCADE,
+    FOREIGN KEY(m
