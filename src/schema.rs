@@ -21,4 +21,6 @@ CREATE TABLE Node (
     parent_id INTEGER,
     master_id INTEGER,
     name TEXT NOT NULL,
-    path TEXT NOT N
+    path TEXT NOT NULL,
+    modified INTEGER NOT NULL,
+    FOREIGN KEY(pare
