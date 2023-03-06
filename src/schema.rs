@@ -19,4 +19,6 @@ CREATE TABLE Node (
     node_id INTEGER PRIMARY KEY AUTOINCREMENT,
     node_type INTEGER NOT NULL,
     parent_id INTEGER,
-    master_i
+    master_id INTEGER,
+    name TEXT NOT NULL,
+    path TEXT NOT N
