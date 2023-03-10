@@ -26,4 +26,5 @@ CREATE TABLE Node (
     FOREIGN KEY(parent_id) REFERENCES Node(node_id) ON DELETE CASCADE,
     FOREIGN KEY(master_id) REFERENCES Node(node_id) ON DELETE SET NULL);
 
-CREATE INDEX Node_parent_id ON No
+CREATE INDEX Node_parent_id ON Node (parent_id);
+CREATE INDEX Node_master_id ON Node (master_id)
