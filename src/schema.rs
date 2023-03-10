@@ -24,4 +24,6 @@ CREATE TABLE Node (
     path TEXT NOT NULL,
     modified INTEGER NOT NULL,
     FOREIGN KEY(parent_id) REFERENCES Node(node_id) ON DELETE CASCADE,
-    FOREIGN KEY(master_id) REFERENCES Node(node_id) ON DELETE S
+    FOREIGN KEY(master_id) REFERENCES Node(node_id) ON DELETE SET NULL);
+
+CREATE INDEX Node_parent_id ON No
