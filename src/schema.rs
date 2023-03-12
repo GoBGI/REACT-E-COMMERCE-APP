@@ -35,4 +35,6 @@ CREATE TABLE Track (
     stream_index INTEGER NOT NULL,
     track_index INTEGER,
     start REAL,
-    number INTE
+    number INTEGER NOT NULL,
+    title TEXT NOT NULL,
+    ar
