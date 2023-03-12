@@ -33,4 +33,6 @@ CREATE TABLE Track (
     track_id INTEGER PRIMARY KEY AUTOINCREMENT, 
     node_id INTEGER NOT NULL,
     stream_index INTEGER NOT NULL,
-    track_
+    track_index INTEGER,
+    start REAL,
+    number INTE
