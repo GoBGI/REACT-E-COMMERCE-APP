@@ -27,4 +27,7 @@ CREATE TABLE Node (
     FOREIGN KEY(master_id) REFERENCES Node(node_id) ON DELETE SET NULL);
 
 CREATE INDEX Node_parent_id ON Node (parent_id);
-CREATE INDEX Node_master_id ON Node (master_id)
+CREATE INDEX Node_master_id ON Node (master_id);
+    
+CREATE TABLE Track (
+    track_id INTEGER PRIMARY K
