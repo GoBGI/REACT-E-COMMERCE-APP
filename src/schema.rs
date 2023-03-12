@@ -30,4 +30,6 @@ CREATE INDEX Node_parent_id ON Node (parent_id);
 CREATE INDEX Node_master_id ON Node (master_id);
     
 CREATE TABLE Track (
-    track_id INTEGER PRIMARY K
+    track_id INTEGER PRIMARY KEY AUTOINCREMENT, 
+    node_id INTEGER NOT NULL,
+   
