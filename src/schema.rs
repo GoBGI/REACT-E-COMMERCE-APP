@@ -37,4 +37,5 @@ CREATE TABLE Track (
     start REAL,
     number INTEGER NOT NULL,
     title TEXT NOT NULL,
-    ar
+    artist_id INTEGER NOT NULL,
+    artist_name TEXT N
