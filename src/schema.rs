@@ -41,4 +41,5 @@ CREATE TABLE Track (
     artist_name TEXT NOT NULL,
     album_id INTEGER NOT NULL,
     album_name TEXT NOT NULL,
-    album_a
+    album_artist_id INTEGER,
+    album_artist_name TE
