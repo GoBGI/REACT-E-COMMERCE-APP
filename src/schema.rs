@@ -50,4 +50,5 @@ CREATE TABLE Track (
     FOREIGN KEY(album_artist_id) REFERENCES Artist(artist_id));
 
 CREATE INDEX Track_node_id ON Track (node_id);
-CREATE INDEX Track_artist_id ON Track
+CREATE INDEX Track_artist_id ON Track (artist_id);
+CREATE INDEX Track_album_id ON Track 
