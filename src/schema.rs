@@ -46,4 +46,5 @@ CREATE TABLE Track (
     length REAL NOT NULL,
     FOREIGN KEY(node_id) REFERENCES Node(node_id) ON DELETE CASCADE,
     FOREIGN KEY(artist_id) REFERENCES Artist(artist_id),
- 
+    FOREIGN KEY(album_id) REFERENCES Album(album_id),
+    FOREI
