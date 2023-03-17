@@ -59,4 +59,6 @@ CREATE TABLE Image (
     node_id INTEGER NOT NULL,
     stream_index INTEGER,
     description TEXT NOT NULL,
-    width INTEGER N
+    width INTEGER NOT NULL,
+    height INTEGER NOT NULL,
+    FOREIGN KEY(n
