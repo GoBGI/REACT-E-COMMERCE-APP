@@ -55,4 +55,5 @@ CREATE INDEX Track_album_id ON Track (album_id);
 CREATE INDEX Track_album_artist_id ON Track (album_artist_id);
     
 CREATE TABLE Image (
-    image_id
+    image_id INTEGER PRIMARY KEY AUTOINCREMENT,
+    node
