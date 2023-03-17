@@ -61,4 +61,6 @@ CREATE TABLE Image (
     description TEXT NOT NULL,
     width INTEGER NOT NULL,
     height INTEGER NOT NULL,
-    FOREIGN KEY(n
+    FOREIGN KEY(node_id) REFERENCES Node(node_id) ON DELETE CASCADE);
+
+CREATE IN
