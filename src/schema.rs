@@ -57,4 +57,6 @@ CREATE INDEX Track_album_artist_id ON Track (album_artist_id);
 CREATE TABLE Image (
     image_id INTEGER PRIMARY KEY AUTOINCREMENT,
     node_id INTEGER NOT NULL,
-    stream_index INTEG
+    stream_index INTEGER,
+    description TEXT NOT NULL,
+    width INTEGER N
