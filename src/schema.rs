@@ -51,4 +51,5 @@ CREATE TABLE Track (
 
 CREATE INDEX Track_node_id ON Track (node_id);
 CREATE INDEX Track_artist_id ON Track (artist_id);
-CREATE INDEX Track_album_id ON Track 
+CREATE INDEX Track_album_id ON Track (album_id);
+CREATE INDEX Track_album_artis
