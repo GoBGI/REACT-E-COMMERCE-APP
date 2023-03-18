@@ -65,4 +65,6 @@ CREATE TABLE Image (
 
 CREATE INDEX Image_node_id ON Image (node_id);
     
-CREATE TAB
+CREATE TABLE Artist (
+    artist_id INTEGER PRIMARY KEY AUTOINCREMENT,
+ 
