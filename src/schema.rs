@@ -74,4 +74,5 @@ CREATE TABLE Album (
     name TEXT NOT NULL,
     artist_id INTEGER,
     artist_name TEXT,
-    image_id INT
+    image_id INTEGER,
+    FOREIGN KEY(image_id) REFERENCES Image(i
