@@ -75,4 +75,6 @@ CREATE TABLE Album (
     artist_id INTEGER,
     artist_name TEXT,
     image_id INTEGER,
-    FOREIGN KEY(image_id) REFERENCES Image(i
+    FOREIGN KEY(image_id) REFERENCES Image(image_id) ON DELETE SET NULL);
+
+CREATE INDEX Album_a
