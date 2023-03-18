@@ -70,4 +70,5 @@ CREATE TABLE Artist (
     name TEXT NOT NULL);
     
 CREATE TABLE Album (
-    album_id INTEGER 
+    album_id INTEGER PRIMARY KEY AUTOINCREMENT,
+    name TEXT NOT NULL,
