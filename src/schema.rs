@@ -63,4 +63,6 @@ CREATE TABLE Image (
     height INTEGER NOT NULL,
     FOREIGN KEY(node_id) REFERENCES Node(node_id) ON DELETE CASCADE);
 
-CREATE IN
+CREATE INDEX Image_node_id ON Image (node_id);
+    
+CREATE TAB
