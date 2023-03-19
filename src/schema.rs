@@ -86,4 +86,8 @@ CREATE TABLE AlbumImage (
     FOREIGN KEY(album_id) REFERENCES Album(album_id) ON DELETE CASCADE,
     FOREIGN KEY(image_id) REFERENCES Image(image_id) ON DELETE CASCADE);
 
-CREATE TABLE AlbumImagePattern
+CREATE TABLE AlbumImagePattern (
+    pattern TEXT);
+
+CREATE TABLE TrackLyrics (
+    t
