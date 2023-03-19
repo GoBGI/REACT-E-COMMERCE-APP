@@ -79,4 +79,6 @@ CREATE TABLE Album (
 
 CREATE INDEX Album_artist_id ON Album (album_id);
 
-CREATE TABLE Albu
+CREATE TABLE AlbumImage (
+    album_id INTEGER NOT NULL,
+    image_id INTEGE
