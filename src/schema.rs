@@ -84,4 +84,6 @@ CREATE TABLE AlbumImage (
     image_id INTEGER NOT NULL,
     PRIMARY KEY(album_id, image_id),
     FOREIGN KEY(album_id) REFERENCES Album(album_id) ON DELETE CASCADE,
-    FOREIGN KEY(image_id) REFERENCES Image(ima
+    FOREIGN KEY(image_id) REFERENCES Image(image_id) ON DELETE CASCADE);
+
+CREATE TABLE AlbumImagePattern
