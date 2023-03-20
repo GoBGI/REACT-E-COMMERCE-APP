@@ -92,4 +92,6 @@ CREATE TABLE AlbumImagePattern (
 CREATE TABLE TrackLyrics (
     track_id INTEGER PRIMARY KEY,
     lyrics TEXT,
-    pro
+    provider TEXT,
+    source TEXT,
+    modified INTEGER NOT NUL
