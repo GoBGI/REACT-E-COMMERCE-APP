@@ -94,4 +94,5 @@ CREATE TABLE TrackLyrics (
     lyrics TEXT,
     provider TEXT,
     source TEXT,
-    modified INTEGER NOT NUL
+    modified INTEGER NOT NULL,
+    FOREIGN KEY(track_id) REFERENCES Track(track_id) ON
