@@ -90,4 +90,6 @@ CREATE TABLE AlbumImagePattern (
     pattern TEXT);
 
 CREATE TABLE TrackLyrics (
-    t
+    track_id INTEGER PRIMARY KEY,
+    lyrics TEXT,
+    pro
