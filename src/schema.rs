@@ -98,3 +98,5 @@ CREATE TABLE TrackLyrics (
     FOREIGN KEY(track_id) REFERENCES Track(track_id) ON DELETE CASCADE);
     
 CREATE TABLE StoreTrack (
+    store_track_id INTEGER PRIMARY KEY,
+ 
