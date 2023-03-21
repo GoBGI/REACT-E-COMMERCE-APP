@@ -95,4 +95,6 @@ CREATE TABLE TrackLyrics (
     provider TEXT,
     source TEXT,
     modified INTEGER NOT NULL,
-    FOREIGN KEY(track_id) REFERENCES Track(track_id) ON
+    FOREIGN KEY(track_id) REFERENCES Track(track_id) ON DELETE CASCADE);
+    
+CREATE TABLE StoreTrack (
