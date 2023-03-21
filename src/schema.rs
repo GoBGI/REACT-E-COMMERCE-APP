@@ -101,4 +101,5 @@ CREATE TABLE StoreTrack (
     store_track_id INTEGER PRIMARY KEY,
     track_id INTEGER NOT NULL,
     play_count INTEGER,
-    l
+    last_play INTEGER,
+    FOREIGN KEY(track_id) R
