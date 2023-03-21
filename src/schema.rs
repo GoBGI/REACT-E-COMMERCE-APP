@@ -102,4 +102,5 @@ CREATE TABLE StoreTrack (
     track_id INTEGER NOT NULL,
     play_count INTEGER,
     last_play INTEGER,
-    FOREIGN KEY(track_id) R
+    FOREIGN KEY(track_id) REFERENCES Track(track_id) ON DELETE CASCADE);
+    
