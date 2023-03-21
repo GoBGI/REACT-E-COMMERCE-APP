@@ -105,4 +105,7 @@ CREATE TABLE StoreTrack (
     FOREIGN KEY(track_id) REFERENCES Track(track_id) ON DELETE CASCADE);
     
 CREATE TABLE StoreList (
-    list_id INTEGER PR
+    list_id INTEGER PRIMARY KEY,
+    name TEXT NOT NULL);
+
+CREATE TA
