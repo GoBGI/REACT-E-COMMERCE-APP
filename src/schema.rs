@@ -110,4 +110,5 @@ CREATE TABLE StoreList (
 
 CREATE TABLE StoreListTrack (
     list_id INTEGER NOT NULL,
-    stor
+    store_track_id INTEGER NOT NULL,
+    FOREIGN KEY(list_id) R
