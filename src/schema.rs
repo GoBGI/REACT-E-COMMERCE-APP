@@ -116,4 +116,5 @@ CREATE TABLE StoreListTrack (
 ";
 
 pub const STORE_SCHEMA: &str = "
-CREATE TABLE Tra
+CREATE TABLE Track (
+    store_track_id INTEGER PRIMARY KEY
