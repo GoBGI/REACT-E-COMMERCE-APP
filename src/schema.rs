@@ -112,4 +112,8 @@ CREATE TABLE StoreListTrack (
     list_id INTEGER NOT NULL,
     store_track_id INTEGER NOT NULL,
     FOREIGN KEY(list_id) REFERENCES StoreList(list_id) ON DELETE CASCADE,
-    FOREIGN KEY(store_track_id) REFERENCES StoreTrack(store_track_id) ON DELETE
+    FOREIGN KEY(store_track_id) REFERENCES StoreTrack(store_track_id) ON DELETE CASCADE);
+";
+
+pub const STORE_SCHEMA: &str = "
+CREATE TABLE Tra
