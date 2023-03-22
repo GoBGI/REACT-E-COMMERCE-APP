@@ -108,4 +108,6 @@ CREATE TABLE StoreList (
     list_id INTEGER PRIMARY KEY,
     name TEXT NOT NULL);
 
-CREATE TA
+CREATE TABLE StoreListTrack (
+    list_id INTEGER NOT NULL,
+    stor
