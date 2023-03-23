@@ -117,4 +117,6 @@ CREATE TABLE StoreListTrack (
 
 pub const STORE_SCHEMA: &str = "
 CREATE TABLE Track (
-    store_track_id INTEGER PRIMARY KEY
+    store_track_id INTEGER PRIMARY KEY AUTOINCREMENT,
+    title TEXT NOT NULL,
+    artist_name TE
