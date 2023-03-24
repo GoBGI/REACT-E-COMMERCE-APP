@@ -121,4 +121,6 @@ CREATE TABLE Track (
     title TEXT NOT NULL,
     artist_name TEXT NOT NULL,
     album_name TEXT NOT NULL,
-    len
+    length INTEGER NOT NULL,
+    play_count INTEGER,
+    las
