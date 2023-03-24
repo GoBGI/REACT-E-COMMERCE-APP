@@ -119,4 +119,6 @@ pub const STORE_SCHEMA: &str = "
 CREATE TABLE Track (
     store_track_id INTEGER PRIMARY KEY AUTOINCREMENT,
     title TEXT NOT NULL,
-    artist_name TE
+    artist_name TEXT NOT NULL,
+    album_name TEXT NOT NULL,
+    len
