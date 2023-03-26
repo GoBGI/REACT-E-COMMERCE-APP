@@ -134,4 +134,4 @@ CREATE TABLE ListTrack (
     store_track_id INTEGER NOT NULL,
     sort_index INTEGER,
     FOREIGN KEY(list_id) REFERENCES List(list_id) ON DELETE CASCADE,
-    FOREIGN KEY(store_track_id) REF
+    FOREIGN KEY(store_track_id) REFERENCES Track(store_track_id) ON DELETE CASCADE);
