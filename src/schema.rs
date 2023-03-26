@@ -123,4 +123,7 @@ CREATE TABLE Track (
     album_name TEXT NOT NULL,
     length INTEGER NOT NULL,
     play_count INTEGER,
-    las
+    last_play INTEGER);
+
+CREATE TABLE List (
+    list_id INTEG
