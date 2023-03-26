@@ -126,4 +126,5 @@ CREATE TABLE Track (
     last_play INTEGER);
 
 CREATE TABLE List (
-    list_id INTEG
+    list_id INTEGER PRIMARY KEY AUTOINCREMENT,
+    name TEXT NOT NULL);
