@@ -130,4 +130,6 @@ CREATE TABLE List (
     name TEXT NOT NULL);
 
 CREATE TABLE ListTrack (
-    list_id INTEGER NOT 
+    list_id INTEGER NOT NULL,
+    store_track_id INTEGER NOT NULL,
+    sort_index
