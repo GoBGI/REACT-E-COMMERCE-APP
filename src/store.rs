@@ -119,3 +119,56 @@ impl Store {
             st.execute(params![
                 store_track.title,
                 store_track.artist_name,
+                store_track.album_name,
+                store_track.store_track_id,
+                store_track.play_count,
+                store_track.last_play
+            ])?;
+        }
+
+        Ok(())
+    }
+
+    // pub fn store_track(&mut self, track: &Track) -> Result<StoreTrack> {
+    //     let tx = self.conn.transaction()?;
+
+    //     tx.commit()?;
+
+    //     Ok(())
+    // }
+
+    // pub fn register_track_play(&mut self, track: &Track) -> Result<()> {
+    //     let mut store_conn = &mut self.conn;
+    //     let mut index_conn = self.index.connection_mut();
+
+    //     let mut store_tx = store_conn.transaction()?;
+    //     let mut index_tx = index_conn.transaction()?;
+
+    //     // let store_track_id: Option<i64> = index_tx
+    //     //     .query_row(
+    //     //         "SELECT store_track_id FROM StoreTrack WHERE track_id = ?",
+    //     //         &[track.track_id],
+    //     //         |row| row.get(0)
+    //     //     )
+    //     //     .optional()?;
+
+    //     // if let Some(track_id) = store_track_id {
+    //     //     store_tx
+
+    //     // }
+
+    //     //store_tx.commit()?;
+
+    //     Ok(())
+    // }
+
+    // pub fn create_list(&mut self, name: &str) -> Result<i64> {
+    //     self.conn.execute("INSERT INTO List (name) VALUES (?)", &[name])?;
+
+    //     let list_id = self.conn.last_insert_rowid();
+
+    //     self.index.connection().execute("INSERT INTO StoreList (list_id, name) VALUES (?, ?)", params![list_id, name])?;
+
+    //     Ok(list_id)
+    // }
+}
