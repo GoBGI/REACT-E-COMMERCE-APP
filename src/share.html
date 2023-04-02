@@ -98,3 +98,57 @@
                     <span id="play_position">00:00</span> / <span id="track_length">00:00</span>
                 </div>
             </div>
+        </div>
+
+        <script type="text/javascript">
+            (function () {
+                function get_query(key) {
+                    let match = new RegExp("(^|\\?|&)" + key + "=(.*)($|&)")
+                        .exec(window.location.href);
+
+                    if (!match) {
+                        return null;
+                    }
+
+                    return match[2];
+                }
+
+                function time_to_text(time) {
+                    return (Math.floor(time / 60)).toString().padStart(2, "0") +
+                        ":" +
+                        (Math.round(time % 60)).toString().padStart(2, "0");
+                }
+
+                function display_error(error) {
+                    document.getElementById("loading").style.display = "none";
+                    document.getElementById("error").style.display = "block";
+                    document.getElementById("error").innerText = error;
+                }
+                
+                let track_id = get_query("track_id");
+                if (!track_id) {
+                    display_error("Invalid share url");
+                    return;
+                }
+                
+                let player = new Audio("/api/audio_stream?track_id=" + track_id);
+
+                let play = document.getElementById("control_play");
+                let pause = document.getElementById("control_pause");
+
+                play.onclick = function () {
+                    player.play();
+                    play.style.display = "none";
+                    pause.style.display = "block";
+                };
+
+                pause.onclick = function () {
+                    player.pause();
+                    play.style.display = "block";
+                    pause.style.display = "none";
+                };
+
+                player.ontimeupdate = function () {
+                    let time = player.currentTime;
+                    document.getElementById("play_position").innerText = time_to_text(time);
+                };
