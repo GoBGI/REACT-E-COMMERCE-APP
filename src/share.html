@@ -48,3 +48,53 @@
             #track_info {
                 margin-bottom: 1rem;
             }
+
+            #track_info > div {
+                margin-bottom: .25rem;
+            }
+
+            #controls {
+                display: flex;
+                flex-direction: row;
+                justify-content: space-between;
+            }
+
+            #control_play, #control_pause {
+                text-transform: uppercase;
+                font-weight: bold;
+                line-height: 1.5rem;
+            }
+
+            #play_position_div {
+                line-height: 1.5rem;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="loading">
+            Loading...
+        </div>
+        <div id="error" style="display: none;"></div>
+        <div id="content" style="display: none;">
+            <div id="album_image"></div>
+
+            <div id="track_info">
+                <div id="track_title_div"><strong id="track_title"></strong></div>
+                <div id="artist_name_div" style="display: none;">by
+                    <strong id="artist_name"></strong>
+                </div>
+                <div id="album_name_div" style="display: none;">on 
+                    <strong id="album_name"></strong>
+                </div>
+            </div>
+
+            <div id="controls">
+                <div>
+                    <button id="control_play">▶ play</button>
+                    <button id="control_pause" style="display: none;">▮▮ pause</button>
+                </div>
+
+                <div id="play_position_div">
+                    <span id="play_position">00:00</span> / <span id="track_length">00:00</span>
+                </div>
+            </div>
