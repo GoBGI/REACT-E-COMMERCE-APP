@@ -152,3 +152,69 @@
                     let time = player.currentTime;
                     document.getElementById("play_position").innerText = time_to_text(time);
                 };
+
+                player.play()
+                    .then(function () {
+                        play.style.display = "none";
+                        pause.style.display = "block";
+                    })
+                    .catch(function () {
+                        play.style.display = "block";
+                        pause.style.display = "none";
+                    });
+
+                fetch("/api/tracks?track_id=" + track_id)
+                    .then(function (res) { return res.json(); })
+                    .then(function (res) {
+                        let track = res.items[0];
+
+                        if (!track) {
+                            display_error("Track doesn't exist");
+                            return;
+                        }
+
+                        document.getElementById("track_title").innerText =
+                            track.title ? track.title : "Untitled track";
+
+                        if (track.artist_name) {
+                            document.getElementById("artist_name_div").style.display = "block";
+                            document.getElementById("artist_name").innerText = track.artist_name;
+                        }
+                        
+                        if (track.album_name) {
+                            document.getElementById("album_name_div").style.display = "block";
+                            document.getElementById("album_name").innerText = track.album_name;
+                        }
+
+                        document.getElementById("track_length").innerText =
+                            time_to_text(track.length);
+
+                        let title = document.getElementsByTagName("title")[0];
+                        title.innerText = (track.title ? track.title : "Untitled track") +
+                            (track.artist_name ? " by " + track.artist_name : "") +
+                            (track.album_name ? " on " + track.album_name : "") +
+                            " - " + title.innerText;
+
+                        document.getElementById("loading").style.display = "none";
+                        document.getElementById("content").style.display = "block";
+
+                        if (track.album_id) {
+                            fetch("/api/albums?album_id=" + track.album_id)
+                                .then(function (res) { return res.json(); })
+                                .then(function (res) {
+                                    console.log(res);
+                                    let album = res.items[0];
+                                    if (album.image_id) {
+                                        document.getElementById("album_image").style.background =
+                                            "center / contain no-repeat url('/api/image_file?image_id=" + album.image_id + "')";
+                                    }
+                                });
+                        }
+                    })
+                    .catch(function () {
+                        display_error("An error occured while fetching track information");
+                    });
+            })();
+        </script>
+    </body>
+</html>
